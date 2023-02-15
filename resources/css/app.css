@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Luxurious+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+
+body {
+    background-color: #bbe1fa;
+    font-family: "Kanit", sans-serif;
+}
+.logo-name {
+    margin: 0;
+    font-size: 55px;
+    text-decoration: none;
+    color: #000000;
+}
+.no-list-style {
+    list-style-type: none;
+}
+.no-decoration {
+    text-decoration: none;
+}
+.btn-icon {
+    border: 1px solid #e0e0e0;
+    background: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 4px;
+    color: #6a727a;
+    cursor: pointer;
+}
+.btn-icon-success:hover {
+    background: rgb(47, 214, 111);
+    color: white;
+}
+.btn-icon-danger:hover {
+    background: crimson;
+    color: white;
+}
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
