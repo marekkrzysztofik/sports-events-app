@@ -1,34 +1,14 @@
 <template>
     <Toast />
     <ConfirmDialog></ConfirmDialog>
-    <div class="justify-content-around flex align-items-center">
-        <div class="flex">
-            <img class="logo" src="" alt="LOGO" />
-            <h1 class="logo-name">SportsEvents</h1>
-        </div>
-        <div class="flex">
-            <ul class="no-list-style flex">
-                <li class="m-3">
-                    <router-link to="/admin/create" class="no-decoration"
-                        ><Button label="Create competition"
-                    /></router-link>
-                </li>
-                <li class="m-3">
-                    <Button label="Register" />
-                </li>
-                <li class="m-3">
-                    <Button @click="logout" label="Log Out" />
-                </li>
-            </ul>
-            <img class="cart" src="" alt="icon" />
-            <img class="user" src="" alt="icon" />
-        </div>
-    </div>
-    <div class="w-8 flex m-auto">
+    <Navbar></Navbar>
+    <div class="w-10 flex m-auto">
         <DataTable :value="competitions" responsiveLayout="scroll">
             <template #header>Competitions </template>
             <Column field="id" header="ID"></Column>
             <Column field="name" header="Name"></Column>
+            <Column field="style" header="Style"></Column>
+            <Column field="competition" header="Competition"></Column>
             <Column field="ageGroup" header="Age Group"></Column>
             <Column field="startTime" header="Start Time"></Column>
             <Column field="sex" header="Sex"></Column>
@@ -99,13 +79,8 @@ onMounted(async () => {
     getCompetitions();
 });
 const competitions = ref([]);
-const logout = () => {
-    localStorage.removeItem("token");
-    router.push("/");
-};
 const getCompetitions = async () => {
     const response = await axios.get("/api/getDisc");
     competitions.value = response.data;
-    console.log(competitions.value[0]);
 };
 </script>

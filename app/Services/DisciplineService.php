@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace App\Services;
 
 use App\Models\Discipline;
@@ -10,11 +10,14 @@ class DisciplineService
     {
         $discipline = new Discipline;
         $discipline->name = $data['name'];
-        $discipline->category = $data['category'];
+        $discipline->style = $data['style'];
+        $discipline->competition = $data['competition'];
         $discipline->ageGroup = $data['ageGroup'];
         $discipline->startTime = $data['startTime'];
         $discipline->sex = $data['sex'];
-        $discipline->participants = $data['participants']; 
+        $discipline->participants = $data['participants'];
+        $discipline->timeNotScore = $data['timeNotScore'];
+        $discipline->bigScoreWins = $data['bigScoreWins'];
         $discipline->save();
         return $discipline;
     }

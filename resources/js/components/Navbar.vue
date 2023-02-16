@@ -16,9 +16,20 @@
                         ><Button label="Register"
                     /></router-link>
                 </li>
+                <li class="m-3">
+                    <Button @click="logout" label="Log Out" />
+                </li>
             </ul>
             <img class="cart" src="" alt="icon" />
             <img class="user" src="" alt="icon" />
         </div>
     </div>
 </template>
+<script setup>
+import {useRouter} from 'vue-router'
+const router = useRouter()
+const logout = () => {
+    localStorage.removeItem("token");
+    router.push("/");
+};
+</script>

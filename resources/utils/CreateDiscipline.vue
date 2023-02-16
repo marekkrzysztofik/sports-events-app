@@ -1,96 +1,104 @@
 <template>
     <h1>Create Competition</h1>
-    <div class="justify-content-around flex align-items-center">
-        <div class="flex">
-            <img class="logo" src="" alt="LOGO" />
-            <h1 class="logo-name">SportsEvents</h1>
-        </div>
-        <div class="flex">
-            <ul class="no-list-style flex">
-                <li class="m-3">
-                    <Button label="Login" />
-                </li>
-                <li class="m-3">
-                    <Button label="Register" />
-                </li>
-                <li class="m-3">
-                    <Button @click="logout" label="Log Out" />
-                </li>
-            </ul>
-            <img class="cart" src="" alt="icon" />
-            <img class="user" src="" alt="icon" />
-        </div>
-    </div>
+    <Navbar></Navbar>
     <div class="flex flex-column">
         <div class="m-auto">
             <h2>Add new competition</h2>
             <div class="input-grid">
                 <div>
-                    <p>
-                        <InputText
-                            class=""
-                            type="text"
-                            placeholder="Enter competition name"
-                            v-model="form.name"
-                        />
-                    </p>
-                    <p>
-                        <InputText
-                            class=""
-                            type="text"
-                            placeholder="Age group(kids,teens,adults)"
-                            v-model="form.ageGroup"
-                        />
-                    </p>
+                    <Dropdown
+                        v-model="form.name"
+                        :options="sports"
+                        inputClass="string"
+                        placeholder="Select a sport"
+                        class="m-3"
+                    />
+                    <Dropdown
+                        v-model="form.ageGroup"
+                        :options="ageCategories"
+                        inputClass="string"
+                        placeholder="Select age category"
+                        class="m-3"
+                    />
+                </div>
+                <div>
+                    <CascadeSelect
+                        v-model="compStyle.style"
+                        :options="disciplines1"
+                        optionLabel="cname"
+                        optionGroupLabel="name"
+                        :optionGroupChildren="['styles']"
+                        style="minwidth: 14rem"
+                        placeholder="Select a style"
+                        class="m-3"
+                    >
+                        <template #option="slotProps">
+                            <div class="country-item">
+                                <span>{{
+                                    slotProps.option.cname ||
+                                    slotProps.option.name
+                                }}</span>
+                            </div>
+                        </template>
+                    </CascadeSelect>
+                    <CascadeSelect
+                        v-model="compStyle.competition"
+                        :options="disciplines1"
+                        optionLabel="cname"
+                        optionGroupLabel="name"
+                        :optionGroupChildren="['competitions']"
+                        style="minwidth: 14rem"
+                        placeholder="Select a competition"
+                        class="m-3"
+                    >
+                        <template #option="slotProps">
+                            <div class="country-item">
+                                <span>{{
+                                    slotProps.option.cname ||
+                                    slotProps.option.name
+                                }}</span>
+                            </div>
+                        </template>
+                    </CascadeSelect>
                 </div>
                 <div>
                     <p>
-                        <InputText
-                            class=""
-                            type="date"
-                            placeholder="Enter date and time of competition"
-                            v-model="date.day"
-                        />
+                        <InputText v-model="date.day" type="date" />
                     </p>
                     <p>
-                        <InputText
-                            class=""
-                            type="time"
-                            placeholder="Enter date and time of competition"
-                            v-model="date.time"
-                        />
+                        <InputText v-model="date.time" type="time" />
                     </p>
                 </div>
                 <div>
+                    <Dropdown
+                        v-model="form.sex"
+                        :options="sex"
+                        inputClass="string"
+                        placeholder="Select sex"
+                        class="m-3"
+                    />
                     <p>
                         <InputText
-                            class=""
-                            type="text"
-                            placeholder="'M' for Male 'F for Female'"
-                            v-model="form.sex"
-                        />
-                    </p>
-                    <p>
-                        <InputText
-                            class=""
-                            type="text"
-                            placeholder="Number of participants"
                             v-model="form.participants"
+                            type="number"
+                            placeholder="Number of participants"
                         />
                     </p>
                 </div>
                 <div>
-                    <Checkbox v-model="form.timeNotScore" :binary="true" />
-                    Check for time, leave for score
-                    <p>
-                        <Checkbox v-model="form.bigScoreWins" :binary="true" />
-                        Check if the biggest score wins
-                    </p>
-
                     <p class="text-danger" v-for="error in errors" :key="error">
                         <span v-for="err in error" :key="err">{{ err }} </span>
                     </p>
                 </div>
+                <p>
+                    <Checkbox v-model="form.timeNotScore" :binary="true" />
+                    Check for time, leave for score
+                </p>
+
+                <p>
+                    <Checkbox v-model="form.bigScoreWins" :binary="true" />
+                    Check if the biggest score wins
+                </p>
                 <p>
                     <Button
                         @click="saveCompetition"
@@ -105,29 +113,25 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import {
+    disciplines1,
+    sports,
+    ageCategories,
+    sex,
+} from "./consts/disciplines.js";
+import {form,compStyle, date } from './consts/form.js'
 
+const elko = ref("");
 const router = useRouter();
-const date = ref({
-    day: "",
-    time: "",
-});
-const form = ref({
-    name: "",
-    category:"",
-    ageGroup: "",
-    startTime: "",
-    sex: "",
-    participants: "",
-    timeNotScore: false,
-    bigScoreWins: false,
-});
 const errors = ref([]);
 const logout = () => {
     localStorage.removeItem("token");
     router.push("/");
-};
+}; 
 const saveCompetition = async () => {
     form.value.startTime = date.value.day + " " + date.value.time;
+    form.value.style = compStyle.value.style.cname;
+    form.value.competition = compStyle.value.competition.cname;
     await axios
         .post("/api/createDiscipline", { ...form.value })
         .then(() => {
@@ -137,6 +141,7 @@ const saveCompetition = async () => {
         .catch(() => {
             console.log("error");
         });
+    console.log(form.value.style);
 };
 </script>
 <style>
@@ -144,7 +149,7 @@ const saveCompetition = async () => {
     margin: auto;
     display: grid;
     align-items: center;
-    grid-template-columns: repeat(4, 250px);
+    grid-template-columns: repeat(5, 250px);
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
