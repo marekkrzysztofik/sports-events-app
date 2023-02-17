@@ -19,7 +19,6 @@ class DisciplineService
         $discipline->timeNotScore = $data['timeNotScore'];
         $discipline->bigScoreWins = $data['bigScoreWins'];
         $discipline->save();
-        return $discipline;
     }
     public function deleteDisc($id)
     {

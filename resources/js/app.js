@@ -24,6 +24,7 @@ import ColumnGroup from "primevue/columngroup"; //optional for column grouping
 import Row from "primevue/row"; //optional for row
 import Card from "primevue/card";
 import Textarea from "primevue/textarea";
+import Confirm from "./components/Confirm.vue";
 import Toolbar from "primevue/toolbar";
 import FileUpload from "primevue/fileupload";
 import ToastService from "primevue/toastservice";
@@ -37,6 +38,7 @@ app.use(router);
 app.use(PrimeVue);
 app.use(ToastService);
 app.use(ConfirmationService);
+app.component("Confirm", Confirm);
 app.component("CascadeSelect", CascadeSelect);
 app.component("Dropdown", Dropdown);
 app.component("Checkbox", Checkbox);

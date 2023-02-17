@@ -1,9 +1,11 @@
 <template>
     <h1>Create Competition</h1>
     <Navbar></Navbar>
-    <div class="flex flex-column">
-        <div class="m-auto">
-            <h2>Add new competition</h2>
+    <div
+        class="flex flex-column bg-dark-blue w-10 m-20-auto br-radius-15 pad-15"
+    >
+        <h2>Add new competition</h2>
+        <div class="m-auto flex">
             <div class="input-grid">
                 <div>
                     <Dropdown
@@ -112,22 +114,16 @@
 </template>
 <script setup>
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 import {
     disciplines1,
     sports,
     ageCategories,
     sex,
 } from "./consts/disciplines.js";
-import {form,compStyle, date } from './consts/form.js'
-
-const elko = ref("");
+import { form, compStyle, date } from "./consts/form.js";
+import { useRouter } from "vue-router";
 const router = useRouter();
 const errors = ref([]);
-const logout = () => {
-    localStorage.removeItem("token");
-    router.push("/");
-}; 
 const saveCompetition = async () => {
     form.value.startTime = date.value.day + " " + date.value.time;
     form.value.style = compStyle.value.style.cname;
@@ -144,7 +140,7 @@ const saveCompetition = async () => {
     console.log(form.value.style);
 };
 </script>
-<style>
+<style scoped>
 .input-grid {
     margin: auto;
     display: grid;

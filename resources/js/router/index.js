@@ -4,6 +4,8 @@ import Login from "/resources/modules/Organizer/components/Auth/Login.vue";
 import Home from "../components/Home.vue";
 import AdminHome from "/resources/utils/AdminHome.vue";
 import CreateDiscipline from "/resources/utils/CreateDiscipline.vue";
+import AddCompetitor from "/resources/utils/AddCompetitor.vue";
+import Competitors from "/resources/utils/Competitors.vue";
 import Register from "/resources/modules/Organizer/components/Auth/Register.vue";
 const routes = [
     //admin
@@ -22,11 +24,27 @@ const routes = [
         meta: {
             requiresAuth: true,
         },
-    },
+    }, 
     {
         path: "/admin/create",
-        component: CreateDiscipline,
+        component: CreateDiscipline,  
         name: "CreateDiscipline",
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: "/admin/add-competitor",
+        component: AddCompetitor,  
+        name: "AddCompetitor",
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: "/admin/competitors",
+        component: Competitors,  
+        name: "Competitors",
         meta: {
             requiresAuth: true,
         },

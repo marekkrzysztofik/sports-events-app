@@ -7,17 +7,37 @@
         <div class="flex">
             <ul class="no-list-style flex">
                 <li class="m-3">
-                    <router-link to="/login" class="no-decoration"
+                    <router-link v-if="$route.name ==='Home'" to="/login" class="no-decoration"
                         ><Button label="Login"
                     /></router-link>
                 </li>
                 <li class="m-3">
-                    <router-link to="/register" class="no-decoration"
+                    <router-link v-if="$route.name ==='Home'" to="/register" class="no-decoration"
                         ><Button label="Register"
                     /></router-link>
                 </li>
                 <li class="m-3">
+                    <router-link to="/admin/" class="no-decoration"
+                        ><Button label="Home"
+                    /></router-link>
+                </li>
+                <li class="m-3">
+                    <router-link v-if="$route.name ==='AdminHome'" to="/admin/competitors" class="no-decoration"
+                        ><Button label="Competitors"
+                    /></router-link>
+                </li>
+                <li class="m-3">
                     <Button @click="logout" label="Log Out" />
+                </li>
+                <li v-if="$route.name ==='AdminHome'" class="m-3">
+                    <router-link to="/admin/create" class="no-decoration"
+                        ><Button label="Create competition"
+                    /></router-link>
+                </li>
+                <li v-if="$route.name ==='AdminHome'" class="m-3">
+                    <router-link to="/admin/add-competitor" class="no-decoration"
+                        ><Button label="Add competitor"
+                    /></router-link>
                 </li>
             </ul>
             <img class="cart" src="" alt="icon" />

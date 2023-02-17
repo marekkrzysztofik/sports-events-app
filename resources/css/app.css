@@ -6,6 +6,21 @@ body {
     background-color: #bbe1fa;
     font-family: "Kanit", sans-serif;
 }
+.bg-dark-blue {
+ background-color: #3C84AB;
+}
+.br-radius-15 {
+    border-radius: 15px;
+}
+.m-10-auto {
+    margin: 10px auto;
+}
+.m-20-auto {
+    margin: 20px auto;
+}
+.pad-15 {
+    padding: 15px;
+}
 .logo-name {
     margin: 0;
     font-size: 55px;
@@ -21,8 +36,8 @@ body {
 .btn-icon {
     border: 1px solid #e0e0e0;
     background: none;
-    width: 35px;
-    height: 35px;
+    width: 29px;
+    height: 29px;
     border-radius: 4px;
     color: #6a727a;
     cursor: pointer;

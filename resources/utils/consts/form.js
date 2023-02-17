@@ -17,3 +17,10 @@ export const form = ref({
   timeNotScore: false,
   bigScoreWins: false,
 });
+
+export const compForm = ref({
+  name:'',
+  surname:'',
+  age:'',
+  sex:''
+})
