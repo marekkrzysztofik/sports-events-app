@@ -12,7 +12,7 @@
                         class="m-3"
                     />
                     <InputText
-                        v-model="compForm.surname"
+                        v-model="compForm.surname" 
                         type="text"
                         placeholder="Surname of competitor"
                         class="m-3"
@@ -50,7 +50,7 @@
     </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
+import { onMounted } from "vue";
 import { compForm, id } from "./consts/form.js";
 import { sex } from "./consts/disciplines.js";
 import { useRouter } from "vue-router";
@@ -69,7 +69,7 @@ const getSingleSportsman = async () => {
     id.value = response.data.id;
     compForm.value = response.data;
 };
-
+ 
 const saveCompetitior = async () => {
     await axios
         .post("/api/createSportsman", { ...compForm.value })

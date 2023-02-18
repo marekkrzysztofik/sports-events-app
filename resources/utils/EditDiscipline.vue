@@ -13,7 +13,7 @@
                         :options="sports"
                         inputClass="string"
                         placeholder="Select a sport"
-                        class="m-3"
+                        class="m-3" 
                     />
                     <Dropdown
                         v-model="form.ageGroup"
@@ -135,6 +135,7 @@ const props = defineProps({
 });
 const getSingleDiscipline = async () => {
     const response = await axios.get(`/api/editDisc/${props.id}`);
+    console.log(response.data)
     id.value = response.data.id;
     form.value = response.data;
 };

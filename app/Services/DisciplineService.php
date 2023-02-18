@@ -18,7 +18,7 @@ class DisciplineService
         $discipline->bigScoreWins = $data['bigScoreWins'];
         $discipline->save();
     }
-    public function deleteDisc($id)
+    public function deleteDisc($id) 
     {
         $discipline = Discipline::findOrFail($id); 
         $discipline->delete();

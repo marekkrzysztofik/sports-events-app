@@ -5,9 +5,9 @@
             <template #header>Competitors </template>
             <Column field="id" header="ID"></Column>
             <Column field="name" header="Name"></Column>
-            <Column field="surname" header="Style"></Column>
-            <Column field="age" header="Competition"></Column>
-            <Column field="sex" header="Age Group"></Column>
+            <Column field="surname" header="Surname"></Column>
+            <Column field="age" header="Age"></Column>
+            <Column field="sex" header="Sex"></Column>
             <template #footer>
                 In total there are
                 {{ competitors ? competitors.length : 0 }} competitors.

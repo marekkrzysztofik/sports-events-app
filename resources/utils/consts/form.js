@@ -5,7 +5,7 @@ export const date = ref({
 });
 export const compStyle = ref({
   style: "",
-  competition: "",
+  competition: "", 
 });
 export const form = ref({
   name: "",
