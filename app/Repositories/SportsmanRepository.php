@@ -10,4 +10,8 @@ class SportsmanRepository
     {
         return Sportsman::all();
     }
-}
+    public function editSportsman($id)
+    {
+        return Sportsman::find($id);
+    }
+} 

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('discipline_id');
             $table->unsignedBigInteger('sportsman_id');
-            $table->foreign('discipline_id')->references('discipline_id')->on('disciplines')->onDelete('cascade');
-            $table->foreign('sportsman_id')->references('sportsman_id')->on('sportsmen')->onDelete('cascade');
+            $table->foreign('discipline_id')->references('id')->on('disciplines')->onDelete('cascade');
+            $table->foreign('sportsman_id')->references('id')->on('sportsmen')->onDelete('cascade');
             $table->integer('score')->nullable();
             $table->time('time')->nullable();
             $table->timestamps();

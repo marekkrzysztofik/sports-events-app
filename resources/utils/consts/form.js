@@ -17,7 +17,7 @@ export const form = ref({
   timeNotScore: false,
   bigScoreWins: false,
 });
-
+export const id = ref('')
 export const compForm = ref({
   name:'',
   surname:'',

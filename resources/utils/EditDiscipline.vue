@@ -1,7 +1,7 @@
 <template>
     <h1>Create Competition</h1>
     <Navbar></Navbar>
-    <div 
+    <div
         class="flex flex-column bg-dark-blue w-10 m-20-auto br-radius-15 pad-15"
     >
         <h2>Add new competition</h2>
@@ -113,25 +113,41 @@
     </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import {
     disciplines1,
     sports,
     ageCategories,
     sex,
 } from "./consts/disciplines.js";
-import { form, compStyle, date } from "./consts/form.js";
+import { form, compStyle, date, id } from "./consts/form.js";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const errors = ref([]);
+onMounted(async () => {
+    getSingleDiscipline();
+});
+const props = defineProps({
+    id: {
+        type: String,
+        default: "",
+    },
+});
+const getSingleDiscipline = async () => {
+    const response = await axios.get(`/api/editDisc/${props.id}`);
+    id.value = response.data.id;
+    form.value = response.data;
+};
+
 const saveCompetition = async () => {
     form.value.startTime = date.value.day + " " + date.value.time;
     form.value.style = compStyle.value.style.cname;
     form.value.competition = compStyle.value.competition.cname;
     await axios
-        .post("/api/createDiscipline", { ...form.value })
+        .post(`/api/updateDisc/${id.value}`, { ...form.value })
         .then(() => {
             Object.keys(form.value).forEach((key) => (form.value[key] = ""));
+            id = "";
             router.push("/admin/");
         })
         .catch(() => {

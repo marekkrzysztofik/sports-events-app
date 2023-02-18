@@ -20,7 +20,7 @@ class DisciplineController extends Controller
         $data = $request->all();
         $this->disciplineService->createDiscipline($data);
     }
-
+ 
     public function getDisc()
     {
         return ($this->disciplineRepository->getDisc()->all());
@@ -29,4 +29,25 @@ class DisciplineController extends Controller
     {
         return ($this->disciplineService->deleteDisc($id));
     }
+
+    public function editDisc($id)
+    {
+        return ($this->disciplineRepository->editDisc($id));
+    }
+
+    public function updateDisc($id)
+    {
+        $data = $this->disciplineRepository->editDisc($id);
+        return ($this->disciplineService->updateDisc($data,$id));
+    }
+    // public function createOrUpdateProduct(Request $request)                    
+    //  {
+    //     $data= $request->all();
+    //     if(array_key_exists("id", $data) && $data['id']) {
+    //       return $this->updateDiscipline($request, $data["id"]); 
+    //     } else {
+    //        return $this->createDiscipline($request);
+    //     }
+
+    // }
 }

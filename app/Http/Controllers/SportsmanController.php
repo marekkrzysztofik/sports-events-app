@@ -22,7 +22,6 @@ class SportsmanController extends Controller
         $data = $request->all();
         $this->sportsmanService->createSportsman($data);
     }
-
     public function getSportsman()
     {
         return ($this->sportsmanRepository->getSportsman()->all());
@@ -31,4 +30,9 @@ class SportsmanController extends Controller
     {
         return ($this->sportsmanService->deleteSportsman($id));
     }
+    public function editSportsman($id)
+    {
+        return ($this->sportsmanRepository->editSportsman($id));
+    }
+
 }

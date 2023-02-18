@@ -6,7 +6,7 @@
         <Column field="startTime" header="Edit/Delete record">
             <template #body="event">
                 <div class="height-competitions">
-                    <button class="btn-icon btn-icon-success">
+                    <button @click="onEdit(event.data.id)" class="btn-icon btn-icon-success">
                         <i class="pi pi-pencil"></i>
                     </button>
                     <button
@@ -24,7 +24,7 @@
         <Column field="startTime" header="Edit/Delete record">
             <template #body="event1">
                 <div class="height-competitors">
-                    <button class="btn-icon btn-icon-success">
+                    <button @click="onEdit(event1.data.id)" class="btn-icon btn-icon-success">
                         <i class="pi pi-pencil"></i>
                     </button>
                     <button
@@ -43,8 +43,8 @@
 import { useConfirm } from "primevue/useconfirm";
 import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
-import { onMounted, watch, computed } from "vue";
-import { useRoute } from "vue-router";
+import { onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import {
     getCompetitions,
     competitions,
@@ -53,7 +53,7 @@ import {
     getCompetitors,
     deleteCompetitor,
 } from "/resources/utils/consts/getOrDelete.js";
-
+const router = useRouter();
 const route = useRoute().path;
 
 onMounted(async () => {
@@ -95,6 +95,16 @@ const confirm2 = (id) => {
         },
     });
 };
+const onEdit = id => {
+   if(route == "/admin/") {
+    router.push(`/admin/edit-discipline/${id}`);
+   }
+   if (route == "/admin/competitors") {
+    router.push(`/admin/edit-competitor/${id}`);
+            }
+};
+
+
 </script>
 <style scoped>
 .height-competitions {
