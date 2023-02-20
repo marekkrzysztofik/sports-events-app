@@ -34,5 +34,8 @@ class SportsmanController extends Controller
     {
         return ($this->sportsmanRepository->editSportsman($id));
     }
-
+    public function createOrUpdateSportsman(Request $data)
+    {
+        return ($this->sportsmanService->createOrUpdateSportsman($data));
+    }
 }

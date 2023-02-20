@@ -9,7 +9,7 @@ class DisciplineRepository
 {
     public function getDisc(): Collection
     {
-        return Discipline::all();
+        return Discipline::all(); 
     } 
     
     public function editDisc($id)

@@ -1,10 +1,9 @@
 <template>
-    <h1>Create Competition</h1>
     <Navbar></Navbar>
+    <h1 class="center">Edit Competition</h1>
     <div
         class="flex flex-column bg-dark-blue w-10 m-20-auto br-radius-15 pad-15"
     >
-        <h2>Add new competition</h2>
         <div class="m-auto flex">
             <div class="input-grid">
                 <div>
@@ -13,7 +12,7 @@
                         :options="sports"
                         inputClass="string"
                         placeholder="Select a sport"
-                        class="m-3" 
+                        class="m-3"
                     />
                     <Dropdown
                         v-model="form.ageGroup"
@@ -79,35 +78,28 @@
                         placeholder="Select sex"
                         class="m-3"
                     />
-                    <p>
-                        <InputText
-                            v-model="form.participants"
-                            type="number"
-                            placeholder="Number of participants"
-                        />
-                    </p>
+                    <InputText
+                        v-model="form.participants"
+                        type="number"
+                        placeholder="Number of participants"
+                        class="m-3"
+                    />
                 </div>
-                <div>
-                    <p class="text-danger" v-for="error in errors" :key="error">
-                        <span v-for="err in error" :key="err">{{ err }} </span>
-                    </p>
-                </div>
-                <p>
+                <div class="m-3">
                     <Checkbox v-model="form.timeNotScore" :binary="true" />
-                    Check for time, leave for score
-                </p>
-
-                <p>
+                    <p>Check for time, leave for score</p>
+                </div>
+                <div class="m-3">
                     <Checkbox v-model="form.bigScoreWins" :binary="true" />
-                    Check if the biggest score wins
-                </p>
-                <p>
+                    <p>Check if the biggest score wins</p>
+                </div>
+                <div class="save-button m-3">
                     <Button
                         @click="saveCompetition"
                         label="Save"
                         class="p-button-rounded"
                     />
-                </p>
+                </div>
             </div>
         </div>
     </div>
@@ -123,7 +115,7 @@ import {
 import { form, compStyle, date, id } from "./consts/form.js";
 import { useRouter } from "vue-router";
 const router = useRouter();
-const errors = ref([]);
+
 onMounted(async () => {
     getSingleDiscipline();
 });
@@ -134,37 +126,21 @@ const props = defineProps({
     },
 });
 const getSingleDiscipline = async () => {
-    const response = await axios.get(`/api/editDisc/${props.id}`);
-    console.log(response.data)
+    const response = await axios.get(`/api/editDisc/${props.id}`); 
+    console.log(response.data);
     id.value = response.data.id;
-    form.value = response.data;
+    form.value = response.data; 
 };
-
 const saveCompetition = async () => {
     form.value.startTime = date.value.day + " " + date.value.time;
     form.value.style = compStyle.value.style.cname;
     form.value.competition = compStyle.value.competition.cname;
     await axios
-        .post(`/api/updateDisc/${id.value}`, { ...form.value })
+        .post(`/api/createOrUpdateDiscipline`, { ...form.value }) 
         .then(() => {
             Object.keys(form.value).forEach((key) => (form.value[key] = ""));
-            id = "";
             router.push("/admin/");
-        })
-        .catch(() => {
-            console.log("error");
         });
-    console.log(form.value.style);
 };
 </script>
-<style scoped>
-.input-grid {
-    margin: auto;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(5, 250px);
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-}
-</style>
+

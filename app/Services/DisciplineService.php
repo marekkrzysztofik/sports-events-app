@@ -1,7 +1,10 @@
 <?php
-  
+
 namespace App\Services;
+
 use App\Models\Discipline;
+use Illuminate\Http\Request;
+
 class DisciplineService
 {
     public function createDiscipline($data)
@@ -18,12 +21,12 @@ class DisciplineService
         $discipline->bigScoreWins = $data['bigScoreWins'];
         $discipline->save();
     }
-    public function deleteDisc($id) 
+    public function deleteDisc($id)
     {
-        $discipline = Discipline::findOrFail($id); 
+        $discipline = Discipline::findOrFail($id);
         $discipline->delete();
     }
-    public function updateDisc($request, $id)
+    public function updateDisc(Request $request, $id)
     {
         $discipline = Discipline::find($id);
         $discipline->name = $request['name'];
@@ -36,6 +39,15 @@ class DisciplineService
         $discipline->timeNotScore = $request['timeNotScore'];
         $discipline->bigScoreWins = $request['bigScoreWins'];
         $discipline->save();
-     }
-   
+    }
+
+    public function createOrUpdateDiscipline(Request $request)
+    {
+        $data = $request->all();
+        if (array_key_exists("id", $data) && $data['id']) {
+            $this->updateDisc($request, $data["id"]);
+        } else {
+            $this->createDiscipline($request);
+        }
+    }
 }

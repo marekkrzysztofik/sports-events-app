@@ -1,8 +1,11 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Repositories\DisciplineRepository;
 use App\Services\DisciplineService;
+use App\Models\Discipline;
 
 class DisciplineController extends Controller
 {
@@ -15,12 +18,12 @@ class DisciplineController extends Controller
         $this->disciplineService = $disciplineService;
     }
 
-    public function createDiscipline(Request $request) 
+    public function createDiscipline(Request $request)
     {
         $data = $request->all();
         $this->disciplineService->createDiscipline($data);
     }
- 
+
     public function getDisc()
     {
         return ($this->disciplineRepository->getDisc()->all());
@@ -35,19 +38,8 @@ class DisciplineController extends Controller
         return ($this->disciplineRepository->editDisc($id));
     }
 
-    public function updateDisc(Request $id)
+    public function createOrUpdateDiscipline(Request $data)
     {
-        $data = $this->disciplineRepository->editDisc($id);
-        return ($this->disciplineService->updateDisc($data,$id));
+        return ($this->disciplineService->createOrUpdateDiscipline($data));
     }
-    // public function createOrUpdateProduct(Request $request)                    
-    //  {
-    //     $data= $request->all();
-    //     if(array_key_exists("id", $data) && $data['id']) {
-    //       return $this->updateDiscipline($request, $data["id"]); 
-    //     } else {
-    //        return $this->createDiscipline($request);
-    //     }
-
-    // }
 }

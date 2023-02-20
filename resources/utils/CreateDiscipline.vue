@@ -1,11 +1,11 @@
 <template>
-    <h1>Create Competition</h1>
     <Navbar></Navbar>
-    <div 
+    <h1 class="center">Create Competition</h1>
+    <div
         class="flex flex-column bg-dark-blue w-10 m-20-auto br-radius-15 pad-15"
     >
-        <h2>Add new competition</h2>
-        <div class="m-auto flex">
+        <h2 class="m-3">Add new competition</h2>
+        <div class="m-auto flex align-items-center">
             <div class="input-grid">
                 <div>
                     <Dropdown
@@ -64,12 +64,8 @@
                     </CascadeSelect>
                 </div>
                 <div>
-                    <p>
-                        <InputText v-model="date.day" type="date" />
-                    </p>
-                    <p>
-                        <InputText v-model="date.time" type="time" />
-                    </p>
+                    <InputText v-model="date.day" class="m-3" type="date" />
+                    <InputText v-model="date.time" class="m-3" type="time" />
                 </div>
                 <div>
                     <Dropdown
@@ -79,41 +75,33 @@
                         placeholder="Select sex"
                         class="m-3"
                     />
-                    <p>
-                        <InputText
-                            v-model="form.participants"
-                            type="number"
-                            placeholder="Number of participants"
-                        />
-                    </p>
+                    <InputText
+                        v-model="form.participants"
+                        type="number"
+                        placeholder="Number of participants"
+                        class="m-3"
+                    />
                 </div>
-                <div>
-                    <p class="text-danger" v-for="error in errors" :key="error">
-                        <span v-for="err in error" :key="err">{{ err }} </span>
-                    </p>
-                </div>
-                <p>
+                <div class="m-3">
                     <Checkbox v-model="form.timeNotScore" :binary="true" />
-                    Check for time, leave for score
-                </p>
-
-                <p>
+                    <p>Check for time, leave for score</p>
+                </div>
+                <div class="m-3">
                     <Checkbox v-model="form.bigScoreWins" :binary="true" />
-                    Check if the biggest score wins
-                </p>
-                <p>
+                    <p>Check if the biggest score wins</p>
+                </div>
+                <div class="save-button m-3">
                     <Button
                         @click="saveCompetition"
                         label="Save"
                         class="p-button-rounded"
                     />
-                </p>
+                </div>
             </div>
         </div>
     </div>
 </template>
 <script setup>
-import { ref } from "vue";
 import {
     disciplines1,
     sports,
@@ -123,31 +111,15 @@ import {
 import { form, compStyle, date } from "./consts/form.js";
 import { useRouter } from "vue-router";
 const router = useRouter();
-const errors = ref([]);
 const saveCompetition = async () => {
     form.value.startTime = date.value.day + " " + date.value.time;
     form.value.style = compStyle.value.style.cname;
     form.value.competition = compStyle.value.competition.cname;
     await axios
-        .post("/api/createDiscipline", { ...form.value })
+        .post("/api/createOrUpdateDiscipline", { ...form.value })
         .then(() => {
             Object.keys(form.value).forEach((key) => (form.value[key] = ""));
             router.push("/admin/");
         })
-        .catch(() => {
-            console.log("error");
-        });
-    console.log(form.value.style);
 };
 </script>
-<style scoped>
-.input-grid {
-    margin: auto;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(5, 250px);
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-}
-</style>

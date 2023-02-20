@@ -3,10 +3,13 @@
     <ConfirmDialog></ConfirmDialog>
     <DataTable v-if="$route.name === 'AdminHome'" :value="competitions">
         <template #header>Actions </template>
-        <Column field="startTime" header="Edit/Delete record">
+        <Column field="startTime" header="Edit/Delete">
             <template #body="event">
-                <div class="height-competitions">
-                    <button @click="onEdit(event.data.id)" class="btn-icon btn-icon-success">
+                <div class="actions-height">
+                    <button
+                        @click="onEdit(event.data.id)"
+                        class="btn-icon btn-icon-success"
+                    >
                         <i class="pi pi-pencil"></i>
                     </button>
                     <button
@@ -21,10 +24,13 @@
     </DataTable>
     <DataTable v-if="$route.name === 'Competitors'" :value="competitors">
         <template #header>Actions </template>
-        <Column field="startTime" header="Edit/Delete record">
+        <Column field="startTime" header="Edit/Delete">
             <template #body="event1">
-                <div class="height-competitors">
-                    <button @click="onEdit(event1.data.id)" class="btn-icon btn-icon-success">
+                <div class="actions-height">
+                    <button
+                        @click="onEdit(event1.data.id)"
+                        class="btn-icon btn-icon-success"
+                    >
                         <i class="pi pi-pencil"></i>
                     </button>
                     <button
@@ -95,22 +101,17 @@ const confirm2 = (id) => {
         },
     });
 };
-const onEdit = id => {
-   if(route == "/admin/") {
-    router.push(`/admin/edit-discipline/${id}`);
-   }
-   if (route == "/admin/competitors") {
-    router.push(`/admin/edit-competitor/${id}`);
-            }
+const onEdit = (id) => {
+    if (route == "/admin/") {
+        router.push(`/admin/edit-discipline/${id}`);
+    }
+    if (route == "/admin/competitors") {
+        router.push(`/admin/edit-competitor/${id}`);
+    }
 };
-
-
 </script>
 <style scoped>
-.height-competitions {
-    height: 43px;
-}
-.height-competitors {
+.actions-height {
     height: 21.5px;
 }
 </style>

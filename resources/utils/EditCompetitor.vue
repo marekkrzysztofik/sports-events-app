@@ -2,13 +2,13 @@
     <Navbar></Navbar>
     <div class="flex flex-column bg-dark-blue w-7 m-20-auto br-radius-15">
         <div class="m-auto">
-            <h2>Add new competitior</h2>
+            <h2 class="center">Edit competitior</h2>
             <div class="input-grid">
                 <div>
                     <InputText
                         v-model="compForm.name"
                         type="text"
-                        placeholder="Name of competitor"
+                        placeholder="Name of competitor" 
                         class="m-3"
                     />
                     <InputText
@@ -42,7 +42,7 @@
                     <Button
                         @click="saveCompetitior"
                         label="Save"
-                        class="p-button-rounded"
+                        class="p-button-rounded m-3"
                     />
                 </p>
             </div>
@@ -69,20 +69,15 @@ const getSingleSportsman = async () => {
     id.value = response.data.id;
     compForm.value = response.data;
 };
- 
 const saveCompetitior = async () => {
     await axios
-        .post("/api/createSportsman", { ...compForm.value })
+        .post("/api/createOrUpdateSportsman", { ...compForm.value })
         .then(() => {
             Object.keys(compForm.value).forEach(
                 (key) => (compForm.value[key] = "")
             );
-            id = "";
             router.push("/admin/competitors");
         })
-        .catch(() => {
-            console.log("error");
-        });
 };
 </script>
 <style scoped>
