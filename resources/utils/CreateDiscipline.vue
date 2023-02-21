@@ -15,7 +15,7 @@
                         placeholder="Select a sport"
                         class="m-3"
                     />
-                    <Dropdown
+                    <Dropdown 
                         v-model="form.ageGroup"
                         :options="ageCategories"
                         inputClass="string"

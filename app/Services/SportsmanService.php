@@ -12,7 +12,7 @@ class SportsmanService
     $sportsman = new Sportsman;
     $sportsman->name = $data['name'];
     $sportsman->surname = $data['surname'];
-    $sportsman->sex = $data['sex'];
+    $sportsman->sex = $data['sex']; 
     $sportsman->age = $data['age'];
     $sportsman->save();
   }

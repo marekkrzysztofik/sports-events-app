@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\DisciplineController;
 use App\Http\Controllers\SportsmanController;
-
+use App\Http\Controllers\ParticipationController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -27,3 +27,7 @@ Route::post('/updateSportsman', [SportsmanController::class, 'updateSportsman'])
 Route::post('/createOrUpdateSportsman', [SportsmanController::class, 'createOrUpdateSportsman']);
 Route::get('/editSportsman/{id}', [SportsmanController::class, 'editSportsman']);
 Route::get('/deleteSportsman/{id}', [SportsmanController::class, 'deleteSportsman']);
+
+
+Route::get('/getParticipations', [ParticipationController::class, 'getParticipations']);
+Route::post('/assignSportsman', [ParticipationController::class, 'assignSportsman']);
