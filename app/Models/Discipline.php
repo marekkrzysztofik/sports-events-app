@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Discipline extends Model
 {   
     use HasFactory;
+    public function sportsman()
+    {
+        return $this->belongsToMany(Sportsman::class, 'participations');
+    }
 }
+ 

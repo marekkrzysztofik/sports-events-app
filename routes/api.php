@@ -21,6 +21,7 @@ Route::get('/deleteDisc/{id}', [DisciplineController::class, 'deleteDisc']);
 
 
 
+
 Route::get('/getSportsman', [SportsmanController::class, 'getSportsman']);
 Route::post('/createSportsman', [SportsmanController::class, 'createSportsman']);
 Route::post('/updateSportsman', [SportsmanController::class, 'updateSportsman']);
@@ -31,3 +32,4 @@ Route::get('/deleteSportsman/{id}', [SportsmanController::class, 'deleteSportsma
 
 Route::get('/getParticipations', [ParticipationController::class, 'getParticipations']);
 Route::post('/assignSportsman', [ParticipationController::class, 'assignSportsman']);
+Route::get('/discWithSportsman/{id}', [ParticipationController::class, 'discWithSportsman']);
