@@ -9,7 +9,8 @@ import EditCompetitor from "/resources/utils/EditCompetitor.vue";
 import AddCompetitor from "/resources/utils/AddCompetitor.vue";
 import Competitors from "/resources/utils/Competitors.vue";
 import Register from "/resources/modules/Organizer/components/Auth/Register.vue";
-import Participations from '/resources/utils/components/Participations.vue'
+import Participations from '/resources/utils/components/Participations.vue' 
+import ChooseCompetition from '/resources/utils/components/ChooseCompetition.vue'
 const routes = [
     //admin
     {
@@ -74,6 +75,14 @@ const routes = [
         path: "/admin/participations",
         component: Participations,  
         name: "Participations",
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: "/admin/choose",
+        component: ChooseCompetition,  
+        name: "ChooseCompetition",
         meta: {
             requiresAuth: true,
         },

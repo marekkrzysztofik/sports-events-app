@@ -44,6 +44,11 @@
                         ><Button label="Participations"
                     /></router-link>
                 </li>
+                <li v-if="$route.name ==='AdminHome'" class="m-3">
+                    <router-link to="/admin/choose" class="no-decoration"
+                        ><Button label="Add to competition"
+                    /></router-link>
+                </li>
             </ul>
             <img class="cart" src="" alt="icon" />
             <img class="user" src="" alt="icon" />

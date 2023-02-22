@@ -24,7 +24,7 @@
     </DataTable>
     <DataTable v-if="$route.name === 'Competitors'" :value="competitors">
         <template #header>Actions </template>
-        <Column field="startTime" header="Edit/Delete">
+        <Column header="Edit/Delete">
             <template #body="event1">
                 <div class="actions-height">
                     <button
@@ -38,6 +38,17 @@
                         class="btn-icon btn-icon-danger"
                     >
                         <i class="pi pi-ban"></i>
+                    </button>
+                </div>
+            </template>
+        </Column>
+        <Column header="Assign Competitor">
+            <template #body="assign">
+                <div class="actions-height assign-width">
+                    <button
+                        class="btn-icon btn-icon-add"
+                    >
+                        <i class="pi pi-plus"></i>
                     </button>
                 </div>
             </template>
@@ -93,7 +104,7 @@ const confirm2 = (id) => {
         },
         reject: () => {
             toast.add({
-                severity: "error",
+                severity: "error", 
                 summary: "Rejected",
                 detail: "You have rejected",
                 life: 3000,
@@ -113,5 +124,8 @@ const onEdit = (id) => {
 <style scoped>
 .actions-height {
     height: 21.5px;
+}
+.assign-width {
+    width: 120px;
 }
 </style>

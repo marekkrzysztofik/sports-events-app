@@ -12,7 +12,7 @@ body {
 .br-radius-15 {
     border-radius: 15px;
 }
-.m-10-auto {
+.m-10-auto { 
     margin: 10px auto;
 }
 .m-20-auto {
@@ -48,6 +48,14 @@ body {
 }
 .btn-icon-danger:hover {
     background: crimson;
+    color: white;
+}
+.btn-icon-add:hover {
+    background: #2196F3;
+    color: white;
+}
+.btn-icon-add:active {
+    background: rgb(47, 214, 111);
     color: white;
 }
 .center {
