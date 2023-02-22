@@ -33,3 +33,4 @@ Route::get('/deleteSportsman/{id}', [SportsmanController::class, 'deleteSportsma
 Route::get('/getParticipations', [ParticipationController::class, 'getParticipations']);
 Route::post('/assignSportsman', [ParticipationController::class, 'assignSportsman']);
 Route::get('/discWithSportsman/{id}', [ParticipationController::class, 'discWithSportsman']);
+Route::get('/allDiscWithSportsman', [ParticipationController::class, 'allDiscWithSportsman']);

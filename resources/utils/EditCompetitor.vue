@@ -8,11 +8,11 @@
                     <InputText
                         v-model="compForm.name"
                         type="text"
-                        placeholder="Name of competitor" 
+                        placeholder="Name of competitor"
                         class="m-3"
                     />
                     <InputText
-                        v-model="compForm.surname" 
+                        v-model="compForm.surname"
                         type="text"
                         placeholder="Surname of competitor"
                         class="m-3"
@@ -77,7 +77,7 @@ const saveCompetitior = async () => {
                 (key) => (compForm.value[key] = "")
             );
             router.push("/admin/competitors");
-        })
+        });
 };
 </script>
 <style scoped>

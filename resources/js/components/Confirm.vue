@@ -18,6 +18,12 @@
                     >
                         <i class="pi pi-ban"></i>
                     </button>
+                    <button
+                        @click="viewCompetitors(event.data.id)"
+                        class="btn-icon btn-icon-users"
+                    >
+                        <i class="pi pi-users"></i>
+                    </button>
                 </div>
             </template>
         </Column>
@@ -45,9 +51,7 @@
         <Column header="Assign Competitor">
             <template #body="assign">
                 <div class="actions-height assign-width">
-                    <button
-                        class="btn-icon btn-icon-add"
-                    >
+                    <button class="btn-icon btn-icon-add">
                         <i class="pi pi-plus"></i>
                     </button>
                 </div>
@@ -104,7 +108,7 @@ const confirm2 = (id) => {
         },
         reject: () => {
             toast.add({
-                severity: "error", 
+                severity: "error",
                 summary: "Rejected",
                 detail: "You have rejected",
                 life: 3000,
@@ -119,6 +123,9 @@ const onEdit = (id) => {
     if (route == "/admin/competitors") {
         router.push(`/admin/edit-competitor/${id}`);
     }
+};
+const viewCompetitors = (id) => {
+    router.push(`/admin/participations/${id}`);
 };
 </script>
 <style scoped>

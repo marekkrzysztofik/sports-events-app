@@ -7,12 +7,18 @@
         <div class="flex">
             <ul class="no-list-style flex">
                 <li class="m-3">
-                    <router-link v-if="$route.name ==='Home'" to="/login" class="no-decoration"
+                    <router-link
+                        v-if="$route.name === 'Home'"
+                        to="/login"
+                        class="no-decoration"
                         ><Button label="Login"
                     /></router-link>
                 </li>
                 <li class="m-3">
-                    <router-link v-if="$route.name ==='Home'" to="/register" class="no-decoration"
+                    <router-link
+                        v-if="$route.name === 'Home'"
+                        to="/register"
+                        class="no-decoration"
                         ><Button label="Register"
                     /></router-link>
                 </li>
@@ -22,29 +28,29 @@
                     /></router-link>
                 </li>
                 <li class="m-3">
-                    <router-link v-if="$route.name ==='AdminHome'" to="/admin/competitors" class="no-decoration"
+                    <router-link
+                        v-if="$route.name === 'AdminHome'"
+                        to="/admin/competitors"
+                        class="no-decoration"
                         ><Button label="Competitors"
                     /></router-link>
                 </li>
                 <li class="m-3">
                     <Button @click="logout" label="Log Out" />
                 </li>
-                <li v-if="$route.name ==='AdminHome'" class="m-3">
+                <li v-if="$route.name === 'AdminHome'" class="m-3">
                     <router-link to="/admin/create" class="no-decoration"
                         ><Button label="Create competition"
                     /></router-link>
                 </li>
-                <li v-if="$route.name ==='AdminHome'" class="m-3">
-                    <router-link to="/admin/add-competitor" class="no-decoration"
+                <li v-if="$route.name === 'AdminHome'" class="m-3">
+                    <router-link
+                        to="/admin/add-competitor"
+                        class="no-decoration"
                         ><Button label="Add competitor"
                     /></router-link>
                 </li>
-                <li v-if="$route.name ==='AdminHome'" class="m-3">
-                    <router-link to="/admin/participations" class="no-decoration"
-                        ><Button label="Participations"
-                    /></router-link>
-                </li>
-                <li v-if="$route.name ==='AdminHome'" class="m-3">
+                <li v-if="$route.name === 'AdminHome'" class="m-3">
                     <router-link to="/admin/choose" class="no-decoration"
                         ><Button label="Add to competition"
                     /></router-link>
@@ -56,8 +62,8 @@
     </div>
 </template>
 <script setup>
-import {useRouter} from 'vue-router'
-const router = useRouter()
+import { useRouter } from "vue-router";
+const router = useRouter();
 const logout = () => {
     localStorage.removeItem("token");
     router.push("/");

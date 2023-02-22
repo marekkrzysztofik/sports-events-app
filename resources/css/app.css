@@ -50,12 +50,8 @@ body {
     background: crimson;
     color: white;
 }
-.btn-icon-add:hover {
+.btn-icon-users:hover {
     background: #2196F3;
-    color: white;
-}
-.btn-icon-add:active {
-    background: rgb(47, 214, 111);
     color: white;
 }
 .center {

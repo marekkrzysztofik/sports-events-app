@@ -5,7 +5,7 @@
         class="flex flex-column bg-dark-blue w-10 m-20-auto br-radius-15 pad-15"
     >
         <div class="m-auto flex">
-            <div class="input-grid">
+            <div class="input-grid"> 
                 <div>
                     <Dropdown
                         v-model="form.name"

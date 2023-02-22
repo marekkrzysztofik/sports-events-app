@@ -8,25 +8,24 @@ export const getCompetitions = async () => {
 
 export const competitors = ref([]);
 export const getCompetitors = async () => {
-  const response = await axios.get("/api/getSportsman");
-  competitors.value = response.data;
+    const response = await axios.get("/api/getSportsman");
+    competitors.value = response.data;
 };
 
-export const participations = ref([]);
-export const getParticipations = async () => {
-  const response = await axios.get('/api/getParticipations');
-  participations.value=response.data
-}
-
+// export const participations = ref([]);
+// export const getParticipations = async () => {
+//   const response = await axios.get('/api/discWithSportsman');
+//   participations.value=response.data
+// }
 
 export const deleteDisc = (disc) => {
-  axios.get(`/api/deleteDisc/${disc}`).then(() => {
-      getCompetitions();
-  });
+    axios.get(`/api/deleteDisc/${disc}`).then(() => {
+        getCompetitions();
+    });
 };
 
 export const deleteCompetitor = (sportsman) => {
-  axios.get(`/api/deleteSportsman/${sportsman}`).then(() => {
-    getCompetitors();
-  });
+    axios.get(`/api/deleteSportsman/${sportsman}`).then(() => {
+        getCompetitors();
+    });
 };

@@ -72,9 +72,10 @@ const routes = [
         },
     },
     {
-        path: "/admin/participations",
+        path: "/admin/participations/:id",
         component: Participations,  
         name: "Participations",
+        props: true,
         meta: {
             requiresAuth: true,
         },

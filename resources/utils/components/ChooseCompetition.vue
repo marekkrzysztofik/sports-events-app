@@ -1,68 +1,61 @@
 <template>
     <Navbar></Navbar>
-
-    <div class="flex">
-        <div>
-            <Dropdown
-                :options="ComptitorsIds"
-                inputClass="string"
-                placeholder="Select competitor"
-                v-model="participationForm.sportsman_id"
-                class="m-3"
-            />
-            <DataTable
-                :value="competitors"
-                responsiveLayout="scroll"
-                class="m-3"
-            >
-                <template #header>Competitors </template>
-                <Column field="id" header="ID"></Column>
-                <Column field="name" header="Name"></Column>
-                <Column field="surname" header="Surname"></Column>
-                <Column field="age" header="Age"></Column>
-                <Column field="sex" header="Sex"></Column>
-                <Column header="Assign Competitor">
-                    <template #body="assign">
-                        <div class="actions-height assign-width">
-                            <button class="btn-icon btn-icon-add">
-                                <i class="pi pi-plus"></i>
-                            </button>
-                        </div>
-                    </template>
-                </Column>
-                <template #footer>
-                    In total there are
-                    {{ competitors ? competitors.length : 0 }} competitors.
-                </template>
-            </DataTable>
-        </div>
-        <div class="w-8">
-            <Dropdown
-                :options="ComptitionIds"
-                inputClass="string"
-                placeholder="Select competition"
-                v-model="participationForm.discipline_id"
-                class="m-3"
-            />
-            <Button
-                @click="saveParticipation"
-                label="Save"
-                class="p-button-rounded m-3"
-            />
-            <DataTable
-                :value="competitions"
-                responsiveLayout="scroll"
-                class="m-3"
-            >
-                <template #header>Competitions </template>
-                <Column field="id" header="ID"></Column>
-                <Column field="name" header="Name"></Column>
-                <Column field="style" header="Style"></Column>
-                <Column field="competition" header="Competition"></Column>
-                <Column field="ageGroup" header="Age Group"></Column>
-                <Column field="startTime" header="Start Time"></Column>
-                <Column field="sex" header="Sex"></Column>
-            </DataTable>
+    <div class="flex flex-column">
+        <h1>Sign competitor to competition</h1>
+        <div class="flex justify-content-around bg-dark-blue br-radius-15">
+            <div class="w-5">
+                <Dropdown
+                    :options="ComptitorsIds"
+                    inputClass="string"
+                    placeholder="Select competitor"
+                    v-model="participationForm.sportsman_id"
+                    class="m-3"
+                />
+                <DataTable
+                    :value="competitors"
+                    responsiveLayout="scroll"
+                    :scrollable="true"
+                    scrollHeight="400px"
+                    class="m-3"
+                >
+                    <template #header>Competitors </template>
+                    <Column field="id" header="ID"></Column>
+                    <Column field="name" header="Name"></Column>
+                    <Column field="surname" header="Surname"></Column>
+                    <Column field="age" header="Age"></Column>
+                    <Column field="sex" header="Sex"></Column>
+                </DataTable>
+            </div>
+            <div class="w-8">
+                <Dropdown
+                    :options="ComptitionIds"
+                    inputClass="string"
+                    placeholder="Select competition"
+                    v-model="participationForm.discipline_id"
+                    class="m-3"
+                />
+                <Button
+                    @click="saveParticipation"
+                    label="Save"
+                    class="p-button-rounded m-3"
+                />
+                <DataTable
+                    :value="competitions"
+                    responsiveLayout="scroll"
+                    :scrollable="true"
+                    scrollHeight="400px"
+                    class="m-3"
+                >
+                    <template #header>Competitions </template>
+                    <Column field="id" header="ID"></Column>
+                    <Column field="name" header="Name"></Column>
+                    <Column field="style" header="Style"></Column>
+                    <Column field="competition" header="Competition"></Column>
+                    <Column field="ageGroup" header="Age Group"></Column>
+                    <Column field="startTime" header="Start Time"></Column>
+                    <Column field="sex" header="Sex"></Column>
+                </DataTable>
+            </div>
         </div>
     </div>
 </template>
@@ -92,7 +85,6 @@ for (let i = 0; i < competitors.value.length; i++) {
     ComptitorsIds.push(competitors.value[i].id);
 }
 const saveParticipation = async () => {
-  
     await axios
         .post("/api/assignSportsman", { ...participationForm.value })
         .then(() => {
