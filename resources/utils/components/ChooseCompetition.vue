@@ -151,7 +151,7 @@ const saveParticipation = async () => {
         return;
     }
     await axios
-        .post("/api/assignSportsman", { ...participationForm.value })
+        .post("/api/createOrUpdateParticipation", { ...participationForm.value })
         .then(() => {
             Object.keys(participationForm.value).forEach(
                 (key) => (participationForm.value[key] = "")

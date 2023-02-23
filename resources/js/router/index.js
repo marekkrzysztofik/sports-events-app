@@ -11,6 +11,7 @@ import Competitors from "/resources/utils/Competitors.vue";
 import Register from "/resources/modules/Organizer/components/Auth/Register.vue";
 import Participations from '/resources/utils/components/Participations.vue' 
 import ChooseCompetition from '/resources/utils/components/ChooseCompetition.vue'
+import Scores from '/resources/utils/components/Scores.vue'
 const routes = [
     //admin
     {
@@ -75,6 +76,15 @@ const routes = [
         path: "/admin/participations/:id",
         component: Participations,  
         name: "Participations",
+        props: true,
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: "/admin/scores/:id",
+        component: Scores,  
+        name: "Scores",
         props: true,
         meta: {
             requiresAuth: true,

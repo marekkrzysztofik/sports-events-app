@@ -48,10 +48,13 @@
                 </div>
             </template>
         </Column>
-        <Column header="Assign Competitor">
+        <Column header="Set scores">
             <template #body="assign">
                 <div class="actions-height assign-width">
-                    <button class="btn-icon btn-icon-add">
+                    <button
+                        class="btn-icon btn-icon-add"
+                        @click="setScore(assign.data.id)"
+                    >
                         <i class="pi pi-plus"></i>
                     </button>
                 </div>
@@ -126,6 +129,9 @@ const onEdit = (id) => {
 };
 const viewCompetitors = (id) => {
     router.push(`/admin/participations/${id}`);
+};
+const setScore = (id) => {
+    router.push(`/admin/scores/${id}`);
 };
 </script>
 <style scoped>
