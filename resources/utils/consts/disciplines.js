@@ -44,7 +44,7 @@ export const ageCategories = [
     "15-17 years",
     "17-18 years",
     "18-22 years",
-    "22+ years",
+    "22-24 years",
 ];
 export const sex = ["M", "F"];
 export const sports = disciplines1[0].sports;

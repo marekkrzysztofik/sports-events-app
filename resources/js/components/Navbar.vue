@@ -43,7 +43,7 @@
                         ><Button label="Create competition"
                     /></router-link>
                 </li>
-                <li v-if="$route.name === 'AdminHome'" class="m-3">
+                <li v-if="$route.name === 'AdminHome' || $route.name === 'Competitors'" class="m-3">
                     <router-link
                         to="/admin/add-competitor"
                         class="no-decoration"

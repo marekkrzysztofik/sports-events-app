@@ -5,7 +5,7 @@
         <template #header>Actions </template>
         <Column field="startTime" header="Edit/Delete">
             <template #body="event">
-                <div class="actions-height">
+                <div class="actions-height assign-width">
                     <button
                         @click="onEdit(event.data.id)"
                         class="btn-icon btn-icon-success"

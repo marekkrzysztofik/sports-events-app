@@ -11,7 +11,7 @@
                 </td>
                 <td>
                     <p>
-                        Competition:
+                        Competition: 
                         {{ disciplineWithCompetitors.competition }}
                     </p>
                 </td>
