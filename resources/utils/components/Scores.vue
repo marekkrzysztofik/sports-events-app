@@ -29,52 +29,90 @@
             <Column field="name" header="Name"></Column>
             <Column field="style" header="Surname"></Column>
             <Column field="competition" header="Age"></Column>
-            <Column header="Time">
-                <template #body>
-                    <div class="actions-height assign-width">
-                        <InputText
-                            type="time"
-                            placeholder="Time"
-                            step="2"
-                            class="m-3"
-                        />
-                    </div>
-                </template>
-            </Column>
+        </DataTable>
+        <DataTable :value="participation" class="w-3">
+            <template #header>Participation </template>
+            <Column field="id" header="ParticipationID"> </Column>
         </DataTable>
         <div class="save-button m-3">
-            <Button label="Save" class="p-button-rounded" />
+            <Button @click="saveScore" label="Save" class="p-button-rounded" />
         </div>
     </div>
+    <InputText
+        v-model="participationForm.time"
+        type="time"
+        placeholder="Time"
+        step="2"
+        class="m-4"
+    />
+    <Dropdown
+        v-model="participationForm.id"
+        :options="partIds"
+        inputClass="string"
+        placeholder="Select Participation ID to save time"
+        class="m-3"
+    />
 </template>
 <script setup>
 import { onMounted, ref } from "vue";
-
+import { useRouter } from "vue-router";
+const router = useRouter();
 onMounted(async () => {
     getSportsmanWithDisc();
+    getParticipation();
 });
 
+const participationForm = ref({
+    id: "",
+    discipline_id: "",
+    sportsman_id: "",
+    score: 0,
+    time: "",
+});
 const props = defineProps({
     id: {
         type: String,
         default: "",
     },
 });
+const partIds = [];
 const sportsmanWithDisc = ref({});
+const participation = ref([]);
 const getSportsmanWithDisc = async () => {
     const response = await axios.get(`/api/sportsmanWithDisc/${props.id}`);
     sportsmanWithDisc.value = response.data;
-    console.log(sportsmanWithDisc.value);
+};
+const getParticipation = async () => {
+    const response = await axios.get(`/api/getParticipationByComp/${props.id}`);
+    participation.value = response.data;
+    for (let i = 0; i < participation.value.length; i++) {
+        partIds.push(participation.value[i].id);
+    }
+    participationForm.value.sportsman_id = props.id;
 };
 
 const saveScore = async () => {
-    console.log(participationForm.value)
-    
-    // await axios
-    //     .post(`/api/createOrUpdateParticipation`, { ...participationForm.value }) 
-    //     .then(() => {
-    //         Object.keys(participationForm.value).forEach((key) => (participationForm.value[key] = ""));
-    //         router.push("/admin/");
-    //     });
+    participationForm.value.discipline_id =
+        participation.value[
+            partIds.indexOf(participationForm.value.id)
+        ].discipline_id;
+    await axios
+        .post(`/api/createOrUpdateParticipation`, {
+            ...participationForm.value,
+        })
+        .then(() => {
+            Object.keys(participationForm.value).forEach(
+                (key) => (participationForm.value[key] = "")
+            );
+            router.push("/admin/");
+        });
 };
 </script>
+<style scoped>
+.actions-height {
+    height: 21.5px;
+}
+.assign-width {
+    width: 120px;
+}
+</style>

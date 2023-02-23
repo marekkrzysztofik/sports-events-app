@@ -16,7 +16,7 @@
                         class="m-3"
                     />
                     <Dropdown 
-                        v-model="form.ageGroup"
+                        v-model="form.ageGroup" 
                         :options="ageCategories"
                         inputClass="string"
                         placeholder="Select age category"

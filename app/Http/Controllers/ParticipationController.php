@@ -20,10 +20,11 @@ class ParticipationController extends Controller
     }
     public function saveScore(Request $data, $id)
     {
-        $participation = Discipline::find($id);
+        $participation = Participation::find($id);
         $participation->discipline_id = $data['discipline_id'];
         $participation->sportsman_id = $data['sportsman_id'];
         $participation->score = $data['score'];
+        $participation->time = $data['time'];
         $participation->save();
     }
 
@@ -41,7 +42,11 @@ class ParticipationController extends Controller
     {
         return Participation::all();
     }
-    public function getParticipation($id)
+    public function getParticipationByComp($id)
+    {
+        return Participation::where('sportsman_id','=',$id)->get();
+    }
+    public function getParticipationByDisc($id)
     {
         return Participation::where('discipline_id','=',$id)->get();
     }

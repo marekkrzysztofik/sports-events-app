@@ -18,7 +18,7 @@
                     scrollHeight="400px"
                     class="m-3"
                 >
-                    <template #header>Competitors </template>
+                    <template #header>Competitors </template> 
                     <Column field="id" header="ID"></Column>
                     <Column field="name" header="Name"></Column>
                     <Column field="surname" header="Surname"></Column>

@@ -64,7 +64,6 @@
 </template>
 <script setup>
 import { onMounted, ref } from "vue";
-import { participationForm } from "../consts/form.js";
 onMounted(async () => {
     getDisciplineWithCompetitors();
     getParticipation();
@@ -77,7 +76,7 @@ const props = defineProps({
 });
 const participation = ref();
 const getParticipation = async () => {
-    const response = await axios.get(`/api/getParticipation/${props.id}`);
+    const response = await axios.get(`/api/getParticipationByDisc/${props.id}`);
     participation.value = response.data;
     console.log(participation.value);
 };
