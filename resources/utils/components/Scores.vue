@@ -18,7 +18,7 @@
             </li>
         </ul>
     </div>
-    <div class="flex">
+    <div class="flex justify-content-center">
         <DataTable
             :value="sportsmanWithDisc.disciplines"
             responsiveLayout="scroll"
@@ -34,24 +34,26 @@
             <template #header>Participation </template>
             <Column field="id" header="ParticipationID"> </Column>
         </DataTable>
+    </div>
+    <div class="m-4 center">
+        <Dropdown
+            v-model="participationForm.id"
+            :options="partIds"
+            inputClass="string"
+            placeholder="Select Participation ID to save time"
+            class="m-3"
+        />
+        <InputText
+            v-model="participationForm.time"
+            type="time"
+            placeholder="Time"
+            step="2"
+            class="m-3"
+        />
         <div class="save-button m-3">
             <Button @click="saveScore" label="Save" class="p-button-rounded" />
         </div>
     </div>
-    <InputText
-        v-model="participationForm.time"
-        type="time"
-        placeholder="Time"
-        step="2"
-        class="m-4"
-    />
-    <Dropdown
-        v-model="participationForm.id"
-        :options="partIds"
-        inputClass="string"
-        placeholder="Select Participation ID to save time"
-        class="m-3"
-    />
 </template>
 <script setup>
 import { onMounted, ref } from "vue";

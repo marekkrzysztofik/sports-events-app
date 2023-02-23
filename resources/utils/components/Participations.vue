@@ -33,7 +33,7 @@
             </li>
         </ul>
     </div>
-    <div class="flex">
+    <div class="flex justify-content-center">
         <DataTable
             :value="disciplineWithCompetitors.sportsman"
             responsiveLayout="scroll"
