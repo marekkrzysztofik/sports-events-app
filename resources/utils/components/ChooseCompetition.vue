@@ -1,9 +1,11 @@
 <template>
     <Navbar></Navbar>
-    <div class="flex flex-column">
-        <h1>Sign competitor to competition</h1>
-        <div class="flex justify-content-around bg-dark-blue br-radius-15">
-            <div class="w-5">
+    <div class="flex flex-column center">
+        <h2>Sign competitor to competition</h2>
+        <div
+            class="flex w-11 m-auto justify-content-around bg-dark-blue br-radius-15"
+        >
+            <div class="m-3">
                 <Dropdown
                     :options="ComptitorsIds"
                     inputClass="string"
@@ -15,10 +17,10 @@
                     :value="competitors"
                     responsiveLayout="scroll"
                     :scrollable="true"
-                    scrollHeight="400px"
-                    class="m-3"
+                    scrollHeight="300px"
+                    class="pad-30-0 w-30rem"
                 >
-                    <template #header>Competitors </template> 
+                    <template #header>Competitors </template>
                     <Column field="id" header="ID"></Column>
                     <Column field="name" header="Name"></Column>
                     <Column field="surname" header="Surname"></Column>
@@ -26,7 +28,7 @@
                     <Column field="sex" header="Sex"></Column>
                 </DataTable>
             </div>
-            <div class="w-8">
+            <div class="m-3">
                 <Dropdown
                     :options="ComptitionIds"
                     inputClass="string"
@@ -43,8 +45,8 @@
                     :value="competitions"
                     responsiveLayout="scroll"
                     :scrollable="true"
-                    scrollHeight="400px"
-                    class="m-3"
+                    scrollHeight="300px"
+                    class="pad-30-0"
                 >
                     <template #header>Competitions </template>
                     <Column field="id" header="ID"></Column>
@@ -151,7 +153,9 @@ const saveParticipation = async () => {
         return;
     }
     await axios
-        .post("/api/createOrUpdateParticipation", { ...participationForm.value })
+        .post("/api/createOrUpdateParticipation", {
+            ...participationForm.value,
+        })
         .then(() => {
             Object.keys(participationForm.value).forEach(
                 (key) => (participationForm.value[key] = "")

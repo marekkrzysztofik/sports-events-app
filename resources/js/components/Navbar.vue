@@ -1,7 +1,6 @@
 <template>
     <div class="justify-content-around flex align-items-center">
         <div class="flex">
-            <img class="logo" src="" alt="LOGO" />
             <h1 class="logo-name">SportsEvents</h1>
         </div>
         <div class="flex">
@@ -56,8 +55,6 @@
                     /></router-link>
                 </li>
             </ul>
-            <img class="cart" src="" alt="icon" />
-            <img class="user" src="" alt="icon" />
         </div>
     </div>
 </template>
