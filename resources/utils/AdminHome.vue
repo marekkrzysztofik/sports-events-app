@@ -27,5 +27,7 @@ import { getCompetitions, competitions } from "./consts/getOrDelete.js";
 
 onMounted(async () => {
     getCompetitions();
+    console.log(competitions.value)
 });
+
 </script>

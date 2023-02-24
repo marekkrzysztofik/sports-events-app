@@ -36,6 +36,8 @@
     <div class="flex justify-content-center">
         <DataTable
             :value="disciplineWithCompetitors.sportsman"
+            :sort-field="scoreField"
+            :sortOrder="scoreOrder"
             responsiveLayout="scroll"
             class="w-6"
         >
@@ -55,10 +57,16 @@
                 competitors.
             </template>
         </DataTable>
-        <DataTable :value="participation" responsiveLayout="scroll" class="w-2">
+        <DataTable
+            :value="participation"
+            @sort="sortCompetitors"
+            responsiveLayout="scroll"
+            class="w-2"
+        >
             <template #header>Scores </template>
-            <Column field="score" header="Score"></Column>
-            <Column field="time" header="Time"></Column>
+            <Column field="sportsman_id" header="ID"></Column>
+            <Column field="score" header="Score" sortable></Column>
+            <Column field="time" header="Time" sortable></Column>
         </DataTable>
     </div>
 </template>
@@ -74,6 +82,12 @@ const props = defineProps({
         default: "",
     },
 });
+const scoreField = ref("");
+const scoreOrder = ref("");
+function sortCompetitors(event) {
+    scoreField.value = "id";
+    scoreOrder.value = event.sortOrder;
+}
 const participation = ref();
 const getParticipation = async () => {
     const response = await axios.get(`/api/getParticipationByDisc/${props.id}`);
