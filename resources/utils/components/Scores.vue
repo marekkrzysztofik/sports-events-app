@@ -57,18 +57,32 @@
                         placeholder="Participation ID"
                         class="m-3"
                     />
+                    <p>Enter time or score</p>
                     <InputText
+                        v-if="timeNotScore == 1"
                         v-model="participationForm.time"
                         type="time"
                         placeholder="Time"
                         step="2"
                         class="m-3"
                     />
+                    <InputText
+                        v-else-if="timeNotScore == 0"
+                        v-model="participationForm.score"
+                        type="number"
+                        placeholder="Score"
+                        class="score-input m-3"
+                    />
                     <div class="save-button m-3">
+                        <Button
+                            @click="show"
+                            label="Show"
+                            class="p-button-rounded m-2"
+                        />
                         <Button
                             @click="saveScore"
                             label="Save"
-                            class="p-button-rounded"
+                            class="p-button-rounded m-2"
                         />
                     </div>
                 </div>
@@ -89,7 +103,7 @@ const participationForm = ref({
     id: "",
     discipline_id: "",
     sportsman_id: "",
-    score: 0,
+    score: "",
     time: "",
 });
 const props = defineProps({
@@ -98,6 +112,7 @@ const props = defineProps({
         default: "",
     },
 });
+const timeNotScore = ref();
 const partIds = [];
 const sportsmanWithDisc = ref({});
 const participation = ref([]);
@@ -113,23 +128,27 @@ const getParticipation = async () => {
     }
     participationForm.value.sportsman_id = props.id;
 };
-
+const show = () => {
+    timeNotScore.value =
+        sportsmanWithDisc.value.disciplines[
+            partIds.indexOf(participationForm.value.id)
+        ].timeNotScore;
+};
 const saveScore = async () => {
-    console.log(sportsmanWithDisc.value.disciplines[partIds.indexOf(participationForm.value.id)].timeNotScore)
-    // participationForm.value.discipline_id =
-    //     participation.value[
-    //         partIds.indexOf(participationForm.value.id)
-    //     ].discipline_id;
-    // await axios
-    //     .post(`/api/createOrUpdateParticipation`, {
-    //         ...participationForm.value,
-    //     })
-    //     .then(() => {
-    //         Object.keys(participationForm.value).forEach(
-    //             (key) => (participationForm.value[key] = "")
-    //         );
-    //         router.push("/admin/");
-    //     });
+    participationForm.value.discipline_id =
+        participation.value[
+            partIds.indexOf(participationForm.value.id)
+        ].discipline_id;
+    await axios
+        .post(`/api/createOrUpdateParticipation`, {
+            ...participationForm.value,
+        })
+        .then(() => {
+            Object.keys(participationForm.value).forEach(
+                (key) => (participationForm.value[key] = "")
+            );
+            router.push("/admin/");
+        });
 };
 </script>
 <style scoped>
@@ -138,5 +157,8 @@ const saveScore = async () => {
 }
 .assign-width {
     width: 120px;
+}
+.score-input {
+    width: 80px;
 }
 </style>

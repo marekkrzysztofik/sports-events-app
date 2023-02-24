@@ -6,6 +6,9 @@ body {
     background-color: #bbe1fa;
     font-family: "Kanit", sans-serif;
 }
+.p-component {
+    font-family: "Kanit", sans-serif !important;
+}
 .bg-dark-blue {
  background-color: #3C84AB;
 }
@@ -77,9 +80,4 @@ body {
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
-.p-datatable {
-    border-radius: 15px;
-}
-.p-component {
-    font-family: "Kanit", sans-serif;
-}
+

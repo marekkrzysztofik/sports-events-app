@@ -28,5 +28,4 @@ import { getCompetitions, competitions } from "./consts/getOrDelete.js";
 onMounted(async () => {
     getCompetitions();
 });
-
 </script>
