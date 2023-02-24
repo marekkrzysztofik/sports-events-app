@@ -30,7 +30,7 @@ class AuthController extends Controller
 
         $success['token'] = $user->createToken('MyApp')->plainTextToken;
         $success['name'] = $user->name;
-
+        $success['type'] = $user->type;
         $response = [
             'success' => true,
             'data' => $success,
@@ -44,7 +44,7 @@ class AuthController extends Controller
             $user = Auth::user();
             $success['token'] = $user->createToken('MyApp')->plainTextToken;
         $success['name'] = $user->name;
-
+        $success['type'] = $user->type;
         $response = [
             'success' => true,
             'data' => $success,
@@ -52,6 +52,9 @@ class AuthController extends Controller
         ];
         return response()->json($response,200);
         }
+    }
+    public function getUsers() {
+        return User::all();
     }
 }
  

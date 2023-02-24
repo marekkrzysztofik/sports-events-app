@@ -3,16 +3,18 @@
     <ConfirmDialog></ConfirmDialog>
     <DataTable v-if="$route.name === 'AdminHome'" :value="competitions">
         <template #header>Actions </template>
-        <Column field="startTime" header="Edit/Delete">
+        <Column field="startTime" header="Edit/Delete/Browse">
             <template #body="event">
                 <div class="actions-height assign-width">
                     <button
+                        v-if="userType == 'admin'"
                         @click="onEdit(event.data.id)"
                         class="btn-icon btn-icon-success"
                     >
                         <i class="pi pi-pencil"></i>
                     </button>
                     <button
+                        v-if="userType == 'admin'"
                         @click="confirm2(event.data.id)"
                         class="btn-icon btn-icon-danger"
                     >
@@ -30,7 +32,7 @@
     </DataTable>
     <DataTable v-if="$route.name === 'Competitors'" :value="competitors">
         <template #header>Actions </template>
-        <Column header="Edit/Delete">
+        <Column v-if="userType == 'admin'" header="Edit/Delete">
             <template #body="event1">
                 <div class="actions-height">
                     <button
@@ -48,7 +50,10 @@
                 </div>
             </template>
         </Column>
-        <Column header="Set scores">
+        <Column
+            header="Set scores"
+            v-if="userType == 'admin' || userType == 'referee'"
+        >
             <template #body="assign">
                 <div class="actions-height assign-width">
                     <button
@@ -68,6 +73,7 @@ import { useConfirm } from "primevue/useconfirm";
 import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
 import { onMounted } from "vue";
+import { userType } from "/resources/modules/Organizer/composables/user.js";
 import { useRoute, useRouter } from "vue-router";
 import {
     getCompetitions,

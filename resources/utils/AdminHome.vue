@@ -8,9 +8,9 @@
             <Column field="style" header="Style"></Column>
             <Column field="competition" header="Competition"></Column>
             <Column field="ageGroup" header="Age Group"></Column>
-            <Column field="startTime" header="Start Time"></Column>
+            <Column field="startTime" header="Start Time" sortable></Column>
             <Column field="sex" header="Sex"></Column>
-            <Column field="participants" header="Participants"></Column> 
+            <Column field="participants" header="Participants"></Column>
             <Column field="timeNotScore" header="timeNotScore"></Column>
             <Column field="bigScoreWins" header="bigScoreWins"></Column>
             <template #footer>
@@ -24,10 +24,7 @@
 <script setup>
 import { onMounted } from "vue";
 import { getCompetitions, competitions } from "./consts/getOrDelete.js";
-
 onMounted(async () => {
     getCompetitions();
-    console.log(competitions.value)
 });
-
 </script>

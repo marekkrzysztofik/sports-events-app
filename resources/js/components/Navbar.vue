@@ -22,13 +22,13 @@
                     /></router-link>
                 </li>
                 <li class="m-3">
-                    <router-link to="/admin/" class="no-decoration"
+                    <router-link to="/" class="no-decoration"
                         ><Button label="Home"
                     /></router-link>
                 </li>
                 <li class="m-3">
                     <router-link
-                        v-if="$route.name === 'AdminHome'"
+                        v-if="userType == 'admin' || userType == 'referee'"
                         to="/admin/competitors"
                         class="no-decoration"
                         ><Button label="Competitors"
@@ -37,19 +37,25 @@
                 <li class="m-3">
                     <Button @click="logout" label="Log Out" />
                 </li>
-                <li v-if="$route.name === 'AdminHome'" class="m-3">
+                <li v-if="userType == 'admin'" class="m-3">
                     <router-link to="/admin/create" class="no-decoration"
                         ><Button label="Create competition"
                     /></router-link>
                 </li>
-                <li v-if="$route.name === 'AdminHome' || $route.name === 'Competitors'" class="m-3">
+                <li
+                    v-if="userType == 'admin' || userType == 'user'"
+                    class="m-3"
+                >
                     <router-link
                         to="/admin/add-competitor"
                         class="no-decoration"
                         ><Button label="Add competitor"
                     /></router-link>
                 </li>
-                <li v-if="$route.name === 'AdminHome'" class="m-3">
+                <li
+                    v-if="userType == 'user' || userType == 'admin'"
+                    class="m-3"
+                >
                     <router-link to="/admin/choose" class="no-decoration"
                         ><Button label="Add to competition"
                     /></router-link>
@@ -60,6 +66,7 @@
 </template>
 <script setup>
 import { useRouter } from "vue-router";
+import { userType } from "/resources/modules/Organizer/composables/user.js";
 const router = useRouter();
 const logout = () => {
     localStorage.removeItem("token");

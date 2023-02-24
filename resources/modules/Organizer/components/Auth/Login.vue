@@ -35,7 +35,7 @@
 import { ref } from "vue";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-
+import { userType } from "/resources/modules/Organizer/composables/user.js";
 const router = useRouter();
 const form = reactive({
     email: "",
@@ -48,6 +48,7 @@ const login = async () => {
         .then((response) => {
             if (response.data.success) {
                 localStorage.setItem("token", response.data.data.token);
+                userType.value = response.data.data.type;
                 router.push("/Admin/");
             }
         })
