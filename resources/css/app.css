@@ -21,6 +21,12 @@ body {
 .pad-15 {
     padding: 15px;
 }
+.pad-0{
+    padding:0;
+}
+.pad-50-0 {
+    padding: 50px 0;
+}
 .logo-name {
     margin: 0;
     font-size: 55px;
@@ -70,4 +76,10 @@ body {
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+}
+.p-datatable {
+    border-radius: 15px;
+}
+.p-component {
+    font-family: "Kanit", sans-serif;
 }

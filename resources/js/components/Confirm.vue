@@ -136,7 +136,7 @@ const setScore = (id) => {
 </script>
 <style scoped>
 .actions-height {
-    height: 21.5px;
+    height: 24px;
 }
 .assign-width {
     width: 120px;
