@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class DisciplineRepository
 {
-    public function getDisc(): Collection
+    public function getDisc(): Collection 
     {
         return Discipline::all(); 
     } 

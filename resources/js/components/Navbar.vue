@@ -21,7 +21,7 @@
                         ><Button label="Register"
                     /></router-link>
                 </li>
-                <li class="m-3">
+                <li v-if="$route.name !== 'Home'" class="m-3">
                     <router-link to="/" class="no-decoration"
                         ><Button label="Home"
                     /></router-link>
@@ -34,7 +34,7 @@
                         ><Button label="Competitors"
                     /></router-link>
                 </li>
-                <li class="m-3">
+                <li v-if="$route.name !== 'Home'" class="m-3">
                     <Button @click="logout" label="Log Out" />
                 </li>
                 <li v-if="userType == 'admin'" class="m-3">
