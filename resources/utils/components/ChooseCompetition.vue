@@ -74,7 +74,7 @@ import {
     participationForm,
     saveParticipation,
     success,
-} from "../consts/choose.js";
+} from "../consts/chooseCompetition.js";
 import { useRouter } from "vue-router";
 import { onMounted } from "vue";
 const router = useRouter();

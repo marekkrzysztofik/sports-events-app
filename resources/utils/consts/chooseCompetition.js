@@ -3,7 +3,7 @@ import {
     competitors,
     getCompetitions,
     getCompetitors,
-} from "../consts/getOrDelete.js";
+} from "./getOrDelete.js";
 import { ref } from "vue";
 getCompetitions();
 getCompetitors();
