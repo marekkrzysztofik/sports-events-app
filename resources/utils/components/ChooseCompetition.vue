@@ -37,7 +37,7 @@
                     class="m-3"
                 />
                 <Button
-                    @click="saveParticipation"
+                    @click="save"
                     label="Save"
                     class="p-button-rounded m-3"
                 />
@@ -68,99 +68,36 @@ import {
     competitors,
     getCompetitors,
 } from "../consts/getOrDelete.js";
-import { participationForm } from "../consts/form.js";
+import {
+    ComptitionIds,
+    ComptitorsIds,
+    participationForm,
+    saveParticipation,
+    success,
+} from "../consts/choose.js";
 import { useRouter } from "vue-router";
-import { onMounted, ref } from "vue";
-
-const props = defineProps({
-    id: {
-        type: String,
-        default: "",
-    },
-});
-const disciplineWithCompetitors = ref({});
-
+import { onMounted } from "vue";
 const router = useRouter();
 onMounted(async () => {
     getCompetitions();
+    console.log(ComptitionIds);
+    for (let i = 0; i < competitions.value.length; i++) {
+        if (!ComptitionIds.includes(competitions.value[i].id))
+            ComptitionIds.push(competitions.value[i].id);
+    }
 });
 onMounted(async () => {
     getCompetitors();
+    for (let i = 0; i < competitors.value.length; i++) {
+        if (!ComptitorsIds.includes(competitors.value[i].id))
+            ComptitorsIds.push(competitors.value[i].id);
+    }
 });
-const ComptitionIds = [];
-const ComptitorsIds = [];
-for (let i = 0; i < competitions.value.length; i++) {
-    ComptitionIds.push(competitions.value[i].id);
-}
-for (let i = 0; i < competitors.value.length; i++) {
-    ComptitorsIds.push(competitors.value[i].id);
-}
-const saveParticipation = async () => {
-    let stopFunction = false;
-    const response = await axios.get(
-        `/api/discWithSportsman/${participationForm.value.discipline_id}`
-    );
-    disciplineWithCompetitors.value = response.data;
-    const competitorSex =
-        competitors.value[
-            ComptitorsIds.indexOf(participationForm.value.sportsman_id)
-        ].sex;
-    const competitorAge =
-        competitors.value[
-            ComptitorsIds.indexOf(participationForm.value.sportsman_id)
-        ].age;
-    const sex =
-        competitions.value[
-            ComptitionIds.indexOf(participationForm.value.discipline_id)
-        ].sex;
-    const minAge = competitions.value[
-        ComptitionIds.indexOf(participationForm.value.discipline_id)
-    ].ageGroup.substr(0, 2);
-    const maxAge = competitions.value[
-        ComptitionIds.indexOf(participationForm.value.discipline_id)
-    ].ageGroup.substr(3, 2);
-    if (competitorSex != sex) {
-        console.error(
-            "Cannot assign competitor to competition because of wrong sex"
-        );
-        stopFunction = true;
-        return;
+const save = async () => {
+    await saveParticipation();
+    console.log(success.value);
+    if (success.value == 1) {
+        router.push("/admin");
     }
-    if (competitorAge < minAge || competitorAge > maxAge) {
-        console.error(
-            "Competitor is either too young or too old for this competition"
-        );
-        stopFunction = true;
-        return;
-    }
-    if (
-        disciplineWithCompetitors.value.sportsman.length >=
-        disciplineWithCompetitors.value.participants
-    ) {
-        console.error("This competition is full");
-        stopFunction = true;
-    }
-    disciplineWithCompetitors.value.sportsman.forEach((sportsman) => {
-        if (sportsman.id == participationForm.value.sportsman_id) {
-            console.error(
-                "Competitor with this id is already assigned to this competition"
-            );
-            stopFunction = true;
-            return;
-        } 
-    });
-    if (stopFunction) {
-        return;
-    }
-    await axios
-        .post("/api/createOrUpdateParticipation", {
-            ...participationForm.value,
-        })
-        .then(() => {
-            Object.keys(participationForm.value).forEach(
-                (key) => (participationForm.value[key] = "")
-            );
-            router.push("/admin/");
-        });
 };
 </script>
