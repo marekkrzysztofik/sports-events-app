@@ -74,7 +74,7 @@ import {
     participationForm,
     saveParticipation,
     success,
-} from "../consts/chooseCompetition.js";
+} from "../composables/chooseCompetition.js";
 import { useRouter } from "vue-router";
 import { onMounted } from "vue";
 const router = useRouter();
@@ -97,7 +97,8 @@ const save = async () => {
     await saveParticipation();
     console.log(success.value);
     if (success.value == 1) {
-        router.push("/admin");
+        router.push("/admin"); 
     }
+    success.value=0
 };
 </script>

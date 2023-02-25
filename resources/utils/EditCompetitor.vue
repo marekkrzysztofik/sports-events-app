@@ -40,7 +40,7 @@
                 </div>
                 <p>
                     <Button
-                        @click="saveCompetitior"
+                        @click="save"
                         label="Save"
                         class="p-button-rounded m-3"
                     />
@@ -51,9 +51,10 @@
 </template>
 <script setup>
 import { onMounted } from "vue";
-import { compForm, id } from "./consts/form.js";
+import { compForm } from "./consts/form.js";
 import { sex } from "./consts/disciplines.js";
 import { useRouter } from "vue-router";
+import { success,saveCompetitor } from "./composables/saveCompetitor.js";
 const router = useRouter();
 onMounted(async () => {
     getSingleSportsman();
@@ -66,18 +67,15 @@ const props = defineProps({
 });
 const getSingleSportsman = async () => {
     const response = await axios.get(`/api/editSportsman/${props.id}`);
-    id.value = response.data.id;
     compForm.value = response.data;
 };
-const saveCompetitior = async () => {
-    await axios
-        .post("/api/createOrUpdateSportsman", { ...compForm.value })
-        .then(() => {
-            Object.keys(compForm.value).forEach(
-                (key) => (compForm.value[key] = "")
-            );
-            router.push("/admin/competitors");
-        });
+const save = async () => {
+    await saveCompetitor();
+    console.log(success.value);
+    if (success.value == 1) {
+        router.push("/admin/competitors");
+    }
+    success.value=0
 };
 </script>
 <style scoped>

@@ -16,8 +16,7 @@ export const form = ref({
   participants: "",
   timeNotScore: false,
   bigScoreWins: false,
-});
-export const id = ref('')
+}); 
 export const compForm = ref({
   name:'',
   surname:'',
