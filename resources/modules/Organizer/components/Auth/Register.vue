@@ -56,7 +56,7 @@ const router = useRouter();
 const types = ["admin", "user","referee"];
 const form = reactive({
     name: "",
-   // type: "",
+    type: "",
     email: "",
     password: "",
     c_password: "",

@@ -17,11 +17,6 @@ class SportsmanController extends Controller
         $this->sportsmanService = $sportsmanService;
     }
 
-    public function createSportsman(Request $request) 
-    {
-        $data = $request->all();
-        $this->sportsmanService->createSportsman($data);
-    }
     public function getSportsman()
     {
         return ($this->sportsmanRepository->getSportsman()->all());

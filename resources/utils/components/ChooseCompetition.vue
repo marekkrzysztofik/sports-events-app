@@ -147,7 +147,7 @@ const saveParticipation = async () => {
             );
             stopFunction = true;
             return;
-        }
+        } 
     });
     if (stopFunction) {
         return;

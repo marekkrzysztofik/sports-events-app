@@ -99,7 +99,5 @@ const getDisciplineWithCompetitors = async () => {
     const response = await axios.get(`/api/discWithSportsman/${props.id}`);
     disciplineWithCompetitors.value = response.data;
     console.log(disciplineWithCompetitors.value);
-    //id.value = response.data.id;
-    // form.value = response.data;
 };
 </script>

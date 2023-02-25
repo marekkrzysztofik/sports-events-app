@@ -1,4 +1,3 @@
-
 export const disciplines1 = [
     {
         sports: ["swimming", "running"],
@@ -24,19 +23,6 @@ export const disciplines1 = [
         ],
     },
 ];
-
-// const disciplines = {
-//     sports: ["swimming", "running"],
-//     swimming: {
-//         styles: ["freestyle", "backstroke", "breaststroke", "butterfly"],
-//         competitions: ["50m", "100m", "200m"],
-//     },
-//     running: {
-//         styles: ["track", "cross-country"],
-//         competitions: ["50m", "400m", "1000m", "2000m"],
-//     },
-// };
-
 export const ageCategories = [
     "9-11 years",
     "11-13 years",
@@ -48,8 +34,3 @@ export const ageCategories = [
 ];
 export const sex = ["M", "F"];
 export const sports = disciplines1[0].sports;
-
-//export const swimStyles = disciplines.swimming.styles;
-// export const swimComp = disciplines.sport[0].swimming.competitions;
-// export const runningStyles = disciplines.sport[1].running.styles;
-// export const runningComp = disciplines.sport[1].running.competitions;

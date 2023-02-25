@@ -18,12 +18,6 @@ class DisciplineController extends Controller
         $this->disciplineService = $disciplineService;
     }
 
-    public function createDiscipline(Request $request)
-    {
-        $data = $request->all();
-        $this->disciplineService->createDiscipline($data);
-    }
-
     public function getDisc()
     {
         return ($this->disciplineRepository->getDisc()->all());

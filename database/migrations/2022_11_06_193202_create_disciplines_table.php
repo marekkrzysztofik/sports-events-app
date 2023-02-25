@@ -22,8 +22,8 @@ return new class extends Migration
             $table->datetime('startTime');
             $table->string('sex');
             $table->integer('participants');
-            $table->boolean('timeNotScore')->default(true);
-            $table->boolean('bigScoreWins')->default(true);
+            $table->integer('timeNotScore')->default(1);
+            $table->integer('bigScoreWins')->default(1);
             $table->timestamps();
         });
     }
