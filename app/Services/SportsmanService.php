@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Sportsman;
 use Illuminate\Http\Request;
-
+ 
 class SportsmanService
 {
   public function createSportsman($data)
