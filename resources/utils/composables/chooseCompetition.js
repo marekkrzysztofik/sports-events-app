@@ -80,7 +80,6 @@ export const saveParticipation = async () => {
         })
         .then(() => {
             success.value = 1;
-            console.log(success.value);
             Object.keys(participationForm.value).forEach(
                 (key) => (participationForm.value[key] = "")
             );

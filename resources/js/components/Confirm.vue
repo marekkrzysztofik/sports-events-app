@@ -107,8 +107,7 @@ const confirm2 = (id) => {
                 detail: "Record deleted",
                 life: 3000,
             });
-
-            if (route == "/admin/") {
+            if (route == "/admin") {
                 deleteDisc(id);
             }
             if (route == "/admin/competitors") {

@@ -83,16 +83,16 @@
                     />
                 </div>
                 <div class="m-3">
-                    <Checkbox v-model="form.timeNotScore" :binary="true" />
+                    <Checkbox v-model="form.timeNotScore"/>
                     <p>Check for time, leave for score</p>
                 </div>
                 <div class="m-3">
-                    <Checkbox v-model="form.bigScoreWins" :binary="true" />
+                    <Checkbox v-model="form.bigScoreWins"/>
                     <p>Check if the biggest score wins</p>
                 </div>
                 <div class="save-button m-3">
                     <Button
-                        @click="saveCompetition"
+                        @click="save"
                         label="Save"
                         class="p-button-rounded"
                     />
@@ -109,17 +109,14 @@ import {
     sex,
 } from "./consts/disciplines.js";
 import { form, compStyle, date } from "./consts/form.js";
+import { success, saveCompetition } from "./composables/saveDiscipline.js";
 import { useRouter } from "vue-router";
 const router = useRouter();
-const saveCompetition = async () => {
-    form.value.startTime = date.value.day + " " + date.value.time;
-    form.value.style = compStyle.value.style.cname;
-    form.value.competition = compStyle.value.competition.cname;
-    await axios
-        .post("/api/createOrUpdateDiscipline", { ...form.value })
-        .then(() => {
-            Object.keys(form.value).forEach((key) => (form.value[key] = ""));
-            router.push("/admin/");
-        })
+const save = async () => {
+    await saveCompetition();
+    if (success.value == 1) {
+        router.push("/admin");
+    }
+    success.value=0
 };
 </script>
