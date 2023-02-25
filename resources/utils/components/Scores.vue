@@ -98,7 +98,6 @@ onMounted(async () => {
     getSportsmanWithDisc();
     getParticipation();
 });
-
 const participationForm = ref({
     id: "",
     discipline_id: "",

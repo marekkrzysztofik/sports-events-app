@@ -10,12 +10,12 @@ body {
     font-family: "Kanit", sans-serif !important;
 }
 .bg-dark-blue {
- background-color: #3C84AB;
+    background-color: #3c84ab;
 }
 .br-radius-15 {
     border-radius: 15px;
 }
-.m-10-auto { 
+.m-10-auto {
     margin: 10px auto;
 }
 .m-20-auto {
@@ -24,8 +24,8 @@ body {
 .pad-15 {
     padding: 15px;
 }
-.pad-0{
-    padding:0;
+.pad-0 {
+    padding: 0;
 }
 .pad-50-0 {
     padding: 50px 0;
@@ -63,7 +63,7 @@ body {
     color: white;
 }
 .btn-icon-users:hover {
-    background: #2196F3;
+    background: #2196f3;
     color: white;
 }
 .center {
@@ -83,4 +83,3 @@ body {
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
-

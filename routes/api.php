@@ -27,9 +27,9 @@ Route::get('/editSportsman/{id}', [SportsmanController::class, 'editSportsman'])
 Route::get('/deleteSportsman/{id}', [SportsmanController::class, 'deleteSportsman']);
 
 
-Route::get('/getParticipations', [ParticipationController::class, 'getParticipations']); 
+Route::get('/getParticipations', [ParticipationController::class, 'getParticipations']);
 Route::get('/getParticipationByDisc/{id}', [ParticipationController::class, 'getParticipationByDisc']);
-Route::get('/getParticipationByComp/{id}', [ParticipationController::class, 'getParticipationByComp']);  
+Route::get('/getParticipationByComp/{id}', [ParticipationController::class, 'getParticipationByComp']);
 Route::post('/createOrUpdateParticipation', [ParticipationController::class, 'createOrUpdateParticipation']);
 Route::get('/discWithSportsman/{id}', [ParticipationController::class, 'discWithSportsman']);
 Route::get('/sportsmanWithDisc/{id}', [ParticipationController::class, 'sportsmanWithDisc']);

@@ -126,7 +126,7 @@ const confirm2 = (id) => {
 };
 const onEdit = (id) => {
     if (route == "/admin") {
-        router.push(`/admin/edit-discipline/${id}`); 
+        router.push(`/admin/edit-discipline/${id}`);
     }
     if (route == "/admin/competitors") {
         router.push(`/admin/edit-competitor/${id}`);

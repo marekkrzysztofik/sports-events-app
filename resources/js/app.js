@@ -13,7 +13,7 @@ import "primevue/resources/primevue.min.css";
 import "primeflex/primeflex.css";
 import "primevue/resources/themes/saga-blue/theme.css"; //theme
 import "primeicons/primeicons.css"; //icons
-import CascadeSelect from 'primevue/cascadeselect';
+import CascadeSelect from "primevue/cascadeselect";
 import InputText from "primevue/inputtext";
 import Checkbox from "primevue/checkbox";
 import Button from "primevue/button";
@@ -31,7 +31,7 @@ import ToastService from "primevue/toastservice";
 import Navbar from "./components/Navbar.vue";
 import Toast from "primevue/toast";
 import ConfirmationService from "primevue/confirmationservice";
-import Dropdown from 'primevue/dropdown';
+import Dropdown from "primevue/dropdown";
 const app = createApp(App);
 
 app.use(router);

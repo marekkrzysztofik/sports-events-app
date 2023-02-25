@@ -51,7 +51,7 @@
 </template>
 <script setup>
 import { compForm } from "./consts/form.js";
-import { success,saveCompetitor } from "./composables/saveCompetitor.js";
+import { success, saveCompetitor } from "./composables/saveCompetitor.js";
 import { sex } from "./consts/disciplines.js";
 import { useRouter } from "vue-router";
 const router = useRouter();
@@ -61,9 +61,9 @@ const save = async () => {
     if (success.value == 1) {
         router.push("/admin/competitors");
     }
-    success.value=0
+    success.value = 0;
 };
-</script> 
+</script>
 <style scoped>
 .input-grid {
     margin: auto;

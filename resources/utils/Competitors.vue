@@ -1,7 +1,7 @@
 <template>
     <Navbar></Navbar>
     <div class="w-10 flex m-auto justify-content-center">
-        <DataTable :value="competitors" responsiveLayout="scroll" >
+        <DataTable :value="competitors" responsiveLayout="scroll">
             <template #header>Competitors </template>
             <Column field="id" header="ID"></Column>
             <Column field="name" header="Name"></Column>
@@ -16,7 +16,7 @@
         <Confirm></Confirm>
     </div>
 </template>
-<script setup> 
+<script setup>
 import { onMounted } from "vue";
 import { competitors, getCompetitors } from "./consts/getOrDelete.js";
 onMounted(async () => {

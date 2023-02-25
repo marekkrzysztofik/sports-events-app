@@ -54,7 +54,7 @@ import { onMounted } from "vue";
 import { compForm } from "./consts/form.js";
 import { sex } from "./consts/disciplines.js";
 import { useRouter } from "vue-router";
-import { success,saveCompetitor } from "./composables/saveCompetitor.js";
+import { success, saveCompetitor } from "./composables/saveCompetitor.js";
 const router = useRouter();
 onMounted(async () => {
     getSingleSportsman();
@@ -75,7 +75,7 @@ const save = async () => {
     if (success.value == 1) {
         router.push("/admin/competitors");
     }
-    success.value=0
+    success.value = 0;
 };
 </script>
 <style scoped>

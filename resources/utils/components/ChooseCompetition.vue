@@ -97,8 +97,8 @@ const save = async () => {
     await saveParticipation();
     console.log(success.value);
     if (success.value == 1) {
-        router.push("/admin"); 
+        router.push("/admin");
     }
-    success.value=0
+    success.value = 0;
 };
 </script>

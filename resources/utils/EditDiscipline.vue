@@ -5,7 +5,7 @@
         class="flex flex-column bg-dark-blue w-10 m-20-auto br-radius-15 pad-15"
     >
         <div class="m-auto flex">
-            <div class="input-grid"> 
+            <div class="input-grid">
                 <div>
                     <Dropdown
                         v-model="form.name"
@@ -105,7 +105,7 @@
     </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue"; 
+import { onMounted } from "vue";
 import {
     disciplines1,
     sports,
@@ -127,16 +127,15 @@ const props = defineProps({
     },
 });
 const getSingleDiscipline = async () => {
-    const response = await axios.get(`/api/editDisc/${props.id}`); 
+    const response = await axios.get(`/api/editDisc/${props.id}`);
     console.log(response.data);
-    form.value = response.data; 
+    form.value = response.data;
 };
 const save = async () => {
     await saveCompetition();
     if (success.value == 1) {
         router.push("/admin");
     }
-    success.value=0
+    success.value = 0;
 };
 </script>
-

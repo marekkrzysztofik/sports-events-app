@@ -53,7 +53,7 @@ import { ref } from "vue";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
-const types = ["admin", "user","referee"];
+const types = ["admin", "user", "referee"];
 const form = reactive({
     name: "",
     type: "",

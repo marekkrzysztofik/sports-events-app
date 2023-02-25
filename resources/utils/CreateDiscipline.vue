@@ -15,8 +15,8 @@
                         placeholder="Select a sport"
                         class="m-3"
                     />
-                    <Dropdown 
-                        v-model="form.ageGroup" 
+                    <Dropdown
+                        v-model="form.ageGroup"
                         :options="ageCategories"
                         inputClass="string"
                         placeholder="Select age category"
@@ -83,11 +83,11 @@
                     />
                 </div>
                 <div class="m-3">
-                    <Checkbox v-model="form.timeNotScore"/>
+                    <Checkbox v-model="form.timeNotScore" />
                     <p>Check for time, leave for score</p>
                 </div>
                 <div class="m-3">
-                    <Checkbox v-model="form.bigScoreWins"/>
+                    <Checkbox v-model="form.bigScoreWins" />
                     <p>Check if the biggest score wins</p>
                 </div>
                 <div class="save-button m-3">
@@ -117,6 +117,6 @@ const save = async () => {
     if (success.value == 1) {
         router.push("/admin");
     }
-    success.value=0
+    success.value = 0;
 };
 </script>
