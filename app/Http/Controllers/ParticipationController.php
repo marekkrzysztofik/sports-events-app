@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Repositories\ParticipationRepository;
+use App\Services\ParticipationService;
 use App\Models\Participation;
 use Illuminate\Http\Request;
 use App\Models\Discipline;
@@ -9,9 +10,20 @@ use App\Models\Sportsman;
 
 class ParticipationController extends Controller
 {
+    private ParticipationRepository $participationRepository;
+    private ParticipationService $participationService;
 
+    public function __construct(ParticipationRepository $participationRepository, ParticipationService $participationService)
+    {
+        $this->participationRepository = $participationRepository;
+        $this->participationService = $participationService;
+    }
+    public function getParticipations()
+    {
+        return ($this->participationRepository->getParticipations()->all());
+    }
     public function assignSportsman(Request $data)
-    { 
+    {
         $participation = new Participation;
         $participation->discipline_id = $data['discipline_id'];
         $participation->sportsman_id = $data['sportsman_id'];
@@ -37,32 +49,24 @@ class ParticipationController extends Controller
             $this->assignSportsman($request);
         }
     }
-
-    public function getParticipations()
-    {
-        return Participation::all();
-    }
     public function getParticipationByComp($id)
     {
-        return Participation::where('sportsman_id','=',$id)->get();
+        return ($this->participationRepository->getParticipationByComp($id));
     }
     public function getParticipationByDisc($id)
     {
-        return Participation::where('discipline_id','=',$id)->get();
+        return ($this->participationRepository->getParticipationByDisc($id));
     }
     public function discWithSportsman($id)
     {
-        $participation = Discipline::with('sportsman')->find($id);
-        return $participation;
+        return ($this->participationRepository->discWithSportsman($id));
     }
     public function sportsmanWithDisc($id)
     {
-        $participation = Sportsman::with('disciplines')->find($id);
-        return $participation;
+        return ($this->participationRepository->sportsmanWithDisc($id));
     }
-    public function allDiscWithSportsman()
+    public function allDiscWithSportsman($id)
     {
-        $participation = Discipline::with('sportsman')->whereHas('sportsman')->get()->toArray();
-        return $participation;
+        return ($this->participationRepository->allDiscWithSportsman($id));
     }
 }

@@ -16,4 +16,4 @@ class DisciplineRepository
     {
         return Discipline::find($id);
     }
-} 
+}  
