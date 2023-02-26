@@ -27,8 +27,8 @@
                         <i class="pi pi-users"></i>
                     </button>
                 </div>
-            </template> 
-        </Column> 
+            </template>
+        </Column>
     </DataTable>
     <DataTable v-if="$route.name === 'Competitors'" :value="competitors">
         <template #header>Actions </template>
@@ -79,7 +79,7 @@
                     </button>
                 </div>
             </template>
-        </Column> 
+        </Column>
     </DataTable>
 </template>
 
@@ -99,11 +99,12 @@ import {
     deleteCompetitor,
     getParticipations,
     participations,
-    deleteParticipation
+    deleteParticipation,
 } from "/resources/utils/consts/getOrDelete.js";
 const router = useRouter();
 const route = useRoute().path;
-
+const routeName = useRoute().name;
+console.log(routeName);
 onMounted(async () => {
     getCompetitions();
     getCompetitors();
@@ -130,7 +131,7 @@ const confirm2 = (id) => {
             if (route == "/admin/competitors") {
                 deleteCompetitor(id);
             }
-            if (route == "/admin/participations") {
+            if (routeName == "Participations") {
                 deleteParticipation(id);
             }
         },
@@ -143,7 +144,7 @@ const confirm2 = (id) => {
             });
         },
     });
-}; 
+};
 const onEdit = (id) => {
     if (route == "/admin") {
         router.push(`/admin/edit-discipline/${id}`);

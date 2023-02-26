@@ -69,7 +69,7 @@
             <Column field="time" header="Time" sortable></Column>
         </DataTable>
         <Confirm></Confirm>
-        <!-- <div class="m-3">
+        <div class="m-3">
             <button
                     
                         @click="refresh"
@@ -77,7 +77,7 @@
                     >
                         <i class="pi pi-refresh"></i>
                     </button>
-        </div> -->
+        </div>
     </div>
 </template>
 <script setup>
@@ -86,7 +86,10 @@ onMounted(async () => {
     getDisciplineWithCompetitors();
     getParticipation();
 });
-
+const refresh = () => {
+    getDisciplineWithCompetitors()
+    getParticipation()
+}
 const props = defineProps({
     id: {
         type: String,
