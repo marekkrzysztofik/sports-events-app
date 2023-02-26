@@ -86,16 +86,22 @@
                     />
                 </div>
                 <div class="m-3">
-                    <Checkbox v-model="form.timeNotScore" :binary="true" />
+                    <Checkbox
+                        v-model="booleanToNum.timeNotScore"
+                        :binary="true"
+                    />
                     <p>Check for time, leave for score</p>
                 </div>
                 <div class="m-3">
-                    <Checkbox v-model="form.bigScoreWins" :binary="true" />
+                    <Checkbox
+                        v-model="booleanToNum.bigScoreWins"
+                        :binary="true"
+                    />
                     <p>Check if the biggest score wins</p>
                 </div>
                 <div class="save-button m-3">
                     <Button
-                        @click="save"
+                        @click="booleanToNumber"
                         label="Save"
                         class="p-button-rounded"
                     />
@@ -115,11 +121,30 @@ import {
 import { form, compStyle, date } from "../../consts/form.js";
 import { success, saveCompetition } from "../../composables/saveDiscipline.js";
 import { useRouter } from "vue-router";
+import { ref } from "vue";
 const router = useRouter();
-
 onMounted(async () => {
     getSingleDiscipline();
 });
+const booleanToNum = ref({
+    timeNotScore: "",
+    bigScoreWins: "",
+});
+const booleanToNumber = () => {
+    if (booleanToNum.value.timeNotScore == true) {
+        form.value.timeNotScore = 1;
+    }
+    if (booleanToNum.value.timeNotScore == false) {
+        form.value.timeNotScore = 0;
+    }
+    if (booleanToNum.value.bigScoreWins == true) {
+        form.value.bigScoreWins = 1;
+    }
+    if (booleanToNum.value.bigScoreWins == false) {
+        form.value.bigScoreWins = 0;
+    }
+    save();
+};
 const props = defineProps({
     id: {
         type: String,
@@ -128,7 +153,6 @@ const props = defineProps({
 });
 const getSingleDiscipline = async () => {
     const response = await axios.get(`/api/editDisc/${props.id}`);
-    console.log(response.data);
     form.value = response.data;
 };
 const save = async () => {
