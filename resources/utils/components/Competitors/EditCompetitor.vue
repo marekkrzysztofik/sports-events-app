@@ -51,10 +51,10 @@
 </template>
 <script setup>
 import { onMounted } from "vue";
-import { compForm } from "./consts/form.js";
-import { sex } from "./consts/disciplines.js";
+import { compForm } from "../../consts/form.js";
+import { sex } from "../../consts/disciplines.js";
 import { useRouter } from "vue-router";
-import { success, saveCompetitor } from "./composables/saveCompetitor.js";
+import { success, saveCompetitor } from "../../composables/saveCompetitor.js";
 const router = useRouter();
 onMounted(async () => {
     getSingleSportsman();

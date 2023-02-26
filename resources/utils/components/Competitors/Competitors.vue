@@ -18,7 +18,7 @@
 </template>
 <script setup>
 import { onMounted } from "vue";
-import { competitors, getCompetitors } from "./consts/getOrDelete.js";
+import { competitors, getCompetitors } from "../../consts/getOrDelete.js";
 onMounted(async () => {
     getCompetitors();
 });

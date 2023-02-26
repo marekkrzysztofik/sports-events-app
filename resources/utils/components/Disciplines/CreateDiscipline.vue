@@ -1,10 +1,11 @@
 <template>
     <Navbar></Navbar>
-    <h1 class="center">Edit Competition</h1>
+    <h1 class="center">Create Competition</h1>
     <div
         class="flex flex-column bg-dark-blue w-10 m-20-auto br-radius-15 pad-15"
     >
-        <div class="m-auto flex">
+        <h2 class="m-3">Add new competition</h2>
+        <div class="m-auto flex align-items-center">
             <div class="input-grid">
                 <div>
                     <Dropdown
@@ -63,12 +64,8 @@
                     </CascadeSelect>
                 </div>
                 <div>
-                    <p>
-                        <InputText v-model="date.day" type="date" />
-                    </p>
-                    <p>
-                        <InputText v-model="date.time" type="time" />
-                    </p>
+                    <InputText v-model="date.day" class="m-3" type="date" />
+                    <InputText v-model="date.time" class="m-3" type="time" />
                 </div>
                 <div>
                     <Dropdown
@@ -86,11 +83,11 @@
                     />
                 </div>
                 <div class="m-3">
-                    <Checkbox v-model="form.timeNotScore" :binary="true" />
+                    <Checkbox v-model="form.timeNotScore" />
                     <p>Check for time, leave for score</p>
                 </div>
                 <div class="m-3">
-                    <Checkbox v-model="form.bigScoreWins" :binary="true" />
+                    <Checkbox v-model="form.bigScoreWins" />
                     <p>Check if the biggest score wins</p>
                 </div>
                 <div class="save-button m-3">
@@ -105,32 +102,16 @@
     </div>
 </template>
 <script setup>
-import { onMounted } from "vue";
 import {
     disciplines1,
     sports,
     ageCategories,
     sex,
-} from "./consts/disciplines.js";
-import { form, compStyle, date } from "./consts/form.js";
-import { success, saveCompetition } from "./composables/saveDiscipline.js";
+} from "../../consts/disciplines.js";
+import { form, compStyle, date } from "../../consts/form.js";
+import { success, saveCompetition } from "../../composables/saveDiscipline.js";
 import { useRouter } from "vue-router";
 const router = useRouter();
-
-onMounted(async () => {
-    getSingleDiscipline();
-});
-const props = defineProps({
-    id: {
-        type: String,
-        default: "",
-    },
-});
-const getSingleDiscipline = async () => {
-    const response = await axios.get(`/api/editDisc/${props.id}`);
-    console.log(response.data);
-    form.value = response.data;
-};
 const save = async () => {
     await saveCompetition();
     if (success.value == 1) {

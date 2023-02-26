@@ -2,16 +2,16 @@ import { createRouter, createWebHistory } from "vue-router";
 import NotFound from "../components/NotFound.vue";
 import Login from "/resources/modules/Organizer/components/Auth/Login.vue";
 import Home from "../components/Home.vue";
-import AdminHome from "/resources/utils/AdminHome.vue";
-import CreateDiscipline from "/resources/utils/CreateDiscipline.vue";
-import EditDiscipline from "/resources/utils/EditDiscipline.vue";
-import EditCompetitor from "/resources/utils/EditCompetitor.vue";
-import AddCompetitor from "/resources/utils/AddCompetitor.vue";
-import Competitors from "/resources/utils/Competitors.vue";
+import AdminHome from "/resources/utils/components/AdminHome.vue";
+import CreateDiscipline from "/resources/utils/components/Disciplines/CreateDiscipline.vue";
+import EditDiscipline from "/resources/utils/components/Disciplines/EditDiscipline.vue";
+import EditCompetitor from "/resources/utils/components/Competitors/EditCompetitor.vue";
+import AddCompetitor from "/resources/utils/components/Competitors/AddCompetitor.vue";
+import Competitors from "/resources/utils/components/Competitors/Competitors.vue";
 import Register from "/resources/modules/Organizer/components/Auth/Register.vue";
-import Participations from '/resources/utils/components/Participations.vue' 
-import ChooseCompetition from '/resources/utils/components/ChooseCompetition.vue'
-import Scores from '/resources/utils/components/Scores.vue'
+import Participations from '/resources/utils/components/Participations/Participations.vue'  
+import ChooseCompetition from '/resources/utils/components/Participations/ChooseCompetition.vue'
+import Scores from '/resources/utils/components/Scores/Scores.vue'
 const routes = [
     //admin
     {

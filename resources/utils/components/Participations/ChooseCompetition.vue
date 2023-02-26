@@ -67,14 +67,14 @@ import {
     competitions,
     competitors,
     getCompetitors,
-} from "../consts/getOrDelete.js";
+} from "../../consts/getOrDelete.js";
 import {
     ComptitionIds,
     ComptitorsIds,
     participationForm,
     saveParticipation,
     success,
-} from "../composables/chooseCompetition.js";
+} from "../../composables/chooseCompetition.js";
 import { useRouter } from "vue-router";
 import { onMounted } from "vue";
 const router = useRouter();
