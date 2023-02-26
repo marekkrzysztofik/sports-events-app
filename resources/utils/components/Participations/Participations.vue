@@ -39,7 +39,7 @@
             :sort-field="scoreField"
             :sortOrder="scoreOrder"
             responsiveLayout="scroll"
-            class="w-6"
+            class="w-3"
         >
             <template #header>Competitors </template>
             <Column field="id" header="ID"></Column>
@@ -61,21 +61,32 @@
             :value="participation"
             @sort="sortCompetitors"
             responsiveLayout="scroll"
-            class="w-2"
         >
             <template #header>Scores </template>
-            <Column field="sportsman_id" header="ID"></Column>
+            <Column field="id" header="ParticipationID"></Column>
+            <Column field="sportsman_id" header="SportsmanID"></Column>
             <Column field="score" header="Score" sortable></Column>
             <Column field="time" header="Time" sortable></Column>
         </DataTable>
+        <Confirm></Confirm>
+        <!-- <div class="m-3">
+            <button
+                    
+                        @click="refresh"
+                        class="btn-icon btn-icon-users"
+                    >
+                        <i class="pi pi-refresh"></i>
+                    </button>
+        </div> -->
     </div>
 </template>
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref } from "vue"; 
 onMounted(async () => {
     getDisciplineWithCompetitors();
     getParticipation();
 });
+
 const props = defineProps({
     id: {
         type: String,
@@ -83,7 +94,7 @@ const props = defineProps({
     },
 });
 const scoreField = ref("");
-const scoreOrder = ref("");
+const scoreOrder = ref(0);
 function sortCompetitors(event) {
     scoreField.value = "id";
     scoreOrder.value = event.sortOrder;
@@ -98,6 +109,5 @@ const disciplineWithCompetitors = ref({});
 const getDisciplineWithCompetitors = async () => {
     const response = await axios.get(`/api/discWithSportsman/${props.id}`);
     disciplineWithCompetitors.value = response.data;
-    console.log(disciplineWithCompetitors.value);
 };
 </script>

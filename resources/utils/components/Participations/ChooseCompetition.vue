@@ -80,7 +80,7 @@ import { onMounted } from "vue";
 const router = useRouter();
 onMounted(async () => {
     getCompetitions();
-    console.log(ComptitionIds);
+    ComptitionIds.splice(0)
     for (let i = 0; i < competitions.value.length; i++) {
         if (!ComptitionIds.includes(competitions.value[i].id))
             ComptitionIds.push(competitions.value[i].id);
@@ -88,14 +88,14 @@ onMounted(async () => {
 });
 onMounted(async () => {
     getCompetitors();
+    ComptitorsIds.splice(0)
     for (let i = 0; i < competitors.value.length; i++) {
         if (!ComptitorsIds.includes(competitors.value[i].id))
-            ComptitorsIds.push(competitors.value[i].id);
+            ComptitorsIds.push(competitors.value[i].id); 
     }
 });
 const save = async () => {
     await saveParticipation();
-    console.log(success.value);
     if (success.value == 1) {
         router.push("/admin");
     }

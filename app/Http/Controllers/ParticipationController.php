@@ -28,6 +28,10 @@ class ParticipationController extends Controller
     {
         return ($this->participationRepository->getParticipationByComp($id));
     }
+    public function deleteParticipation($id)
+    {
+        return ($this->participationService->deleteParticipation($id));
+    }
     public function getParticipationByDisc($id)
     {
         return ($this->participationRepository->getParticipationByDisc($id));

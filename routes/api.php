@@ -34,3 +34,4 @@ Route::post('/createOrUpdateParticipation', [ParticipationController::class, 'cr
 Route::get('/discWithSportsman/{id}', [ParticipationController::class, 'discWithSportsman']);
 Route::get('/sportsmanWithDisc/{id}', [ParticipationController::class, 'sportsmanWithDisc']);
 Route::get('/allDiscWithSportsman', [ParticipationController::class, 'allDiscWithSportsman']);
+Route::get('/deleteParticipation/{id}', [ParticipationController::class, 'deleteParticipation']);

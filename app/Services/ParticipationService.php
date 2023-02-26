@@ -33,4 +33,9 @@ class ParticipationService
       $this->assignSportsman($request);
     }
   }
+  public function deleteParticipation($id) 
+    {
+        $participation = Participation::findOrFail($id);
+        $participation->delete();
+    }
 }

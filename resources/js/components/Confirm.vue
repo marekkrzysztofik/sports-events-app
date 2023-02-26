@@ -27,8 +27,8 @@
                         <i class="pi pi-users"></i>
                     </button>
                 </div>
-            </template>
-        </Column>
+            </template> 
+        </Column> 
     </DataTable>
     <DataTable v-if="$route.name === 'Competitors'" :value="competitors">
         <template #header>Actions </template>
@@ -66,6 +66,21 @@
             </template>
         </Column>
     </DataTable>
+    <DataTable v-if="$route.name === 'Participations'" :value="participations">
+        <template #header>Actions </template>
+        <Column v-if="userType == 'admin'" header="Delete">
+            <template #body="event2">
+                <div class="actions-height assign-width">
+                    <button
+                        @click="confirm2(event2.data.id)"
+                        class="btn-icon btn-icon-danger"
+                    >
+                        <i class="pi pi-ban"></i>
+                    </button>
+                </div>
+            </template>
+        </Column> 
+    </DataTable>
 </template>
 
 <script setup>
@@ -82,15 +97,17 @@ import {
     competitors,
     getCompetitors,
     deleteCompetitor,
+    getParticipations,
+    participations,
+    deleteParticipation
 } from "/resources/utils/consts/getOrDelete.js";
 const router = useRouter();
 const route = useRoute().path;
 
 onMounted(async () => {
     getCompetitions();
-});
-onMounted(async () => {
     getCompetitors();
+    getParticipations();
 });
 const toast = useToast();
 const confirm = useConfirm();
@@ -113,6 +130,9 @@ const confirm2 = (id) => {
             if (route == "/admin/competitors") {
                 deleteCompetitor(id);
             }
+            if (route == "/admin/participations") {
+                deleteParticipation(id);
+            }
         },
         reject: () => {
             toast.add({
@@ -123,7 +143,7 @@ const confirm2 = (id) => {
             });
         },
     });
-};
+}; 
 const onEdit = (id) => {
     if (route == "/admin") {
         router.push(`/admin/edit-discipline/${id}`);

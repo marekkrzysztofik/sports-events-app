@@ -33,11 +33,6 @@
                         class="m-3"
                     />
                 </div>
-                <div>
-                    <p class="text-danger" v-for="error in errors" :key="error">
-                        <span v-for="err in error" :key="err">{{ err }} </span>
-                    </p>
-                </div>
                 <p>
                     <Button
                         @click="save"
