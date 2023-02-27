@@ -62,7 +62,7 @@
     </div>
 </template>
 <script setup>
-import {
+import { 
     getCompetitions,
     competitions,
     competitors,

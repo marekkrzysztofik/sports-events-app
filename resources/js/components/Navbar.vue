@@ -27,6 +27,11 @@
                     /></router-link>
                 </li>
                 <li class="m-3">
+                    <router-link to="/admin/disciplines" class="no-decoration"
+                        ><Button label="Disciplines"
+                    /></router-link>
+                </li>
+                <li class="m-3">
                     <router-link
                         v-if="userType == 'admin' || userType == 'referee'"
                         to="/admin/competitors"
@@ -72,4 +77,5 @@ const logout = () => {
     localStorage.removeItem("token");
     router.push("/");
 };
+console.log(userType.value);
 </script>

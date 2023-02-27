@@ -13,6 +13,7 @@ class ParticipationService
     $participation->discipline_id = $data['discipline_id'];
     $participation->sportsman_id = $data['sportsman_id'];
     $participation->score = $data['score'];
+    $participation->time = $data['time'];
     $participation->save();
   }
   public function saveScore(Request $data, $id)

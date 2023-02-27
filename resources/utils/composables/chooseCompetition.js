@@ -11,7 +11,7 @@ export const participationForm = ref({
     discipline_id: "",
     sportsman_id: "",
     score: 0,
-    time: 0,
+    time: '23:59:59',
 });
 const disciplineWithCompetitors = ref({});
 export const ComptitionIds = [];

@@ -25,12 +25,12 @@ export const disciplines1 = [
 ];
 export const ageCategories = [
     "9-11 years",
-    "11-13 years",
-    "13-15 years",
-    "15-17 years",
-    "17-18 years",
-    "18-22 years",
-    "22-24 years",
+    "12-13 years",
+    "14-15 years",
+    "16-17 years",
+    "18-19 years",
+    "20-22 years",
+    "23-25 years",
 ];
 export const sex = ["M", "F"];
 export const sports = disciplines1[0].sports;

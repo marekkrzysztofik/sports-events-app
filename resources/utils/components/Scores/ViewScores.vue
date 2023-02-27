@@ -36,10 +36,9 @@
     <div class="flex justify-content-center">
         <DataTable
             :value="disciplineWithCompetitors.sportsman"
-            :sort-field="scoreField"
-            :sortOrder="scoreOrder"
             responsiveLayout="scroll"
-        >
+            class="m-3"
+        >                                                       
             <template #header>Competitors </template>
             <Column field="id" header="ID"></Column>
             <Column field="name" header="Name"></Column>
@@ -58,31 +57,24 @@
         </DataTable>
         <DataTable
             :value="participation"
-            @sort="sortCompetitors"
             responsiveLayout="scroll"
+            class="m-3"
         >
             <template #header>Scores </template>
-            <Column field="id" header="ParticipationID"></Column>
             <Column field="sportsman_id" header="SportsmanID"></Column>
             <Column
-                v-if="score > 0"
+                v-if="disciplineWithCompetitors.timeNotScore==0"
                 field="score"
                 header="Score"
                 sortable
             ></Column>
             <Column
-                v-if="time > 0"
+            v-if="disciplineWithCompetitors.timeNotScore==1"
                 field="time"
                 header="Time"
                 sortable
             ></Column>
         </DataTable>
-        <Confirm></Confirm>
-        <div class="m-3">
-            <button @click="refresh" class="btn-icon btn-icon-users">
-                <i class="pi pi-refresh"></i>
-            </button>
-        </div>
     </div>
 </template>
 <script setup>
@@ -91,22 +83,19 @@ onMounted(async () => {
     getDisciplineWithCompetitors();
     getParticipation();
 });
-const refresh = () => {
-    getDisciplineWithCompetitors();
-    getParticipation();
-};
 const props = defineProps({
     id: {
         type: String,
         default: "",
     },
 });
-const scoreField = ref("");
-const scoreOrder = ref(0);
-function sortCompetitors(event) {
-    scoreField.value = "id";
-    scoreOrder.value = event.sortOrder;
-}
+// const scoreField = ref(null);
+// const scoreOrder = ref(null);
+// function sortCompetitors(event) {
+//     scoreField.value= 'id'
+//     scoreOrder.value = event.sortOrder;
+//     //console.log(scoreOrder.value)
+// }
 const participation = ref();
 const getParticipation = async () => {
     const response = await axios.get(`/api/getParticipationByDisc/${props.id}`);
@@ -117,5 +106,6 @@ const disciplineWithCompetitors = ref({});
 const getDisciplineWithCompetitors = async () => {
     const response = await axios.get(`/api/discWithSportsman/${props.id}`);
     disciplineWithCompetitors.value = response.data;
+    console.log(disciplineWithCompetitors.value)
 };
 </script>

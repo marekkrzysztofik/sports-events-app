@@ -16,7 +16,6 @@
                 {{ competitions ? competitions.length : 0 }} competitions.
             </template>
         </DataTable>
-        <Confirm></Confirm>
     </div>
 </template>
 <script setup>

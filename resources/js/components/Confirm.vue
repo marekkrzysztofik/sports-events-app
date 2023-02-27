@@ -1,9 +1,12 @@
 <template>
     <Toast />
     <ConfirmDialog></ConfirmDialog>
-    <DataTable v-if="$route.name === 'AdminHome'" :value="competitions">
-        <template #header>Actions </template>
-        <Column field="startTime" header="Edit/Delete/Browse">
+    <DataTable
+        v-if="$route.name === 'DisciplinesWithActions'"
+        :value="competitions"
+    >
+        <template #header>IconMenu </template>
+        <Column field="startTime" header="Actions">
             <template #body="event">
                 <div class="actions-height assign-width">
                     <button
@@ -21,10 +24,17 @@
                         <i class="pi pi-ban"></i>
                     </button>
                     <button
-                        @click="viewCompetitors(event.data.id)"
+                        v-if="userType == 'admin'"
+                        @click="editCompetitors(event.data.id)"
                         class="btn-icon btn-icon-users"
                     >
                         <i class="pi pi-users"></i>
+                    </button>
+                    <button
+                        @click="viewScores(event.data.id)"
+                        class="btn-icon btn-icon-users"
+                    >
+                        <i class="pi pi-stopwatch"></i>
                     </button>
                 </div>
             </template>
@@ -68,7 +78,7 @@
     </DataTable>
     <DataTable v-if="$route.name === 'Participations'" :value="participations">
         <template #header>Actions </template>
-        <Column v-if="userType == 'admin'" header="Delete">
+        <Column header="Delete">
             <template #body="event2">
                 <div class="actions-height assign-width">
                     <button
@@ -125,7 +135,7 @@ const confirm2 = (id) => {
                 detail: "Record deleted",
                 life: 3000,
             });
-            if (route == "/admin") {
+            if (route == "/admin/disciplines") {
                 deleteDisc(id);
             }
             if (route == "/admin/competitors") {
@@ -146,18 +156,21 @@ const confirm2 = (id) => {
     });
 };
 const onEdit = (id) => {
-    if (route == "/admin") {
+    if (route == "/admin/disciplines") {
         router.push(`/admin/edit-discipline/${id}`);
     }
     if (route == "/admin/competitors") {
         router.push(`/admin/edit-competitor/${id}`);
     }
 };
-const viewCompetitors = (id) => {
+const editCompetitors = (id) => {
     router.push(`/admin/participations/${id}`);
 };
 const setScore = (id) => {
     router.push(`/admin/scores/${id}`);
+};
+const viewScores = (id) => {
+    router.push(`/admin/view-scores/${id}`);
 };
 </script>
 <style scoped>
