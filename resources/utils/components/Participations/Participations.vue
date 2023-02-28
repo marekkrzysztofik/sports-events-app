@@ -78,29 +78,42 @@
             ></Column>
         </DataTable>
         <Confirm></Confirm>
-        <div class="m-3">
-            <button @click="refresh" class="btn-icon btn-icon-users">
-                <i class="pi pi-refresh"></i>
+        <div v-if="userType == 'admin'" class="m-3">
+            <InputText
+                v-model="participationID"
+                class="m-3"
+                type="number"
+                placeholder="Delete by ParticipationID"
+            />
+            <button
+                @click="deleteParticipant"
+                class="btn-icon btn-icon-danger m-3"
+            >
+                <i class="pi pi-ban"></i>
             </button>
         </div>
     </div>
 </template>
 <script setup>
 import { onMounted, ref } from "vue";
+import { deleteParticipation } from "../../consts/getOrDelete";
+import { userType } from "../../../modules/Organizer/composables/user.js";
 onMounted(async () => {
     getDisciplineWithCompetitors();
     getParticipation();
 });
-const refresh = () => {
-    getDisciplineWithCompetitors();
-    getParticipation();
-};
 const props = defineProps({
     id: {
         type: String,
         default: "",
     },
 });
+const participationID = ref("");
+const deleteParticipant = () => {
+    deleteParticipation(participationID.value);
+    getDisciplineWithCompetitors();
+    getParticipation();
+};
 const scoreField = ref("");
 const scoreOrder = ref(0);
 function sortCompetitors(event) {
@@ -117,5 +130,6 @@ const disciplineWithCompetitors = ref({});
 const getDisciplineWithCompetitors = async () => {
     const response = await axios.get(`/api/discWithSportsman/${props.id}`);
     disciplineWithCompetitors.value = response.data;
+    console.log(disciplineWithCompetitors.value);
 };
 </script>

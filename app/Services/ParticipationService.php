@@ -39,4 +39,4 @@ class ParticipationService
         $participation = Participation::findOrFail($id);
         $participation->delete();
     }
-}
+} 

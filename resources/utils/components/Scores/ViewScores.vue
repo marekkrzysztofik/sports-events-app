@@ -100,12 +100,10 @@ const participation = ref();
 const getParticipation = async () => {
     const response = await axios.get(`/api/getParticipationByDisc/${props.id}`);
     participation.value = response.data;
-    console.log(participation.value);
 };
 const disciplineWithCompetitors = ref({});
 const getDisciplineWithCompetitors = async () => {
     const response = await axios.get(`/api/discWithSportsman/${props.id}`);
     disciplineWithCompetitors.value = response.data;
-    console.log(disciplineWithCompetitors.value)
 };
 </script>

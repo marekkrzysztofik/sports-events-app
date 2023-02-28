@@ -76,21 +76,6 @@
             </template>
         </Column>
     </DataTable>
-    <DataTable v-if="$route.name === 'Participations'" :value="participations">
-        <template #header>Actions </template>
-        <Column header="Delete">
-            <template #body="event2">
-                <div class="actions-height assign-width">
-                    <button
-                        @click="confirm2(event2.data.id)"
-                        class="btn-icon btn-icon-danger"
-                    >
-                        <i class="pi pi-ban"></i>
-                    </button>
-                </div>
-            </template>
-        </Column>
-    </DataTable>
 </template>
 
 <script setup>
@@ -109,7 +94,6 @@ import {
     deleteCompetitor,
     getParticipations,
     participations,
-    deleteParticipation,
 } from "/resources/utils/consts/getOrDelete.js";
 const router = useRouter();
 const route = useRoute().path;
@@ -140,9 +124,6 @@ const confirm2 = (id) => {
             }
             if (route == "/admin/competitors") {
                 deleteCompetitor(id);
-            }
-            if (routeName == "Participations") {
-                deleteParticipation(id);
             }
         },
         reject: () => {
