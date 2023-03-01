@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Repositories\ParticipationRepository;
 use App\Services\ParticipationService;
 use Illuminate\Http\Request;
@@ -47,5 +48,12 @@ class ParticipationController extends Controller
     public function allDiscWithSportsman($id)
     {
         return ($this->participationRepository->allDiscWithSportsman($id));
+    }
+    public function participationJoinedWithCompetitors()
+    {
+        $joinedTables = DB::table('participations')
+            ->join('sportsmen', 'participations.sportsman_id', '=', 'sportsmen.id')
+            ->get();
+        return $joinedTables;
     }
 }

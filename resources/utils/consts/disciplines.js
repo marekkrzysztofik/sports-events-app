@@ -1,6 +1,6 @@
 export const disciplines1 = [
     {
-        sports: ["swimming", "running"],
+        sports: ["swimming", "running"], 
     },
     {
         name: "Swimming",

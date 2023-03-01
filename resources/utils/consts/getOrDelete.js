@@ -13,7 +13,7 @@ export const getCompetitors = async () => {
 
 export const participations = ref([]);
 export const getParticipations = async () => {
-    const response = await axios.get("/api/getParticipations");
+    const response = await axios.get("/api/getParticipations");  
     participations.value = response.data;
 };
 export const deleteDisc = (disc) => {

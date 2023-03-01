@@ -10,21 +10,21 @@
             <template #body="event">
                 <div class="actions-height assign-width">
                     <button
-                        v-if="userType == 'admin'"
+                        v-if="user.type == 'admin'"
                         @click="onEdit(event.data.id)"
                         class="btn-icon btn-icon-success"
                     >
                         <i class="pi pi-pencil"></i>
                     </button>
                     <button
-                        v-if="userType == 'admin'"
+                        v-if="user.type == 'admin'"
                         @click="confirm2(event.data.id)"
                         class="btn-icon btn-icon-danger"
                     >
                         <i class="pi pi-ban"></i>
                     </button>
                     <button
-                        v-if="userType == 'admin'"
+                        v-if="user.type == 'admin'"
                         @click="editCompetitors(event.data.id)"
                         class="btn-icon btn-icon-users"
                     >
@@ -42,7 +42,7 @@
     </DataTable>
     <DataTable v-if="$route.name === 'Competitors'" :value="competitors">
         <template #header>Actions </template>
-        <Column v-if="userType == 'admin'" header="Edit/Delete">
+        <Column v-if="user.type == 'admin'" header="Edit/Delete">
             <template #body="event1">
                 <div class="actions-height">
                     <button
@@ -62,7 +62,7 @@
         </Column>
         <Column
             header="Set scores"
-            v-if="userType == 'admin' || userType == 'referee'"
+            v-if="user.type == 'admin' || user.type == 'referee'"
         >
             <template #body="assign">
                 <div class="actions-height assign-width">
@@ -83,7 +83,7 @@ import { useConfirm } from "primevue/useconfirm";
 import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
 import { onMounted } from "vue";
-import { userType } from "/resources/modules/Organizer/composables/user.js";
+import { user } from "/resources/modules/Organizer/composables/user.js";
 import { useRoute, useRouter } from "vue-router";
 import {
     getCompetitions,

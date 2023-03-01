@@ -1,2 +1,6 @@
 import { ref } from "vue";
-export const userType=ref('');
+export const user=ref({
+  id:'',
+  type:'',
+});
+

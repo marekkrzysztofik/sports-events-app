@@ -84,21 +84,25 @@
                 </div>
                 <div class="m-3">
                     <Checkbox
-                        v-model="booleanToNum.timeNotScore"
+                        v-model="form.timeNotScore"
                         :binary="true"
+                        :trueValue="1"
+                        :falseValue="0"
                     />
                     <p>Check for time, leave for score</p>
                 </div>
                 <div class="m-3">
                     <Checkbox
-                        v-model="booleanToNum.bigScoreWins"
+                        v-model="form.bigScoreWins"
                         :binary="true"
+                        :trueValue="1"
+                        :falseValue="0"
                     />
                     <p>Check if the biggest score wins</p>
                 </div>
                 <div class="save-button m-3">
                     <Button
-                        @click="booleanToNumber"
+                        @click="save"
                         label="Save"
                         class="p-button-rounded"
                     />
@@ -117,26 +121,6 @@ import {
 import { form, compStyle, date } from "../../consts/form.js";
 import { success, saveCompetition } from "../../composables/saveDiscipline.js";
 import { useRouter } from "vue-router";
-import { ref } from "vue";
-const booleanToNum = ref({
-    timeNotScore: "",
-    bigScoreWins: "",
-});
-const booleanToNumber = () => {
-    if (booleanToNum.value.timeNotScore == true) {
-        form.value.timeNotScore = 1;
-    }
-    if (booleanToNum.value.timeNotScore == false) {
-        form.value.timeNotScore = 0;
-    }
-    if (booleanToNum.value.bigScoreWins == true) {
-        form.value.bigScoreWins = 1;
-    }
-    if (booleanToNum.value.bigScoreWins == false) {
-        form.value.bigScoreWins = 0;
-    }
-    save();
-};
 const router = useRouter();
 const save = async () => {
     await saveCompetition();

@@ -33,7 +33,7 @@
                 </li>
                 <li class="m-3">
                     <router-link
-                        v-if="userType == 'admin' || userType == 'referee'"
+                        v-if="user.type == 'admin' || user.type == 'referee'"
                         to="/admin/competitors"
                         class="no-decoration"
                         ><Button label="Competitors"
@@ -42,13 +42,13 @@
                 <li v-if="$route.name !== 'Home'" class="m-3">
                     <Button @click="logout" label="Log Out" />
                 </li>
-                <li v-if="userType == 'admin'" class="m-3">
+                <li v-if="user.type == 'admin'" class="m-3">
                     <router-link to="/admin/create" class="no-decoration"
                         ><Button label="Create competition"
                     /></router-link>
                 </li>
                 <li
-                    v-if="userType == 'admin' || userType == 'user'"
+                    v-if="user.type == 'admin' || user.type == 'user'"
                     class="m-3"
                 >
                     <router-link
@@ -58,7 +58,7 @@
                     /></router-link>
                 </li>
                 <li
-                    v-if="userType == 'user' || userType == 'admin'"
+                    v-if="user.type == 'user' || user.type == 'admin'"
                     class="m-3"
                 >
                     <router-link to="/admin/choose" class="no-decoration"
@@ -71,11 +71,12 @@
 </template>
 <script setup>
 import { useRouter } from "vue-router";
-import { userType } from "/resources/modules/Organizer/composables/user.js";
+import { user } from "/resources/modules/Organizer/composables/user.js";
+import { form } from '../../utils/consts/form.js'
 const router = useRouter();
 const logout = () => {
     localStorage.removeItem("token");
     router.push("/");
 };
-console.log(userType.value);
+console.log(user.value);
 </script>

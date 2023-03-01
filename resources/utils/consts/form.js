@@ -1,4 +1,4 @@
-import { ref } from "vue"; 
+import { ref } from "vue";
 export const date = ref({
     day: "",
     time: "",
@@ -9,6 +9,7 @@ export const compStyle = ref({
 });
 export const form = ref({
     name: "",
+    user_id: "",
     category: "",
     ageGroup: "",
     startTime: "",
@@ -19,6 +20,7 @@ export const form = ref({
 });
 export const compForm = ref({
     name: "",
+    user_id: "",
     surname: "",
     age: "",
     sex: "",

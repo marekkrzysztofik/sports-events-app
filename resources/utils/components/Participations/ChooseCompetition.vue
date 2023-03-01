@@ -1,13 +1,15 @@
 <template>
-    <Navbar></Navbar>
+    <Navbar/>
     <div class="flex flex-column center">
-        <h2>Sign competitor to competition</h2>
+        <h2>Sign competitor to competition</h2> 
         <div
             class="flex w-11 m-auto justify-content-around bg-dark-blue br-radius-15"
         >
             <div class="m-3">
                 <Dropdown
-                    :options="ComptitorsIds"
+                    :options="competitors"
+                    optionLabel="name"
+                    optionValue="id"
                     inputClass="string"
                     placeholder="Select competitor"
                     v-model="participationForm.sportsman_id"

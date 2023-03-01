@@ -78,7 +78,7 @@
             ></Column>
         </DataTable>
         <Confirm></Confirm>
-        <div v-if="userType == 'admin'" class="m-3">
+        <div v-if="user.type == 'admin'" class="m-3">
             <InputText
                 v-model="participationID"
                 class="m-3"
@@ -97,7 +97,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { deleteParticipation } from "../../consts/getOrDelete";
-import { userType } from "../../../modules/Organizer/composables/user.js";
+import { user } from "../../../modules/Organizer/composables/user.js";
 onMounted(async () => {
     getDisciplineWithCompetitors();
     getParticipation();

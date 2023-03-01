@@ -23,7 +23,7 @@ class ParticipationService
     $participation->sportsman_id = $data['sportsman_id'];
     $participation->score = $data['score'];
     $participation->time = $data['time'];
-    $participation->save();
+    $participation->save(); 
   }
   public function createOrUpdateParticipation(Request $request)
   {
@@ -39,4 +39,4 @@ class ParticipationService
         $participation = Participation::findOrFail($id);
         $participation->delete();
     }
-} 
+}  

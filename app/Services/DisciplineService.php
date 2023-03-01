@@ -10,7 +10,8 @@ class DisciplineService
     public function createDiscipline($data)
     {
         $discipline = new Discipline;
-        $discipline->name = $data['name'];
+        $discipline->name = $data['name']; 
+        $discipline->user_id = $data['user_id']; 
         $discipline->style = $data['style'];
         $discipline->competition = $data['competition'];
         $discipline->ageGroup = $data['ageGroup'];
@@ -19,7 +20,7 @@ class DisciplineService
         $discipline->participants = $data['participants'];
         $discipline->timeNotScore = $data['timeNotScore'];
         $discipline->bigScoreWins = $data['bigScoreWins'];
-        $discipline->save();
+        $discipline->save(); 
     }
     public function deleteDisc($id) 
     {

@@ -9,7 +9,7 @@
                     class=""
                     type="text"
                     placeholder="Enter your email"
-                    v-model="form.email"
+                    v-model="loginForm.email"
                 />
             </p>
             <p>
@@ -17,7 +17,7 @@
                     class=""
                     type="password"
                     placeholder="Enter your password"
-                    v-model="form.password"
+                    v-model="loginForm.password"
                 />
             </p>
             <Button
@@ -35,20 +35,22 @@
 import { ref } from "vue";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import { userType } from "/resources/modules/Organizer/composables/user.js";
+import { user } from "/resources/modules/Organizer/composables/user.js";
+import { form, compForm } from '../../../../utils/consts/form.js'
 const router = useRouter();
-const form = reactive({
+const loginForm = reactive({
     email: "",
     password: "",
 });
 const errors = ref([]);
 const login = async () => {
     await axios
-        .post("/api/login", form)
+        .post("/api/login", loginForm)
         .then((response) => {
             if (response.data.success) {
                 localStorage.setItem("token", response.data.data.token);
-                userType.value = response.data.data.type;
+                user.value.id = response.data.data.id;
+                user.value.type = response.data.data.type;
                 router.push("/Admin/");
             }
         })

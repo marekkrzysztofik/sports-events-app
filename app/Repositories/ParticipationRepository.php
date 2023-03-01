@@ -12,7 +12,7 @@ class ParticipationRepository
 {
   public function getParticipations(): Collection
   {
-    return Participation::all();
+    return Participation::all(); 
   }
 
   public function getParticipationByComp($id)
