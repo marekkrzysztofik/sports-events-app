@@ -21,8 +21,8 @@
 </template>
 <script setup>
 import { onMounted } from "vue";
-import { getCompetitions, competitions } from "../../consts/getOrDelete.js";
+import { getDisciplinesByUserId, competitions } from "../../consts/getOrDelete.js";
 onMounted(async () => {
-  getCompetitions();
+  getDisciplinesByUserId();
 });
 </script>

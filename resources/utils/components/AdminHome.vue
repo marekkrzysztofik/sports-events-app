@@ -1,6 +1,6 @@
 <template>
     <Navbar></Navbar>
-    <Toast/>
+    <Toast />
     <div class="w-11 flex justify-content-center m-3">
         <DataTable :value="competitions" responsiveLayout="scroll">
             <template #header>Competitions </template>
@@ -14,21 +14,20 @@
             <Column field="participants" header="Participants"></Column>
             <template #footer>
                 In total there are
-                {{ competitions ? competitions.length : 0 }} competitions. 
+                {{ competitions ? competitions.length : 0 }} competitions.
             </template>
         </DataTable>
     </div>
-</template> 
+</template>
 <script setup>
 import { onMounted } from "vue";
-import { getCompetitions, competitions } from "../consts/getOrDelete.js";
 import { useCustomToast } from "./useCustomToast";
-const {siemaFromToast} = useCustomToast()
+import { competitions, getDisciplinesByUserId } from "../consts/getOrDelete";
+const { siemaFromToast } = useCustomToast();
 onMounted(async () => {
-    getCompetitions();
+    getDisciplinesByUserId();
     setTimeout(() => {
-        siemaFromToast()
+        siemaFromToast();
     }, 2000);
 });
-
 </script>

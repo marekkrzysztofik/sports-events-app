@@ -1,29 +1,33 @@
 import { ref } from "vue";
-
-export const competitions = ref([]);
-export const getCompetitions = async () => {
-    const response = await axios.get("/api/getDisc");
-    competitions.value = response.data;
-};
+import { user } from "../../modules/Organizer/composables/user.js";
 export const competitors = ref([]);
-export const getCompetitors = async () => {
-    const response = await axios.get("/api/getSportsman");
+export const getCompetitorsByUserId = async () => {
+    const response = await axios.get(
+        `/api/getSportsmenByUserId/${user.value.id}`
+    );
     competitors.value = response.data;
+};
+export const competitions = ref([]);
+export const getDisciplinesByUserId = async () => {
+    const response = await axios.get(
+        `/api/getDisciplinesByUserId/${user.value.id}`
+    );
+    competitions.value = response.data;
 };
 
 export const participations = ref([]);
 export const getParticipations = async () => {
-    const response = await axios.get("/api/getParticipations");  
+    const response = await axios.get("/api/getParticipations");
     participations.value = response.data;
 };
 export const deleteDisc = (disc) => {
-    axios.get(`/api/deleteDisc/${disc}`).then(() => {
-        getCompetitions();
+    axios.get(`/api/deleteDisciplines/${disc}`).then(() => {
+        getDisciplinesByUserId();
     });
 };
 export const deleteCompetitor = (sportsman) => {
     axios.get(`/api/deleteSportsman/${sportsman}`).then(() => {
-        getCompetitors();
+        getCompetitorsByUserId();
     });
 };
 export const deleteParticipation = (part) => {

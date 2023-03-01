@@ -22,7 +22,7 @@ class DisciplineService
         $discipline->bigScoreWins = $data['bigScoreWins'];
         $discipline->save(); 
     }
-    public function deleteDisc($id) 
+    public function deleteDiscipline($id) 
     {
         $discipline = Discipline::findOrFail($id);
         $discipline->delete();

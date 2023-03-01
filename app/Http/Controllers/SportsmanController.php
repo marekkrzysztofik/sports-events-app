@@ -29,10 +29,14 @@ class SportsmanController extends Controller
     {
         return ($this->sportsmanRepository->editSportsman($id));
     }
+
     public function createOrUpdateSportsman(Request $data)
     {
         return ($this->sportsmanService->createOrUpdateSportsman($data));
     }
-
+    public function getSportsmenByUserId($id)
+    {
+        return $this->sportsmanRepository->getSportsmenByUserId($id);
+    }
     
 }

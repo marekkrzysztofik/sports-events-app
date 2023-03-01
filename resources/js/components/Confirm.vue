@@ -86,11 +86,11 @@ import { onMounted } from "vue";
 import { user } from "/resources/modules/Organizer/composables/user.js";
 import { useRoute, useRouter } from "vue-router";
 import {
-    getCompetitions,
+    getDisciplinesByUserId,
     competitions,
     deleteDisc,
     competitors,
-    getCompetitors,
+    getCompetitorsByUserId,
     deleteCompetitor,
     getParticipations,
     participations,
@@ -100,8 +100,8 @@ const route = useRoute().path;
 const routeName = useRoute().name;
 console.log(routeName);
 onMounted(async () => {
-    getCompetitions();
-    getCompetitors();
+    getDisciplinesByUserId();
+    getCompetitorsByUserId();
     getParticipations();
 });
 const toast = useToast();

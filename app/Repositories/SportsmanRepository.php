@@ -14,4 +14,8 @@ class SportsmanRepository
     {
         return Sportsman::find($id);
     }
+    public function getSportsmenByUserId($id)
+    {
+      return Sportsman::where('user_id', '=', $id)->get();
+    }
 } 

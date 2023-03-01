@@ -7,13 +7,17 @@ use Illuminate\Database\Eloquent\Collection;
 
 class DisciplineRepository
 {
-    public function getDisc(): Collection 
+    public function getDisciplines(): Collection 
     {
         return Discipline::all(); 
     } 
     
-    public function editDisc($id)
+    public function getDiscipline($id)
     {
         return Discipline::find($id);
+    }
+    public function getDisciplinesByUserId($id)
+    {
+      return Discipline::where('user_id', '=', $id)->get();
     }
 }  

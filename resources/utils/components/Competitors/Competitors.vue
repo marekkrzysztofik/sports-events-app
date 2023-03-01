@@ -16,10 +16,10 @@
         <Confirm></Confirm>
     </div>
 </template>
-<script setup>
+<script setup> 
 import { onMounted } from "vue";
-import { competitors, getCompetitors } from "../../consts/getOrDelete.js";
+import { competitors, getCompetitorsByUserId } from "../../consts/getOrDelete.js";
 onMounted(async () => {
-    getCompetitors();
+    getCompetitorsByUserId();
 });
 </script>

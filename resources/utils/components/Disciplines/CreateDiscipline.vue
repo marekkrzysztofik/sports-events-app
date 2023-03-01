@@ -85,18 +85,18 @@
                 <div class="m-3">
                     <Checkbox
                         v-model="form.timeNotScore"
-                        :binary="true"
-                        :trueValue="1"
-                        :falseValue="0"
+                        :binary=true
+                        :trueValue=1
+                        :falseValue=0
                     />
                     <p>Check for time, leave for score</p>
                 </div>
                 <div class="m-3">
                     <Checkbox
                         v-model="form.bigScoreWins"
-                        :binary="true"
-                        :trueValue="1"
-                        :falseValue="0"
+                        :binary=true
+                        :trueValue=1
+                        :falseValue=0
                     />
                     <p>Check if the biggest score wins</p>
                 </div>
@@ -123,6 +123,7 @@ import { success, saveCompetition } from "../../composables/saveDiscipline.js";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const save = async () => {
+    console.log(form.value.timeNotScore, form.value.bigScoreWins)
     await saveCompetition();
     if (success.value == 1) {
         router.push("/admin");

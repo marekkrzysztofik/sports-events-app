@@ -18,22 +18,26 @@ class DisciplineController extends Controller
         $this->disciplineService = $disciplineService;
     }
 
-    public function getDisc()
+    public function getDisciplines()
     {
-        return $this->disciplineRepository->getDisc()->all(); 
+        return $this->disciplineRepository->getDisciplines()->all(); 
     }
-    public function deleteDisc($id)
+    public function deleteDiscipline($id)
     {
-        return $this->disciplineService->deleteDisc($id);
+        return $this->disciplineService->deleteDiscipline($id);
     }
 
-    public function editDisc($id)
+    public function getDiscipline($id)
     {
-        return $this->disciplineRepository->editDisc($id);
+        return $this->disciplineRepository->getDiscipline($id);
     }
 
     public function createOrUpdateDiscipline(Request $data)
     {
         return $this->disciplineService->createOrUpdateDiscipline($data);
+    }
+    public function getDisciplinesByUserId($id)
+    {
+        return $this->disciplineRepository->getDisciplinesByUserId($id);
     }
 }

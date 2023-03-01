@@ -1,12 +1,12 @@
 import {
     competitions,
     competitors,
-    getCompetitions,
-    getCompetitors,
+    getDisciplinesByUserId,
+    getCompetitorsByUserId,
 } from "../consts/getOrDelete.js";
 import { ref } from "vue";
-getCompetitions();
-getCompetitors();
+getDisciplinesByUserId();
+getCompetitorsByUserId();
 export const participationForm = ref({
     discipline_id: "",
     sportsman_id: "",

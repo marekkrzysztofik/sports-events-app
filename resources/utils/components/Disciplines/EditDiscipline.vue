@@ -152,7 +152,7 @@ const props = defineProps({
     },
 });
 const getSingleDiscipline = async () => {
-    const response = await axios.get(`/api/editDisc/${props.id}`);
+    const response = await axios.get(`/api/getDiscipline/${props.id}`);
     form.value = response.data;
 };
 const save = async () => {

@@ -15,15 +15,17 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
 
-Route::get('/getDisc', [DisciplineController::class, 'getDisc']);
+Route::get('/getDisciplines', [DisciplineController::class, 'getDisciplines']);
+Route::get('/getDisciplinesByUserId/{id}', [DisciplineController::class, 'getDisciplinesByUserId']);
 Route::post('/createOrUpdateDiscipline', [DisciplineController::class, 'createOrUpdateDiscipline']);
-Route::get('/editDisc/{id}', [DisciplineController::class, 'editDisc']);
-Route::get('/deleteDisc/{id}', [DisciplineController::class, 'deleteDisc']);
+Route::get('/getDiscipline/{id}', [DisciplineController::class, 'getDiscipline']);
+Route::get('/deleteDiscipline/{id}', [DisciplineController::class, 'deleteDiscipline']);
 
 
 Route::get('/getSportsman', [SportsmanController::class, 'getSportsman']);
 Route::post('/createOrUpdateSportsman', [SportsmanController::class, 'createOrUpdateSportsman']);
 Route::get('/editSportsman/{id}', [SportsmanController::class, 'editSportsman']);
+Route::get('/getSportsmenByUserId/{id}', [SportsmanController::class, 'getSportsmenByUserId']);
 Route::get('/deleteSportsman/{id}', [SportsmanController::class, 'deleteSportsman']);
 
 

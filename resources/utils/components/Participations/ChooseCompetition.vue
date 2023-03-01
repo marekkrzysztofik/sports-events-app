@@ -65,10 +65,10 @@
 </template>
 <script setup>
 import { 
-    getCompetitions,
+    getDisciplinesByUserId,
     competitions,
     competitors,
-    getCompetitors,
+    getCompetitorsByUserId,
 } from "../../consts/getOrDelete.js";
 import {
     ComptitionIds,
@@ -81,7 +81,7 @@ import { useRouter } from "vue-router";
 import { onMounted } from "vue";
 const router = useRouter();
 onMounted(async () => {
-    getCompetitions();
+    getDisciplinesByUserId(); 
     ComptitionIds.splice(0)
     for (let i = 0; i < competitions.value.length; i++) {
         if (!ComptitionIds.includes(competitions.value[i].id))
@@ -89,7 +89,7 @@ onMounted(async () => {
     }
 });
 onMounted(async () => {
-    getCompetitors();
+    getCompetitorsByUserId();
     ComptitorsIds.splice(0)
     for (let i = 0; i < competitors.value.length; i++) {
         if (!ComptitorsIds.includes(competitors.value[i].id))
