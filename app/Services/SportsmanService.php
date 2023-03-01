@@ -11,6 +11,7 @@ class SportsmanService
   {
     $sportsman = new Sportsman;
     $sportsman->name = $data['name'];
+    $sportsman->user_id = $data['user_id'];
     $sportsman->surname = $data['surname'];
     $sportsman->sex = $data['sex']; 
     $sportsman->age = $data['age'];
