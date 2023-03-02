@@ -38,6 +38,8 @@
             :value="participationsWithCompetitors"
             responsiveLayout="scroll"
             class="m-3"
+            :sortField="'time'"
+            :sortOrder="1"
         >
             <template #header>Competitors </template>
             <Column field="id" header="ParticipationID"></Column>
@@ -47,13 +49,13 @@
             <Column field="age" header="Age"></Column>
             <Column field="sex" header="Sex"></Column>
             <Column
-                v-if="participationsWithCompetitors.timeNotScore == 0"
+                v-if="discipline.timeNotScore == 0"
                 field="score"
                 header="Score"
                 sortable
             ></Column>
             <Column
-                v-if="participationsWithCompetitors.timeNotScore == 1"
+                v-if="discipline.timeNotScore == 1"
                 field="time"
                 header="Time"
                 sortable
