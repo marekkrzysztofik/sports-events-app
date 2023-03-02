@@ -8,7 +8,8 @@
             <Column field="name" header="Name"></Column>
             <Column field="style" header="Style"></Column>
             <Column field="competition" header="Competition"></Column>
-            <Column field="ageGroup" header="Age Group"></Column>
+            <Column field="minAge" header="MinAge"></Column>
+            <Column field="maxAge" header="MaxAge"></Column>
             <Column field="startTime" header="Start Time" sortable></Column>
             <Column field="sex" header="Sex"></Column>
             <Column field="participants" header="Participants"></Column>

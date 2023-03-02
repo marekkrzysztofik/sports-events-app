@@ -13,13 +13,14 @@ class DisciplineService
         $discipline->name = $data['name']; 
         $discipline->user_id = $data['user_id']; 
         $discipline->style = $data['style'];
-        $discipline->competition = $data['competition'];
-        $discipline->ageGroup = $data['ageGroup'];
+        $discipline->competition = $data['competition']; 
+        $discipline->minAge = $data['minAge'];
+        $discipline->maxAge = $data['maxAge'];
         $discipline->startTime = $data['startTime'];
         $discipline->sex = $data['sex'];
         $discipline->participants = $data['participants'];
         $discipline->timeNotScore = $data['timeNotScore'];
-        $discipline->bigScoreWins = $data['bigScoreWins'];
+        $discipline->bigScoreWins = $data['bigScoreWins']; 
         $discipline->save(); 
     }
     public function deleteDiscipline($id) 
@@ -33,7 +34,8 @@ class DisciplineService
         $discipline->name = $request['name'];
         $discipline->style = $request['style'];
         $discipline->competition = $request['competition'];
-        $discipline->ageGroup = $request['ageGroup'];
+        $discipline->minAge = $request['minAge'];
+        $discipline->maxAge = $request['maxAge'];
         $discipline->startTime = $request['startTime'];
         $discipline->sex = $request['sex'];
         $discipline->participants = $request['participants'];

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class extends Migration 
 {
     /**
      * Run the migrations.
@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('style');
             $table->string('competition');
-            $table->string('ageGroup');
+            $table->integer('minAge');
+            $table->integer('maxAge');
             $table->datetime('startTime');
             $table->string('sex');
             $table->integer('participants');

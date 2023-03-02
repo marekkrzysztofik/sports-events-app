@@ -7,11 +7,13 @@ export const compStyle = ref({
     style: "",
     competition: "",
 });
-export const form = ref({
+export const ageGroup = ref()
+export const form = ref({ 
     name: "",
     user_id: "",
     category: "",
-    ageGroup: "",
+    minAge:'',
+    maxAge:'',
     startTime: "",
     sex: "",
     participants: "",

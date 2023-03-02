@@ -11,8 +11,12 @@
                 {{ disciplineWithCompetitors.competition }}
             </li>
             <li class="m-3">
-                Age Group:
-                {{ disciplineWithCompetitors.ageGroup }}
+                Min Age :
+                {{ disciplineWithCompetitors.minAge }}
+            </li>
+            <li class="m-3">
+                Max Age :
+                {{ disciplineWithCompetitors.maxAge }}
             </li>
             <li class="m-3">
                 Start Time:
