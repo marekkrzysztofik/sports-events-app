@@ -36,6 +36,6 @@ class ParticipationRepository
   public function allDiscWithSportsman()
   {
     $participation = Discipline::with('sportsman')->whereHas('sportsman')->get()->toArray();
-    return $participation;
+    return $participation; 
   }
 }

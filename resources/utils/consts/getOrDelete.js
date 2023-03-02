@@ -33,5 +33,5 @@ export const deleteCompetitor = (sportsman) => {
 export const deleteParticipation = (part) => {
     axios.get(`/api/deleteParticipation/${part}`).then(() => {
         getParticipations();
-    });
+    }); 
 };

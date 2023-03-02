@@ -35,7 +35,7 @@ class ParticipationController extends Controller
     }
     public function getParticipationByDisc($id)
     {
-        return ($this->participationRepository->getParticipationByDisc($id));
+        return ($this->participationRepository->getParticipationByDisc($id)); 
     }
     public function discWithSportsman($id)
     {
@@ -49,11 +49,11 @@ class ParticipationController extends Controller
     {
         return ($this->participationRepository->allDiscWithSportsman($id));
     }
-    public function participationJoinedWithCompetitors()
+    public function participationJoinedWithCompetitors($id)
     {
         $joinedTables = DB::table('participations')
-            ->join('sportsmen', 'participations.sportsman_id', '=', 'sportsmen.id')
-            ->get();
-        return $joinedTables;
-    }
+            ->join('sportsmen', 'participations.sportsman_id', '=', 'sportsmen.id')->where('discipline_id','=',$id)->get();
+        return $joinedTables; 
+
+    } 
 }

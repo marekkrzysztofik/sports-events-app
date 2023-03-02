@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Http\Request;
-use App\Models\Participation;
+use App\Models\Participation; 
 
 class ParticipationService
 {

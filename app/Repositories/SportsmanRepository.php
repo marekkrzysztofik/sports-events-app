@@ -18,4 +18,4 @@ class SportsmanRepository
     {
       return Sportsman::where('user_id', '=', $id)->get();
     }
-} 
+}  
