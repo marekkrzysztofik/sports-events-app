@@ -137,3 +137,4 @@ const getDisciplineWithCompetitors = async () => {
     console.log(disciplineWithCompetitors.value);
 };
 </script>
+  

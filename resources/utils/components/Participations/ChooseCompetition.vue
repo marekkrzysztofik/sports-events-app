@@ -8,7 +8,7 @@
             <div class="m-3">
                 <DataTable
                     :value="competitions"
-                    v-model:selection="choosingForm.discipline"
+                    v-model:selection="selectedDiscipline"
                     selectionMode="single"
                     dataKey="id"
                     responsiveLayout="scroll"
@@ -22,17 +22,20 @@
                     <Column field="style" header="Style"></Column>
                     <Column field="competition" header="Competition"></Column>
                     <Column field="minAge" header="MinAge"></Column>
-            <Column field="maxAge" header="MaxAge"></Column>
+                    <Column field="maxAge" header="MaxAge"></Column>
                     <Column field="startTime" header="Start Time"></Column>
                     <Column field="sex" header="Sex"></Column>
                 </DataTable>
             </div>
         </div>
-        <Button @click="save" label="Save" class="p-button-rounded m-3" />
+        <Button
+            @click="showCompetitors"
+            label="Show Competitors"
+            class="p-button-rounded m-3"
+        />
         <div class="m-3">
             <DataTable
-                :value="competitors"
-                v-model:selection="choosingForm.sportsman"
+                :value="filteredCompetitors"
                 selectionMode="multiple"
                 dataKey="id"
                 :metaKeySelection="false"
@@ -52,7 +55,7 @@
     </div>
 </template>
 <script setup>
-import { 
+import {
     getDisciplinesByUserId,
     competitions,
     competitors,
@@ -64,20 +67,32 @@ const router = useRouter();
 onMounted(async () => {
     getDisciplinesByUserId();
     getCompetitorsByUserId();
+    console.log(competitions.value);
 });
-const choosingForm = ref({
-    discipline:[],
-    sportsman:[]
-})
-const disciplineMinAge = ref()
-const disciplineMaxAge = ref()
-const disciplineSex = ref()
+const selectedDiscipline = ref();
+const disciplineWithCompetitors = ref({});
+const filteredCompetitors = ref([]);
+const showCompetitors = async () => {
+    const response = await axios.get(
+        `/api/discWithSportsman/${selectedDiscipline.value.id}`
+    );
+    disciplineWithCompetitors.value = response.data;
+
+    disciplineWithCompetitors.value.sportsman.forEach((sportsman) => {
+        competitors.value.forEach((competitor) => {
+            if (
+                competitor.age >= selectedDiscipline.value.minAge &&
+                competitor.age <= selectedDiscipline.value.maxAge &&
+                competitor.sex == selectedDiscipline.value.sex &&
+                sportsman.id != competitor.id
+            ) {
+                filteredCompetitors.value.push(competitor);
+            }
+        });
+    });
+};
 
 const save = async () => {
-    disciplineMinAge.value = choosingForm.value.discipline.ageGroup.substr(0, 2);
-    disciplineMaxAge.value = choosingForm.value.discipline.ageGroup.substr(3, 2);
-    disciplineSex.value = choosingForm.value.discipline.sex
-    
     // await saveParticipation();
     // if (success.value == 1) {
     //     router.push("/admin");
