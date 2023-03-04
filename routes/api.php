@@ -20,7 +20,7 @@ Route::get('/getDisciplinesByUserId/{id}', [DisciplineController::class, 'getDis
 Route::post('/createOrUpdateDiscipline', [DisciplineController::class, 'createOrUpdateDiscipline']);
 Route::get('/getDiscipline/{id}', [DisciplineController::class, 'getDiscipline']);
 Route::get('/deleteDiscipline/{id}', [DisciplineController::class, 'deleteDiscipline']);
-
+ 
 
 Route::get('/getSportsman', [SportsmanController::class, 'getSportsman']);
 Route::post('/createOrUpdateSportsman', [SportsmanController::class, 'createOrUpdateSportsman']);

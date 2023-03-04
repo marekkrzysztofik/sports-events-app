@@ -1,5 +1,6 @@
 <template>
     <Navbar></Navbar>
+    <ConfirmDialog />
     <Toast />
     <div class="w-11 flex justify-content-center m-3">
         <DataTable :value="competitions" responsiveLayout="scroll">
@@ -23,8 +24,12 @@
 <script setup>
 import { onMounted } from "vue";
 import { useCustomToast } from "./useCustomToast";
+import ConfirmDialog from "primevue/confirmdialog";
 import { competitions, getDisciplinesByUserId } from "../consts/getOrDelete";
+import { useConfirmDialog } from "../composables/confirmDialog";
+
 const { siemaFromToast } = useCustomToast();
+const { confirmDialog } = useConfirmDialog();
 onMounted(async () => {
     getDisciplinesByUserId();
     setTimeout(() => {

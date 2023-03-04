@@ -17,8 +17,8 @@ export const form = ref({
     startTime: "",
     sex: "",
     participants: "",
-    timeNotScore: "",
-    bigScoreWins: "", 
+    timeNotScore: 0,
+    bigScoreWins: 0, 
 });
 export const compForm = ref({
     name: "",

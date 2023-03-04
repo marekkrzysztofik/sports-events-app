@@ -24,7 +24,7 @@ export const disciplines1 = [
     },
 ]; 
 export const ageCategories = [
-    "9-11 years",
+    "10-11 years",
     "12-13 years",
     "14-15 years",
     "16-17 years",

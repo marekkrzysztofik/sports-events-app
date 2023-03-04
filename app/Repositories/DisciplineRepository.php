@@ -10,7 +10,7 @@ class DisciplineRepository
     public function getDisciplines(): Collection 
     {
         return Discipline::all(); 
-    } 
+    }  
     
     public function getDiscipline($id)
     {

@@ -138,6 +138,7 @@ const props = defineProps({
 const getSingleDiscipline = async () => {
     const response = await axios.get(`/api/getDiscipline/${props.id}`);
     form.value = response.data;
+    console.log(form.value)
 };
 const save = async () => {
     await saveCompetition();
