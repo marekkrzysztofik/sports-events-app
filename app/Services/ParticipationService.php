@@ -7,14 +7,16 @@ use App\Models\Participation;
 
 class ParticipationService
 {
-  public function assignSportsman($data)
+  public function assignSportsman($data) 
   {
-    $participation = new Participation;
-    $participation->discipline_id = $data['discipline_id'];
-    $participation->sportsman_id = $data['sportsman_id'];
-    $participation->score = $data['score'];
-    $participation->time = $data['time'];
-    $participation->save();
+    $participationArray = $data->all();
+    foreach ($participationArray as $participation) {
+      $newParticipation = new Participation;
+      $newParticipation->discipline_id = $participation['discipline_id'];
+      $newParticipation->sportsman_id = $participation['sportsman_id'];
+      $newParticipation->save();
+    }
+
   }
   public function saveScore(Request $data, $id)
   {

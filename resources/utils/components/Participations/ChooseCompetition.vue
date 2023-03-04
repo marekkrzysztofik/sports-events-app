@@ -36,6 +36,7 @@
         <div class="m-3">
             <DataTable
                 :value="filteredCompetitors"
+                v-model:selection="selectedCompetitors"
                 selectionMode="multiple"
                 dataKey="id"
                 :metaKeySelection="false"
@@ -52,6 +53,7 @@
                 <Column field="sex" header="Sex"></Column>
             </DataTable>
         </div>
+        <Button @click="save" label="Save" class="p-button-rounded m-3" />
     </div>
 </template>
 <script setup>
@@ -63,6 +65,7 @@ import {
 } from "../../consts/getOrDelete.js";
 import { useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
+import { makeMap } from "@vue/shared";
 const router = useRouter();
 onMounted(async () => {
     getDisciplinesByUserId();
@@ -71,44 +74,49 @@ onMounted(async () => {
 });
 const selectedDiscipline = ref();
 const disciplineWithCompetitors = ref({});
-const filteredCompetitors = ref([]);
 
+const filteredCompetitors = ref([]);
+const selectedCompetitors = ref();
 const showCompetitors = async () => {
     const response = await axios.get(
         `/api/getDisciplinesWithSportsman/${selectedDiscipline.value.id}`
     );
     disciplineWithCompetitors.value = response.data;
-    if (disciplineWithCompetitors.value.sportsman.length > 0) {
-        competitors.value.forEach((competitor) => {
-            disciplineWithCompetitors.value.sportsman.forEach((sportsman) => {
-                if (
-                    competitor.age >= selectedDiscipline.value.minAge &&
-                    competitor.age <= selectedDiscipline.value.maxAge &&
-                    competitor.sex == selectedDiscipline.value.sex &&
-                    sportsman.id != competitor.id
-                ) {
-                    filteredCompetitors.value.push(competitor);
-                }
-            });
-        });
-    } else {
-        competitors.value.forEach((competitor) => {
-            if (
-                competitor.age >= selectedDiscipline.value.minAge &&
-                competitor.age <= selectedDiscipline.value.maxAge &&
-                competitor.sex == selectedDiscipline.value.sex
-            ) {
-                filteredCompetitors.value.push(competitor);
-            }
-        });
-    }
+    const existingIDS = disciplineWithCompetitors.value.sportsman.map(
+        (sportsman) => {
+            return sportsman.id;
+        }
+    );
+    competitors.value.forEach((competitor) => {
+        if (
+            competitor.age >= selectedDiscipline.value.minAge &&
+            competitor.age <= selectedDiscipline.value.maxAge &&
+            competitor.sex == selectedDiscipline.value.sex
+        ) {
+            filteredCompetitors.value.push(competitor);
+        }
+    });
+    filteredCompetitors.value = filteredCompetitors.value.filter(
+        (competitor) => !existingIDS.includes(competitor.id)
+    );
 };
-
 const save = async () => {
-    // await saveParticipation();
-    // if (success.value == 1) {
-    //     router.push("/admin");
-    // }
-    // success.value = 0;
+    console.log(selectedCompetitors.value);
+    const competitorsWithDisciplineID = selectedCompetitors.value.map(
+        (competitor) => {
+            return {
+                discipline_id: selectedDiscipline.value.id,
+                sportsman_id: competitor.id,
+            };
+        }
+    );
+    console.log(competitorsWithDisciplineID);
+    axios
+        .post("/api/createOrUpdateParticipation", {
+            ...competitorsWithDisciplineID,
+        })
+        .then(() => {
+            router.push("/admin");
+        });
 };
 </script>
