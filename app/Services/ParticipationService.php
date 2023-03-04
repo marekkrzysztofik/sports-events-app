@@ -25,6 +25,7 @@ class ParticipationService
     $participation->time = $data['time'];
     $participation->save(); 
   }
+  
   public function createOrUpdateParticipation(Request $request)
   {
     $data = $request->all();

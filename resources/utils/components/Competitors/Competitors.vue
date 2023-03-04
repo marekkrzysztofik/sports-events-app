@@ -1,4 +1,4 @@
-<template>
+<template> 
     <Navbar></Navbar>
     <ConfirmDialog />
     <div class="w-10 flex m-auto justify-content-center">

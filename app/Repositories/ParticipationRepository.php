@@ -23,7 +23,7 @@ class ParticipationRepository
   {
     return Participation::where('discipline_id', '=', $id)->get();
   }
-  public function discWithSportsman($id)
+  public function getDisciplinesWithSportsman($id)
   {
     $participation = Discipline::with('sportsman')->find($id);
     return $participation;

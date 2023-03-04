@@ -72,24 +72,36 @@ onMounted(async () => {
 const selectedDiscipline = ref();
 const disciplineWithCompetitors = ref({});
 const filteredCompetitors = ref([]);
+
 const showCompetitors = async () => {
     const response = await axios.get(
-        `/api/discWithSportsman/${selectedDiscipline.value.id}`
+        `/api/getDisciplinesWithSportsman/${selectedDiscipline.value.id}`
     );
     disciplineWithCompetitors.value = response.data;
-
-    disciplineWithCompetitors.value.sportsman.forEach((sportsman) => {
+    if (disciplineWithCompetitors.value.sportsman.length > 0) {
+        competitors.value.forEach((competitor) => {
+            disciplineWithCompetitors.value.sportsman.forEach((sportsman) => {
+                if (
+                    competitor.age >= selectedDiscipline.value.minAge &&
+                    competitor.age <= selectedDiscipline.value.maxAge &&
+                    competitor.sex == selectedDiscipline.value.sex &&
+                    sportsman.id != competitor.id
+                ) {
+                    filteredCompetitors.value.push(competitor);
+                }
+            });
+        });
+    } else {
         competitors.value.forEach((competitor) => {
             if (
                 competitor.age >= selectedDiscipline.value.minAge &&
                 competitor.age <= selectedDiscipline.value.maxAge &&
-                competitor.sex == selectedDiscipline.value.sex &&
-                sportsman.id != competitor.id
+                competitor.sex == selectedDiscipline.value.sex
             ) {
                 filteredCompetitors.value.push(competitor);
             }
         });
-    });
+    }
 };
 
 const save = async () => {

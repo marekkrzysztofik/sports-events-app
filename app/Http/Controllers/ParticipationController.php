@@ -37,9 +37,9 @@ class ParticipationController extends Controller
     {
         return ($this->participationRepository->getParticipationByDisc($id));
     }
-    public function discWithSportsman($id)
+    public function getDisciplinesWithSportsman($id) 
     {
-        return ($this->participationRepository->discWithSportsman($id));
+        return ($this->participationRepository->getDisciplinesWithSportsman($id));
     }
     public function sportsmanWithDisc($id)
     {
