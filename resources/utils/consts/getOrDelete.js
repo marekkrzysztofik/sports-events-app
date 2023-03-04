@@ -22,8 +22,4 @@ export const getParticipations = async () => {
 };
 
 
-export const deleteParticipation = (part) => {
-    axios.get(`/api/deleteParticipation/${part}`).then(() => {
-        getParticipations();
-    }); 
-};
+

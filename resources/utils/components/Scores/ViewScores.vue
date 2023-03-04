@@ -75,7 +75,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 onMounted(async () => {
-    getParticipationWithCompetitorsAndDisciplines();
+    getParticipationWithCompetitors(); 
     getDiscipline();
 });
 const props = defineProps({
@@ -85,7 +85,7 @@ const props = defineProps({
     },
 });
 const participationsWithCompetitors = ref([]);
-const getParticipationWithCompetitorsAndDisciplines = async () => {
+const getParticipationWithCompetitors = async () => {
     const response = await axios.get(
         `/api/participationJoinedWithCompetitors/${props.id}`
     );

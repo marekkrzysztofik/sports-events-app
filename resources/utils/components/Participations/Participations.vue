@@ -1,140 +1,134 @@
 <template>
     <Navbar></Navbar>
+    <ConfirmDialog />
     <div class="flex">
         <ul class="no-list-style flex">
             <li class="m-3">
-                <h1 class="m-0">{{ disciplineWithCompetitors.name }}</h1>
+                <h1 class="m-0">{{ discipline.name }}</h1>
             </li>
-            <li class="m-3">Style: {{ disciplineWithCompetitors.style }}</li>
+            <li class="m-3">Style: {{ discipline.style }}</li>
             <li class="m-3">
                 Competition:
-                {{ disciplineWithCompetitors.competition }}
+                {{ discipline.competition }}
             </li>
             <li class="m-3">
-                Min Age :
-                {{ disciplineWithCompetitors.minAge }}
-            </li>
-            <li class="m-3">
-                Max Age :
-                {{ disciplineWithCompetitors.maxAge }}
+                Age Group:
+                {{ discipline.ageGroup }}
             </li>
             <li class="m-3">
                 Start Time:
-                {{ disciplineWithCompetitors.startTime }}
+                {{ discipline.startTime }}
             </li>
-            <li class="m-3">Sex: {{ disciplineWithCompetitors.sex }}</li>
+            <li class="m-3">Sex: {{ discipline.sex }}</li>
             <li class="m-3">
                 Participants:
-                {{ disciplineWithCompetitors.participants }}
+                {{ discipline.participants }}
             </li>
             <li class="m-3">
                 Time Not Score:
-                {{ disciplineWithCompetitors.timeNotScore }}
+                {{ discipline.timeNotScore }}
             </li>
             <li class="m-3">
                 Big Score Wins:
-                {{ disciplineWithCompetitors.bigScoreWins }}
+                {{ discipline.bigScoreWins }}
             </li>
         </ul>
     </div>
     <div class="flex justify-content-center">
         <DataTable
-            :value="disciplineWithCompetitors.sportsman"
-            :sort-field="scoreField"
-            :sortOrder="scoreOrder"
+            :value="participationsWithCompetitors"
             responsiveLayout="scroll"
         >
             <template #header>Competitors </template>
-            <Column field="id" header="ID"></Column>
-            <Column field="name" header="Name"></Column>
+            <Column field="id" header="ParticipationID"></Column>
+            <Column field="sportsman_id" header="SportsmanID"></Column>
             <Column field="surname" header="Surname"></Column>
             <Column field="age" header="Age"></Column>
             <Column field="sex" header="Sex"></Column>
+            <Column v-if="user.type == 'admin'" header="Edit/Delete">
+                <template #body="event1">
+                    <button
+                        @click="confirmDialog(event1.data.id)"
+                        class="btn-icon btn-icon-danger"
+                    >
+                        <i class="pi pi-ban"></i>
+                    </button>
+                </template>
+            </Column>
             <template #footer>
                 In total there are
                 {{
-                    disciplineWithCompetitors.sportsman
-                        ? disciplineWithCompetitors.sportsman.length
+                    participationsWithCompetitors
+                        ? participationsWithCompetitors.length
                         : 0
                 }}
                 competitors.
             </template>
         </DataTable>
-        <DataTable
-            :value="participation"
-            @sort="sortCompetitors"
-            responsiveLayout="scroll"
-        >
-            <template #header>Scores </template>
-            <Column field="id" header="ParticipationID"></Column>
-            <Column field="sportsman_id" header="SportsmanID"></Column>
-            <Column
-                v-if="score > 0"
-                field="score"
-                header="Score"
-                sortable
-            ></Column>
-            <Column
-                v-if="time > 0"
-                field="time"
-                header="Time"
-                sortable
-            ></Column>
-        </DataTable>
-        <Confirm></Confirm>
-        <div v-if="user.type == 'admin'" class="m-3">
-            <InputText
-                v-model="participationID"
-                class="m-3"
-                type="number"
-                placeholder="Delete by ParticipationID"
-            />
-            <button
-                @click="deleteParticipant"
-                class="btn-icon btn-icon-danger m-3"
-            >
-                <i class="pi pi-ban"></i>
-            </button>
-        </div>
     </div>
 </template>
 <script setup>
 import { onMounted, ref } from "vue";
-import { deleteParticipation } from "../../consts/getOrDelete";
+import { useConfirm } from "primevue/useconfirm";
+import { useRouter } from "vue-router";
+import { useToast } from "primevue/usetoast";
+import ConfirmDialog from "primevue/confirmdialog";
 import { user } from "../../../modules/Organizer/composables/user.js";
 onMounted(async () => {
-    getDisciplineWithCompetitors();
-    getParticipation();
+    getParticipationWithCompetitors();
+    getDiscipline();
 });
+const router = useRouter();
 const props = defineProps({
     id: {
         type: String,
         default: "",
     },
 });
-const participationID = ref("");
-const deleteParticipant = () => {
-    deleteParticipation(participationID.value);
-    getDisciplineWithCompetitors();
-    getParticipation();
+const deleteParticipation = (id) => {
+    axios.get(`/api/deleteParticipation/${id}`).then(() => {
+        getParticipationWithCompetitors();
+    });
 };
-const scoreField = ref("");
-const scoreOrder = ref(0);
-function sortCompetitors(event) {
-    scoreField.value = "id";
-    scoreOrder.value = event.sortOrder;
-}
-const participation = ref();
-const getParticipation = async () => {
-    const response = await axios.get(`/api/getParticipationByDisc/${props.id}`);
-    participation.value = response.data;
-    console.log(participation.value);
+const participationsWithCompetitors = ref([]);
+const getParticipationWithCompetitors = async () => {
+    const response = await axios.get(
+        `/api/participationJoinedWithCompetitors/${props.id}`
+    );
+    participationsWithCompetitors.value = response.data;
+    console.log(participationsWithCompetitors.value);
 };
-const disciplineWithCompetitors = ref({});
-const getDisciplineWithCompetitors = async () => {
-    const response = await axios.get(`/api/discWithSportsman/${props.id}`);
-    disciplineWithCompetitors.value = response.data;
-    console.log(disciplineWithCompetitors.value);
+const discipline = ref("");
+const getDiscipline = async () => {
+    const response = await axios.get(`/api/getDiscipline/${props.id}`);
+    discipline.value = response.data;
+    console.log(discipline.value);
+};
+const toast = useToast();
+const confirm = useConfirm();
+const confirmDialog = (id) => {
+    confirm.require({
+        message: "Do you want to delete this competitor?",
+        header: "Delete Confirmation",
+        icon: "pi pi-info-circle",
+        acceptClass: "p-button-danger",
+        accept: () => {
+            toast.add({
+                severity: "info",
+                summary: "Confirmed",
+                detail: "Competitor deleted",
+                life: 3000,
+            });
+            deleteParticipation(id);
+        },
+        reject: () => {
+            toast.add({
+                severity: "error",
+                summary: "Rejected",
+                detail: "You have rejected",
+                life: 3000,
+            });
+        },
+    });
 };
 </script>
-  
