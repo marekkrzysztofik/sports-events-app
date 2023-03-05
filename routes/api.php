@@ -14,13 +14,15 @@ Route::get('getUsers', [AuthController::class, 'getUsers']);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
-
-Route::get('/getDisciplines', [DisciplineController::class, 'getDisciplines']);
 Route::get('/getDisciplinesByUserId/{id}', [DisciplineController::class, 'getDisciplinesByUserId']);
-Route::post('/createOrUpdateDiscipline', [DisciplineController::class, 'createOrUpdateDiscipline']);
-Route::get('/getDiscipline/{id}', [DisciplineController::class, 'getDiscipline']);
+Route::get('/getDisciplineById/{id}', [DisciplineController::class, 'getDisciplineById']);
 Route::get('/deleteDiscipline/{id}', [DisciplineController::class, 'deleteDiscipline']);
- 
+Route::post('/store', [DisciplineController::class, 'store']);
+Route::post('/update/{id}', [DisciplineController::class, 'update']);
+// Route::get('/getDisciplines', [DisciplineController::class, 'getDisciplines']);
+// Route::post('/createOrUpdateDiscipline', [DisciplineController::class, 'createOrUpdateDiscipline']);
+
+
 
 Route::get('/getSportsman', [SportsmanController::class, 'getSportsman']);
 Route::post('/createOrUpdateSportsman', [SportsmanController::class, 'createOrUpdateSportsman']);
@@ -28,11 +30,11 @@ Route::get('/editSportsman/{id}', [SportsmanController::class, 'editSportsman'])
 Route::get('/getSportsmenByUserId/{id}', [SportsmanController::class, 'getSportsmenByUserId']);
 Route::get('/deleteSportsman/{id}', [SportsmanController::class, 'deleteSportsman']);
 
- 
+
 Route::get('/getParticipations', [ParticipationController::class, 'getParticipations']);
 Route::get('/getParticipationByDisc/{id}', [ParticipationController::class, 'getParticipationByDisc']);
 Route::get('/getParticipationByComp/{id}', [ParticipationController::class, 'getParticipationByComp']);
-Route::post('/createOrUpdateParticipation', [ParticipationController::class, 'createOrUpdateParticipation']); 
+Route::post('/createOrUpdateParticipation', [ParticipationController::class, 'createOrUpdateParticipation']);
 Route::post('/saveScore', [ParticipationController::class, 'saveScore']);
 Route::get('/getDisciplinesWithSportsman/{id}', [ParticipationController::class, 'getDisciplinesWithSportsman']);
 Route::get('/sportsmanWithDisc/{id}', [ParticipationController::class, 'sportsmanWithDisc']);
