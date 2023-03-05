@@ -18,7 +18,6 @@ class DisciplineService
     {
         return $this->disciplineRepository->getDisciplinesByUserId($id);
     }
-
     public function getDisciplineById($id)
     {
         return $this->disciplineRepository->getDisciplineById($id);
@@ -57,5 +56,14 @@ class DisciplineService
         $discipline->timeNotScore = $data['timeNotScore'];
         $discipline->bigScoreWins = $data['bigScoreWins'];
         $this->disciplineRepository->update($discipline);
+    }
+    public function createOrUpdateDiscipline(Request $request)
+    {
+        $data = $request->all();
+        if (array_key_exists("id", $data) && $data['id']) {
+            $this->updateDiscipline($request, $data["id"]);
+        } else {
+            $this->createDiscipline($request);
+        }
     }
 }

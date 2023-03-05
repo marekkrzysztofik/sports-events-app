@@ -13,12 +13,10 @@ class DisciplineRepository
         //$this->discipline = $discipline;
         $this->discipline = new Discipline();
     }
-
     public function save($discipline)
     {
         $discipline->save();
     }
-
     public function getDisciplines()
     {
         return $this->discipline

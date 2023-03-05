@@ -17,11 +17,8 @@ Route::post('login', [AuthController::class, 'login']);
 Route::get('/getDisciplinesByUserId/{id}', [DisciplineController::class, 'getDisciplinesByUserId']);
 Route::get('/getDisciplineById/{id}', [DisciplineController::class, 'getDisciplineById']);
 Route::get('/deleteDiscipline/{id}', [DisciplineController::class, 'deleteDiscipline']);
-Route::post('/store', [DisciplineController::class, 'store']);
-Route::post('/update/{id}', [DisciplineController::class, 'update']);
+Route::post('/createOrUpdateDiscipline', [DisciplineController::class, 'createOrUpdateDiscipline']);
 // Route::get('/getDisciplines', [DisciplineController::class, 'getDisciplines']);
-// Route::post('/createOrUpdateDiscipline', [DisciplineController::class, 'createOrUpdateDiscipline']);
-
 
 
 Route::get('/getSportsman', [SportsmanController::class, 'getSportsman']);

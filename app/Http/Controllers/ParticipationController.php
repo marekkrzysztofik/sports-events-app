@@ -5,7 +5,7 @@ use App\Models\Participation;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\ParticipationRepository;
 use App\Services\ParticipationService;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request; 
 
 class ParticipationController extends Controller
 {

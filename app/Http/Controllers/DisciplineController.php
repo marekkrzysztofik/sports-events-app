@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\DisciplineService;
-use App\Repositories\DisciplineRepository;
 
 class DisciplineController extends Controller
 {
@@ -21,12 +20,6 @@ class DisciplineController extends Controller
         $result = $this->disciplineService->getDisciplinesByUserId($id);
         return $result;
     }
-    public function store(Request $request)
-    {
-        $data = $request->all();
-        $this->disciplineService->createDiscipline($data);
-    }
-
     public function getDisciplineById($id)
     {
         $result = $this->disciplineService->getDisciplineById($id);
@@ -36,9 +29,8 @@ class DisciplineController extends Controller
     {
         $this->disciplineService->deleteDiscipline($id);
     }
-    public function update(Request $request, $id)
+    public function createOrUpdateDiscipline(Request $data)
     {
-        $data = $request->all();
-        $this->disciplineService->updateDiscipline($data, $id);
-    }
+        $this->disciplineService->createOrUpdateDiscipline($data);
+    } 
 }

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Repositories\SportsmanRepository;
 use App\Services\SportsmanService;
 
-class SportsmanController extends Controller
+class SportsmanController extends Controller 
 {
     private SportsmanRepository $sportsmanRepository;
     private SportsmanService $sportsmanService;
