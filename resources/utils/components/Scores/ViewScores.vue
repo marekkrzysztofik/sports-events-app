@@ -3,7 +3,7 @@
     <div class="flex">
         <ul class="no-list-style flex">
             <li class="m-3">
-                <h1 class="m-0">{{ discipline.name }}</h1>
+                <h1 class="m-0">{{ discipline.name }}</h1> 
             </li>
             <li class="m-3">Style: {{ discipline.style }}</li>
             <li class="m-3">

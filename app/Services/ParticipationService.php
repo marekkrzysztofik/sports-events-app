@@ -3,43 +3,46 @@
 namespace App\Services;
 
 use Illuminate\Http\Request;
-use App\Models\Participation; 
+use App\Models\Participation;
 
 class ParticipationService
 {
-  public function assignSportsman($data) 
+  public function assignSportsman($data)
   {
     $participationArray = $data->all();
     foreach ($participationArray as $participation) {
       $newParticipation = new Participation;
       $newParticipation->discipline_id = $participation['discipline_id'];
       $newParticipation->sportsman_id = $participation['sportsman_id'];
+      $newParticipation->time = $participation['time'];
+      $newParticipation->score = $participation['score'];
       $newParticipation->save();
     }
-
   }
-  public function saveScore(Request $data, $id)
+  public function saveScore(Request $data)
   {
-    $participation = Participation::find($id);
-    $participation->discipline_id = $data['discipline_id'];
-    $participation->sportsman_id = $data['sportsman_id'];
-    $participation->score = $data['score'];
-    $participation->time = $data['time'];
-    $participation->save(); 
+    $participationArray = $data->all();
+    foreach ($participationArray as $participation) {
+      $participationWithScores = Participation::find($participation['id']);
+      $participationWithScores->discipline_id = $participation['discipline_id'];
+      $participationWithScores->sportsman_id = $participation['sportsman_id'];
+      $participationWithScores->time = $participation['time'];
+      $participationWithScores->score = $participation['score'];
+      $participationWithScores->save();
+    }
   }
-  
-  public function createOrUpdateParticipation(Request $request)
+  public function createOrUpdateParticipation(Request $data)
   {
-    $data = $request->all();
-    if (array_key_exists("id", $data) && $data['id']) {
-      $this->saveScore($request, $data["id"]);
+    $participationArray = $data->all();
+    if (isset($participationArray[0]['id'])) {
+      $this->saveScore($data);
     } else {
-      $this->assignSportsman($request);
+      $this->assignSportsman($data);
     }
   }
-  public function deleteParticipation($id) 
-    {
-        $participation = Participation::findOrFail($id);
-        $participation->delete();
-    }
-}  
+  public function deleteParticipation($id)
+  {
+    $participation = Participation::findOrFail($id);
+    $participation->delete();
+  }
+}

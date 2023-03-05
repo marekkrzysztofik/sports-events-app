@@ -37,6 +37,10 @@
     <div class="flex justify-content-center">
         <DataTable
             :value="participationsWithCompetitors"
+            editMode="row"
+            dataKey="id"
+            v-model:editingRows="editingRows"
+            @row-edit-save="onRowEditSave"
             responsiveLayout="scroll"
         >
             <template #header>Competitors </template>
@@ -55,6 +59,19 @@
                     </button>
                 </template>
             </Column>
+            <Column v-if="discipline.timeNotScore == 0" field="score" header="Score" style="width: 2rem"
+                ><template #editor="{ data, field }">
+                    <InputText v-model="data[field]" /> </template
+            ></Column>
+            <Column v-if="discipline.timeNotScore == 1" field="time" header="Time" style="width: 2rem"
+                ><template #editor="{ data, field }">
+                    <InputText v-model="data[field]" /> </template
+            ></Column>
+            <Column
+                :rowEditor="true"
+                style="width: 8rem"
+                bodyStyle="text-align:center"
+            ></Column>
             <template #footer>
                 In total there are
                 {{
@@ -65,6 +82,7 @@
                 competitors.
             </template>
         </DataTable>
+        <Button @click="save" label="Save" class="p-button-rounded m-3" />
     </div>
 </template>
 <script setup>
@@ -78,6 +96,32 @@ onMounted(async () => {
     getParticipationWithCompetitors();
     getDiscipline();
 });
+
+const editingRows = ref([]);
+
+const onRowEditSave = (event) => {
+    let { newData, index } = event;
+    participationsWithCompetitors.value[index] = newData;
+};
+const save = async () => {
+    const scoreTable = participationsWithCompetitors.value.map((item) => {
+        return {
+            id: item.id,
+            discipline_id: item.discipline_id,
+            sportsman_id: item.sportsman_id,
+            time: item.time,
+            score: item.score,
+        };
+    });
+    await axios
+        .post("/api/saveScore", {
+            ...scoreTable,
+        })
+        .then(() => {
+            router.push("/admin");
+        });
+    console.log(scoreTable);
+};
 const router = useRouter();
 const props = defineProps({
     id: {
@@ -96,13 +140,11 @@ const getParticipationWithCompetitors = async () => {
         `/api/participationJoinedWithCompetitors/${props.id}`
     );
     participationsWithCompetitors.value = response.data;
-    console.log(participationsWithCompetitors.value);
 };
 const discipline = ref("");
 const getDiscipline = async () => {
     const response = await axios.get(`/api/getDiscipline/${props.id}`);
     discipline.value = response.data;
-    console.log(discipline.value);
 };
 const toast = useToast();
 const confirm = useConfirm();

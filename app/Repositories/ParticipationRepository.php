@@ -39,3 +39,4 @@ class ParticipationRepository
     return $participation; 
   }
 }
+ 

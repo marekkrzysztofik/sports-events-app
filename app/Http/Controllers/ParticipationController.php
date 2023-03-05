@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Participation;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\ParticipationRepository;
 use App\Services\ParticipationService;
@@ -55,4 +55,17 @@ class ParticipationController extends Controller
             ->join('participations', 'sportsmen.id', '=', 'participations.sportsman_id')->where('discipline_id', '=', $id)->get();
         return $joinedTables;
     }
+    public function saveScore(Request $data)
+  {
+    $participationArray = $data->all();
+    foreach ($participationArray as $participation) {
+      $participationWithScores = Participation::find($participation['id']);
+      $participationWithScores->discipline_id = $participation['discipline_id'];
+      $participationWithScores->sportsman_id = $participation['sportsman_id'];
+      $participationWithScores->time = $participation['time'];
+      $participationWithScores->score = $participation['score'];
+      $participationWithScores->save();
+    }
+  }
 }
+ 

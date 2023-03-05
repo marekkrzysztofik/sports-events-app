@@ -14,7 +14,7 @@
                     responsiveLayout="scroll"
                     :scrollable="true"
                     scrollHeight="400px"
-                    class="pad-30-0"
+                    class="pad-30-0" 
                 >
                     <template #header>Competitions </template>
                     <Column field="id" header="ID"></Column>
@@ -65,16 +65,13 @@ import {
 } from "../../consts/getOrDelete.js";
 import { useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
-import { makeMap } from "@vue/shared";
 const router = useRouter();
 onMounted(async () => {
     getDisciplinesByUserId();
     getCompetitorsByUserId();
-    console.log(competitions.value);
 });
 const selectedDiscipline = ref();
 const disciplineWithCompetitors = ref({});
-
 const filteredCompetitors = ref([]);
 const selectedCompetitors = ref();
 const showCompetitors = async () => {
@@ -101,16 +98,16 @@ const showCompetitors = async () => {
     );
 };
 const save = async () => {
-    console.log(selectedCompetitors.value);
     const competitorsWithDisciplineID = selectedCompetitors.value.map(
         (competitor) => {
             return {
                 discipline_id: selectedDiscipline.value.id,
                 sportsman_id: competitor.id,
+                time: "23:59:59",
+                score: 0,
             };
         }
     );
-    console.log(competitorsWithDisciplineID);
     axios
         .post("/api/createOrUpdateParticipation", {
             ...competitorsWithDisciplineID,
