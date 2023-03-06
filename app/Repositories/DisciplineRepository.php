@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Discipline;
-use Illuminate\Database\Eloquent\Collection;
 
 class DisciplineRepository
 {

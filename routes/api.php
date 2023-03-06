@@ -18,23 +18,17 @@ Route::get('/getDisciplinesByUserId/{id}', [DisciplineController::class, 'getDis
 Route::get('/getDisciplineById/{id}', [DisciplineController::class, 'getDisciplineById']);
 Route::get('/deleteDiscipline/{id}', [DisciplineController::class, 'deleteDiscipline']);
 Route::post('/createOrUpdateDiscipline', [DisciplineController::class, 'createOrUpdateDiscipline']);
-// Route::get('/getDisciplines', [DisciplineController::class, 'getDisciplines']);
 
 
 Route::post('/createOrUpdateSportsman', [SportsmanController::class, 'createOrUpdateSportsman']);
 Route::get('/getSportsmanById/{id}', [SportsmanController::class, 'getSportsmanById']);
 Route::get('/getSportsmenByUserId/{id}', [SportsmanController::class, 'getSportsmenByUserId']);
 Route::get('/deleteSportsman/{id}', [SportsmanController::class, 'deleteSportsman']);
-//Route::get('/getSportsman', [SportsmanController::class, 'getSportsman']);
 
-Route::get('/getParticipations', [ParticipationController::class, 'getParticipations']);
-Route::get('/getParticipationByDisc/{id}', [ParticipationController::class, 'getParticipationByDisc']);
-Route::get('/getParticipationByComp/{id}', [ParticipationController::class, 'getParticipationByComp']);
+
+Route::get('/getParticipationByCompetitor/{id}', [ParticipationController::class, 'getParticipationByCompetitor']);
 Route::post('/createOrUpdateParticipation', [ParticipationController::class, 'createOrUpdateParticipation']);
-Route::post('/saveScore', [ParticipationController::class, 'saveScore']);
 Route::get('/getDisciplinesWithSportsman/{id}', [ParticipationController::class, 'getDisciplinesWithSportsman']);
-Route::get('/sportsmanWithDisc/{id}', [ParticipationController::class, 'sportsmanWithDisc']);
-Route::get('/allDiscWithSportsman', [ParticipationController::class, 'allDiscWithSportsman']);
+Route::get('/sportsmanWithDiscipline/{id}', [ParticipationController::class, 'sportsmanWithDiscipline']);
 Route::get('/deleteParticipation/{id}', [ParticipationController::class, 'deleteParticipation']);
-
 Route::get('/participationJoinedWithCompetitors/{id}', [ParticipationController::class, 'participationJoinedWithCompetitors']);

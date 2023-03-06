@@ -66,7 +66,7 @@ const props = defineProps({
     },
 });
 const getSingleSportsman = async () => {
-    const response = await axios.get(`/api/editSportsman/${props.id}`);
+    const response = await axios.get(`/api/getSportsmanById/${props.id}`);
     compForm.value = response.data;
 };
 const save = async () => {

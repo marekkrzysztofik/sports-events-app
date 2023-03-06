@@ -114,7 +114,7 @@ const save = async () => {
         };
     });
     await axios
-        .post("/api/saveScore", {
+        .post("/api/createOrUpdateParticipation", {
             ...scoreTable,
         })
         .then(() => {
@@ -143,7 +143,7 @@ const getParticipationWithCompetitors = async () => {
 };
 const discipline = ref("");
 const getDiscipline = async () => {
-    const response = await axios.get(`/api/getDiscipline/${props.id}`);
+    const response = await axios.get(`/api/getDisciplineById/${props.id}`);
     discipline.value = response.data;
 };
 const toast = useToast();

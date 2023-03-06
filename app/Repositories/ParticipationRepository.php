@@ -3,40 +3,50 @@
 namespace App\Repositories;
 
 use App\Models\Participation;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Discipline;
 use App\Models\Sportsman;
-use Illuminate\Database\Eloquent\Collection;
 
 class ParticipationRepository
 {
-  public function getParticipations(): Collection
+  protected $sportsman;
+  protected $discipline;
+  protected $participation;
+  public function __construct()
   {
-    return Participation::all(); 
+    $this->discipline = new Discipline();
+    $this->sportsman = new Sportsman();
+    $this->participation = new Participation();
   }
-
-  public function getParticipationByComp($id)
+  public function save($participation)
   {
-    return Participation::where('sportsman_id', '=', $id)->get();
+    $participation->save();
   }
-  public function getParticipationByDisc($id)
+  public function update($participation)
   {
-    return Participation::where('discipline_id', '=', $id)->get();
+    $participation->update();
+  }
+  public function delete($id)
+  {
+    $participation = $this->participation->findOrFail($id);
+    $participation->delete();
+  }
+  public function getParticipationByCompetitor($id)
+  {
+    return $this->participation->where('sportsman_id', '=', $id)->get();
   }
   public function getDisciplinesWithSportsman($id)
   {
-    $participation = Discipline::with('sportsman')->find($id);
-    return $participation;
+    return $this->discipline->with('sportsman')->find($id);
   }
-  public function sportsmanWithDisc($id)
+  public function sportsmanWithDiscipline($id)
   {
-    $participation = Sportsman::with('disciplines')->find($id);
-    return $participation;
+    return $this->sportsman->with('disciplines')->find($id);
   }
-  public function allDiscWithSportsman()
+  public function participationJoinedWithCompetitors($id)
   {
-    $participation = Discipline::with('sportsman')->whereHas('sportsman')->get()->toArray();
-    return $participation; 
+    $joinedTables = DB::table('sportsmen')
+      ->join('participations', 'sportsmen.id', '=', 'participations.sportsman_id')->where('discipline_id', '=', $id)->get();
+    return $joinedTables;
   }
 }
- 

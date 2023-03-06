@@ -12,7 +12,6 @@ import Register from "/resources/modules/Organizer/components/Auth/Register.vue"
 import Participations from '/resources/utils/components/Participations/Participations.vue'  
 import ChooseCompetition from '/resources/utils/components/Participations/ChooseCompetition.vue'
 import ViewScores from '/resources/utils/components/Scores/ViewScores.vue'
-import Scores from '/resources/utils/components/Scores/Scores.vue'
 import DisciplinesWithActions from '/resources/utils/components/Disciplines/DisciplinesWithActions.vue'
 const routes = [
     //admin
@@ -95,15 +94,6 @@ const routes = [
         path: "/admin/view-scores/:id",
         component: ViewScores,  
         name: "ViewScores",
-        props: true,
-        meta: {
-            requiresAuth: true,
-        },
-    },
-    {
-        path: "/admin/scores/:id",
-        component: Scores,  
-        name: "Scores",
         props: true,
         meta: {
             requiresAuth: true,

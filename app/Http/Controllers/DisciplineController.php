@@ -31,4 +31,4 @@ class DisciplineController extends Controller
     {
         $this->disciplineService->createOrUpdateDiscipline($data);
     }
-}
+} 
