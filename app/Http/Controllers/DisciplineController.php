@@ -17,13 +17,11 @@ class DisciplineController extends Controller
 
     public function getDisciplinesByUserId($id)
     {
-        $result = $this->disciplineService->getDisciplinesByUserId($id);
-        return $result;
+        return $this->disciplineService->getDisciplinesByUserId($id);
     }
     public function getDisciplineById($id)
     {
-        $result = $this->disciplineService->getDisciplineById($id);
-        return $result;
+        return $this->disciplineService->getDisciplineById($id);
     }
     public function deleteDiscipline($id)
     {
@@ -32,5 +30,5 @@ class DisciplineController extends Controller
     public function createOrUpdateDiscipline(Request $data)
     {
         $this->disciplineService->createOrUpdateDiscipline($data);
-    } 
+    }
 }

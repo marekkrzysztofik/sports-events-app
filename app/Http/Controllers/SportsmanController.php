@@ -3,40 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\SportsmanRepository;
 use App\Services\SportsmanService;
 
 class SportsmanController extends Controller 
 {
-    private SportsmanRepository $sportsmanRepository;
     private SportsmanService $sportsmanService;
 
-    public function __construct(SportsmanRepository $sportsmanRepository, SportsmanService $sportsmanService)
+    public function __construct(SportsmanService $sportsmanService)
     {
-        $this->sportsmanRepository = $sportsmanRepository;
         $this->sportsmanService = $sportsmanService;
     }
-
-    public function getSportsman()
+    public function getSportsmenByUserId($id)
     {
-        return ($this->sportsmanRepository->getSportsman()->all());
+        return $this->sportsmanService->getSportsmenByUserId($id);
     }
+    
     public function deleteSportsman($id)
     {
         return ($this->sportsmanService->deleteSportsman($id));
     }
-    public function editSportsman($id)
+    public function getSportsmanById($id)
     {
-        return ($this->sportsmanRepository->editSportsman($id));
+        return ($this->sportsmanService->getSportsmanById($id));
     }
 
     public function createOrUpdateSportsman(Request $data)
     {
         return ($this->sportsmanService->createOrUpdateSportsman($data));
     }
-    public function getSportsmenByUserId($id)
-    {
-        return $this->sportsmanRepository->getSportsmenByUserId($id);
-    }
     
+    // public function getSportsman()
+    // {
+    //     return ($this->sportsmanService->getSportsman()->all());
+    // }
 }

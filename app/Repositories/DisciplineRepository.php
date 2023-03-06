@@ -10,7 +10,6 @@ class DisciplineRepository
     protected $discipline;
     public function __construct()
     {
-        //$this->discipline = $discipline;
         $this->discipline = new Discipline();
     }
     public function save($discipline)
@@ -24,7 +23,7 @@ class DisciplineRepository
     }
     public function delete($id)
     {
-        $discipline = Discipline::findOrFail($id);
+        $discipline = $this->discipline->findOrFail($id);
         $discipline->delete();
     }
     public function update($discipline)

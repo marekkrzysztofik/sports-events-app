@@ -21,12 +21,11 @@ Route::post('/createOrUpdateDiscipline', [DisciplineController::class, 'createOr
 // Route::get('/getDisciplines', [DisciplineController::class, 'getDisciplines']);
 
 
-Route::get('/getSportsman', [SportsmanController::class, 'getSportsman']);
 Route::post('/createOrUpdateSportsman', [SportsmanController::class, 'createOrUpdateSportsman']);
-Route::get('/editSportsman/{id}', [SportsmanController::class, 'editSportsman']);
+Route::get('/getSportsmanById/{id}', [SportsmanController::class, 'getSportsmanById']);
 Route::get('/getSportsmenByUserId/{id}', [SportsmanController::class, 'getSportsmenByUserId']);
 Route::get('/deleteSportsman/{id}', [SportsmanController::class, 'deleteSportsman']);
-
+//Route::get('/getSportsman', [SportsmanController::class, 'getSportsman']);
 
 Route::get('/getParticipations', [ParticipationController::class, 'getParticipations']);
 Route::get('/getParticipationByDisc/{id}', [ParticipationController::class, 'getParticipationByDisc']);
