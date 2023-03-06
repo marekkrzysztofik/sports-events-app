@@ -105,7 +105,7 @@
                 </div>
                 <div class="save-button m-3">
                     <Button
-                        @click="save"
+                        @click="saveCompetition"
                         label="Save"
                         class="p-button-rounded"
                     />
@@ -122,10 +122,9 @@ import {
     ageCategories,
     sex,
 } from "../../../../utils/consts/disciplines.js";
-import { form, compStyle, date, ageGroup } from "../../../../utils/consts/form.js";
-import { success, saveCompetition } from "../../../../utils/composables/saveDiscipline.js";
-import { useRouter } from "vue-router";
-const router = useRouter();
+import { useSaveDiscipline } from "../../../../utils/composables/useSaveDiscipline.js";
+const { date, compStyle, form, ageGroup, saveCompetition } =
+    useSaveDiscipline();
 onMounted(async () => {
     getSingleDiscipline();
 });
@@ -136,15 +135,8 @@ const props = defineProps({
     },
 });
 const getSingleDiscipline = async () => {
-    const response = await axios.get(`/api/getDiscipline/${props.id}`);
+    const response = await axios.get(`/api/getDisciplineById/${props.id}`);
     form.value = response.data;
-    console.log(form.value)
-};
-const save = async () => {
-    await saveCompetition();
-    if (success.value == 1) {
-        router.push("/admin");
-    }
-    success.value = 0;
+    console.log(form.value);
 };
 </script>

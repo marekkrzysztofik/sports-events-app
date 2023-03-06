@@ -72,7 +72,6 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { user } from "/resources/modules/Organizer/composables/user.js";
-import { form } from '../../utils/consts/form.js'
 const router = useRouter();
 const logout = () => {
     localStorage.removeItem("token");

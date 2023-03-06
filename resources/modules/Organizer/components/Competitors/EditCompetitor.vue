@@ -40,7 +40,7 @@
                 </div>
                 <p>
                     <Button
-                        @click="save"
+                        @click="saveCompetitor"
                         label="Save"
                         class="p-button-rounded m-3"
                     />
@@ -51,11 +51,9 @@
 </template>
 <script setup>
 import { onMounted } from "vue";
-import { compForm } from "../../../../utils/consts/form";
 import { sex } from "../../../../utils/consts/disciplines.js";
-import { useRouter } from "vue-router";
-import { success, saveCompetitor } from "../../../../utils/composables/saveCompetitor.js";
-const router = useRouter();
+import { useSaveCompetitor } from "../../../../utils/composables/useSaveCompetitor";
+const { compForm, saveCompetitor } = useSaveCompetitor();
 onMounted(async () => {
     getSingleSportsman();
 });
@@ -68,14 +66,6 @@ const props = defineProps({
 const getSingleSportsman = async () => {
     const response = await axios.get(`/api/getSportsmanById/${props.id}`);
     compForm.value = response.data;
-};
-const save = async () => {
-    await saveCompetitor();
-    console.log(success.value);
-    if (success.value == 1) {
-        router.push("/admin/competitors");
-    }
-    success.value = 0;
 };
 </script>
 <style scoped>

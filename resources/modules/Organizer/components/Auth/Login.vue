@@ -36,7 +36,6 @@ import { ref } from "vue";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import { user } from "/resources/modules/Organizer/composables/user.js";
-import { form, compForm } from '../../../../utils/consts/form.js'
 const router = useRouter();
 const loginForm = reactive({
     email: "",

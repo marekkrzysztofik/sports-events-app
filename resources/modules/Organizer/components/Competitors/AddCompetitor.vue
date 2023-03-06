@@ -35,29 +35,19 @@
                 </div>
                 <p>
                     <Button
-                        @click="save"
+                        @click="saveCompetitor"
                         label="Save"
                         class="p-button-rounded m-3"
                     />
                 </p>
-            </div> 
+            </div>
         </div>
     </div>
 </template>
 <script setup>
-import { compForm } from "../../../../utils/consts/form.js";
-import { success, saveCompetitor } from "../../../../utils/composables/saveCompetitor";
+import { useSaveCompetitor } from "../../../../utils/composables/useSaveCompetitor";
 import { sex } from "../../../../utils/consts/disciplines.js";
-import { useRouter } from "vue-router";
-const router = useRouter();
-const save = async () => {
-    await saveCompetitor();
-    console.log(success.value);
-    if (success.value == 1) {
-        router.push("/admin/competitors");
-    }
-    success.value = 0;
-};
+const { compForm, saveCompetitor } = useSaveCompetitor();
 </script>
 <style scoped>
 .input-grid {
