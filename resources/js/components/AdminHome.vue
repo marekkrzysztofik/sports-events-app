@@ -1,7 +1,5 @@
 <template>
     <Navbar></Navbar>
-    <ConfirmDialog />
-    <Toast />
     <div class="w-11 flex justify-content-center m-3">
         <DataTable :value="competitions" responsiveLayout="scroll">
             <template #header>Competitions </template>
@@ -23,7 +21,6 @@
 </template>
 <script setup>
 import { onMounted } from "vue";
-import ConfirmDialog from "primevue/confirmdialog";
 import { useCompetitions } from "../../utils/composables/useCompetitions.js";
 const { getCompetitionsByUserId, competitions } = useCompetitions();
 onMounted(async () => {

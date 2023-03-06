@@ -22,7 +22,7 @@
             <li class="m-3">Sex: {{ discipline.sex }}</li>
             <li class="m-3">
                 Participants:
-                {{ discipline.participants }}
+                {{ discipline.participants }} 
             </li>
             <li class="m-3">
                 Time Not Score:
@@ -120,7 +120,6 @@ const save = async () => {
         .then(() => {
             router.push("/admin");
         });
-    console.log(scoreTable);
 };
 const router = useRouter();
 const props = defineProps({

@@ -90,12 +90,10 @@ const getParticipationWithCompetitors = async () => {
         `/api/participationJoinedWithCompetitors/${props.id}`
     );
     participationsWithCompetitors.value = response.data;
-    console.log(participationsWithCompetitors.value);
 };
 const discipline = ref("");
 const getDiscipline = async () => {
     const response = await axios.get(`/api/getDisciplineById/${props.id}`);
     discipline.value = response.data;
-    console.log(discipline.value);
 };
 </script>

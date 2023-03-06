@@ -77,5 +77,4 @@ const logout = () => {
     localStorage.removeItem("token");
     router.push("/");
 };
-console.log(user.value);
 </script>

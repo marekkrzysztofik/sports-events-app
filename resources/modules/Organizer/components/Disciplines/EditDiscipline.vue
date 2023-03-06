@@ -137,6 +137,5 @@ const props = defineProps({
 const getSingleDiscipline = async () => {
     const response = await axios.get(`/api/getDisciplineById/${props.id}`);
     form.value = response.data;
-    console.log(form.value);
 };
 </script>
