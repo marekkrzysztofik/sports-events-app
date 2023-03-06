@@ -121,9 +121,9 @@ import {
     sports,
     ageCategories,
     sex,
-} from "../../consts/disciplines.js";
-import { form, compStyle, date, ageGroup } from "../../consts/form.js";
-import { success, saveCompetition } from "../../composables/saveDiscipline.js";
+} from "../../../../utils/consts/disciplines.js";
+import { form, compStyle, date, ageGroup } from "../../../../utils/consts/form.js";
+import { success, saveCompetition } from "../../../../utils/composables/saveDiscipline.js";
 import { useRouter } from "vue-router";
 const router = useRouter();
 onMounted(async () => {

@@ -52,28 +52,26 @@
             </template>
         </DataTable>
     </div>
-</template>
+</template> 
 <script setup>
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useConfirm } from "primevue/useconfirm";
 import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
-import {
-    getDisciplinesByUserId,
-    competitions,
-} from "../../consts/getOrDelete.js";
+import { useCompetitions } from "../../../../utils/composables/useCompetitions.js";
 import { user } from "/resources/modules/Organizer/composables/user.js";
+const { getCompetitionsByUserId , competitions } = useCompetitions();
 const router = useRouter();
 onMounted(async () => {
-    getDisciplinesByUserId();
-});
+    getCompetitionsByUserId();
+}); 
 const getDiscipline = (id) => {
     router.push(`/admin/edit-discipline/${id}`);
 };
 const deleteCompetition = (id) => {
     axios.get(`/api/deleteDiscipline/${id}`).then(() => {
-        getDisciplinesByUserId();
+        getCompetitionsByUserId();
     });
 };
 const editCompetitors = (id) => {

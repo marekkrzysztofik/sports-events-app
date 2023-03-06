@@ -91,7 +91,7 @@ import { useConfirm } from "primevue/useconfirm";
 import { useRouter } from "vue-router";
 import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
-import { user } from "../../../modules/Organizer/composables/user.js";
+import { user } from "../../composables/user.js";
 onMounted(async () => {
     getParticipationWithCompetitors();
     getDiscipline();

@@ -41,10 +41,8 @@ import { useRouter } from "vue-router";
 import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
 import { user } from "/resources/modules/Organizer/composables/user.js";
-import {
-    competitors,
-    getCompetitorsByUserId,
-} from "../../consts/getOrDelete.js";
+import { useCompetitors } from "../../../../utils/composables/useCompetitors.js";
+const { getCompetitorsByUserId, competitors } = useCompetitors();
 const router = useRouter();
 onMounted(async () => {
     getCompetitorsByUserId();

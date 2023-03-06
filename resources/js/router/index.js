@@ -2,17 +2,17 @@ import { createRouter, createWebHistory } from "vue-router";
 import NotFound from "../components/NotFound.vue";
 import Login from "/resources/modules/Organizer/components/Auth/Login.vue";
 import Home from "../components/Home.vue";
-import AdminHome from "/resources/utils/components/AdminHome.vue";
-import CreateDiscipline from "/resources/utils/components/Disciplines/CreateDiscipline.vue";
-import EditDiscipline from "/resources/utils/components/Disciplines/EditDiscipline.vue";
-import EditCompetitor from "/resources/utils/components/Competitors/EditCompetitor.vue";
-import AddCompetitor from "/resources/utils/components/Competitors/AddCompetitor.vue";
-import Competitors from "/resources/utils/components/Competitors/Competitors.vue";
+import AdminHome from "../components/AdminHome.vue";
+import CreateDiscipline from "../../modules/Organizer/components/Disciplines/CreateDiscipline.vue";
+import EditDiscipline from "../../modules/Organizer/components/Disciplines/EditDiscipline.vue";
+import EditCompetitor from "../../modules/Organizer/components/Competitors/EditCompetitor.vue";
+import AddCompetitor from "../../modules/Organizer/components/Competitors/AddCompetitor.vue";
+import Competitors from "../../modules/Organizer/components/Competitors/Competitors.vue";
 import Register from "/resources/modules/Organizer/components/Auth/Register.vue";
-import Participations from '/resources/utils/components/Participations/Participations.vue'  
-import ChooseCompetition from '/resources/utils/components/Participations/ChooseCompetition.vue'
-import ViewScores from '/resources/utils/components/Scores/ViewScores.vue'
-import DisciplinesWithActions from '/resources/utils/components/Disciplines/DisciplinesWithActions.vue'
+import Participations from '../../modules/Organizer/components/Participations/Participations.vue'  
+import ChooseCompetition from '../../modules/Organizer/components/Participations/ChooseCompetition.vue'
+import ViewScores from '../../modules/Organizer/components/Scores/ViewScores.vue'
+import DisciplinesWithActions from '../../modules/Organizer/components/Disciplines/DisciplinesWithActions.vue'
 const routes = [
     //admin
     {

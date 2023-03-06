@@ -23,17 +23,10 @@
 </template>
 <script setup>
 import { onMounted } from "vue";
-import { useCustomToast } from "./useCustomToast";
 import ConfirmDialog from "primevue/confirmdialog";
-import { competitions, getDisciplinesByUserId } from "../consts/getOrDelete";
-import { useConfirmDialog } from "../composables/confirmDialog";
-
-const { siemaFromToast } = useCustomToast();
-const { confirmDialog } = useConfirmDialog();
+import { useCompetitions } from "../../utils/composables/useCompetitions.js";
+const { getCompetitionsByUserId, competitions } = useCompetitions();
 onMounted(async () => {
-    getDisciplinesByUserId();
-    setTimeout(() => {
-        siemaFromToast();
-    }, 2000);
+    getCompetitionsByUserId();
 });
 </script>

@@ -45,9 +45,9 @@
     </div>
 </template>
 <script setup>
-import { compForm } from "../../consts/form.js";
-import { success, saveCompetitor } from "../../composables/saveCompetitor.js";
-import { sex } from "../../consts/disciplines.js";
+import { compForm } from "../../../../utils/consts/form.js";
+import { success, saveCompetitor } from "../../../../utils/composables/saveCompetitor";
+import { sex } from "../../../../utils/consts/disciplines.js";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const save = async () => {
