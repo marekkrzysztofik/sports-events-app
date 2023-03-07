@@ -1,32 +1,34 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
-use App\Repositories\DisciplineRepository;
 use App\Services\DisciplineService;
 
 class DisciplineController extends Controller
 {
-    private DisciplineRepository $disciplineRepository;
+    protected $discipline;
     private DisciplineService $disciplineService;
 
-    public function __construct(DisciplineRepository $disciplineRepository, DisciplineService $disciplineService)
+    public function __construct(DisciplineService $disciplineService)
     {
-        $this->disciplineRepository = $disciplineRepository;
         $this->disciplineService = $disciplineService;
     }
 
-    public function createDiscipline(Request $request)
+    public function getDisciplinesByUserId($id)
     {
-        $data = $request->all();
-        $this->disciplineService->createDiscipline($data);
+        return $this->disciplineService->getDisciplinesByUserId($id);
     }
-
-    public function getDisc()
+    public function getDisciplineById($id)
     {
-        return ($this->disciplineRepository->getDisc()->all());
+        return $this->disciplineService->getDisciplineById($id);
     }
-    public function deleteDisc($id)
+    public function deleteDiscipline($id)
     {
-        return ($this->disciplineService->deleteDisc($id));
+        $this->disciplineService->deleteDiscipline($id);
     }
-}
+    public function createOrUpdateDiscipline(Request $data)
+    {
+        $this->disciplineService->createOrUpdateDiscipline($data);
+    }
+} 

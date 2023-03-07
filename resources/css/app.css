@@ -6,6 +6,33 @@ body {
     background-color: #bbe1fa;
     font-family: "Kanit", sans-serif;
 }
+.p-component {
+    font-family: "Kanit", sans-serif !important;
+}
+.bg-dark-blue {
+    background-color: #3c84ab;
+}
+.br-radius-15 {
+    border-radius: 15px;
+}
+.m-10-auto {
+    margin: 10px auto;
+}
+.m-20-auto {
+    margin: 20px auto;
+}
+.pad-15 {
+    padding: 15px;
+}
+.pad-0 {
+    padding: 0;
+}
+.pad-50-0 {
+    padding: 50px 0;
+}
+.pad-30-0 {
+    padding: 30px 0;
+}
 .logo-name {
     margin: 0;
     font-size: 55px;
@@ -21,8 +48,8 @@ body {
 .btn-icon {
     border: 1px solid #e0e0e0;
     background: none;
-    width: 35px;
-    height: 35px;
+    width: 29px;
+    height: 29px;
     border-radius: 4px;
     color: #6a727a;
     cursor: pointer;
@@ -35,8 +62,24 @@ body {
     background: crimson;
     color: white;
 }
+.btn-icon-users:hover {
+    background: #2196f3;
+    color: white;
+}
 .center {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.save-button {
+    grid-area: 2/4/2/4;
+}
+.input-grid {
+    margin: auto;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(4, 255px);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 }

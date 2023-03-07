@@ -1,16 +1,16 @@
 <?php
- 
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Discipline extends Model
-{   
+class Sportsman extends Model
+{
     use HasFactory;
-    public function sportsman()
+    public function disciplines()
     {
-        return $this->belongsToMany(Sportsman::class, 'participations');
+        return $this->belongsToMany(Discipline::class, 'participations');
     }
 }
  
