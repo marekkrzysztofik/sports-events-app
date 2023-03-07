@@ -48,7 +48,7 @@
                     /></router-link>
                 </li>
                 <li
-                    v-if="user.type == 'admin' || user.type == 'user'"
+                    v-if="user.type == 'admin' || user.type == 'coach'"
                     class="m-3"
                 >
                     <router-link
@@ -58,7 +58,7 @@
                     /></router-link>
                 </li>
                 <li
-                    v-if="user.type == 'user' || user.type == 'admin'"
+                    v-if="user.type == 'coach' || user.type == 'admin'"
                     class="m-3"
                 >
                     <router-link to="/admin/choose" class="no-decoration"

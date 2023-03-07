@@ -27,3 +27,4 @@ onMounted(async () => {
     getCompetitionsByUserId();
 });
 </script>
+ 

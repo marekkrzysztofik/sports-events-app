@@ -36,6 +36,13 @@
                     placeholder="Select type of account"
                     class="m-3"
                 />
+                <Dropdown
+                    v-model="form.type"
+                    :options="types"
+                    inputClass="string"
+                    placeholder="Select type of account"
+                    class="m-3"
+                />
                 <Button
                     label="Register"
                     @click="register()"
@@ -53,10 +60,11 @@ import { ref } from "vue";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
-const types = ["admin", "user", "referee"];
+const types = ["admin", "coach", "referee"]; 
 const form = reactive({
     name: "",
     type: "",
+    user_id:'',
     email: "",
     password: "",
     c_password: "",

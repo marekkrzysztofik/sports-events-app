@@ -29,7 +29,7 @@
                 <span v-for="err in error" :key="err">{{ err }} </span>
             </p>
         </div>
-    </div>
+    </div> 
 </template>
 <script setup>
 import { ref } from "vue";

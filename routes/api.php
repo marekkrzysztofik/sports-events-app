@@ -11,8 +11,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('getUsers', [AuthController::class, 'getUsers']);
+Route::get('getCoaches', [AuthController::class, 'getCoaches']); 
 Route::post('register', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class, 'login']);
+Route::post('adminLogin', [AuthController::class, 'adminLogin']);
+Route::post('coachLogin', [AuthController::class, 'coachLogin']);
+
 
 Route::get('/getDisciplinesByUserId/{id}', [DisciplineController::class, 'getDisciplinesByUserId']);
 Route::get('/getDisciplineById/{id}', [DisciplineController::class, 'getDisciplineById']);
