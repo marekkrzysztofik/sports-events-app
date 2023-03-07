@@ -48,6 +48,7 @@ const login = async () => {
         .then((response) => {
             if (response.data.success) {
                 localStorage.setItem("token", response.data.data.token);
+                
                 user.value.id = response.data.data.id;
                 user.value.type = response.data.data.type;
                 router.push("/Admin/");

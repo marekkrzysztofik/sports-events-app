@@ -5,38 +5,8 @@
             <h1>Create your account</h1>
             <h2>Register</h2>
             <div class="flex flex-column">
-                <InputText
-                    class="m-2"
-                    type="text"
-                    placeholder="Enter your name"
-                    v-model="form.name"
-                />
-                <InputText
-                    class="m-2"
-                    type="text"
-                    placeholder="Enter your email"
-                    v-model="form.email"
-                />
-                <InputText
-                    class="m-2"
-                    type="password"
-                    placeholder="Enter your password"
-                    v-model="form.password"
-                />
-                <InputText
-                    class="m-2"
-                    type="password"
-                    placeholder="Confirm your password"
-                    v-model="form.c_password"
-                />
                 <Dropdown
-                    v-model="form.type"
-                    :options="types"
-                    inputClass="string"
-                    placeholder="Select type of account"
-                    class="m-3"
-                />
-                <Dropdown
+                    v-if="userTypeChosen == false"
                     v-model="form.type"
                     :options="types"
                     inputClass="string"
@@ -44,6 +14,54 @@
                     class="m-3"
                 />
                 <Button
+                    v-if="userTypeChosen == false"
+                    label="Select"
+                    @click="select"
+                    class="p-button-rounded m-4"
+                />
+                <InputText
+                    v-if="userTypeChosen == true"
+                    v-model="form.name"
+                    class="m-2"
+                    type="text"
+                    placeholder="Enter your name"
+                />
+                <InputText
+                    v-if="userTypeChosen == true"
+                    v-model="form.email"
+                    class="m-2"
+                    type="text"
+                    placeholder="Enter your email"
+                />
+                <InputText
+                    v-if="userTypeChosen == true"
+                    v-model="form.password"
+                    class="m-2"
+                    type="password"
+                    placeholder="Enter your password"
+                />
+                <InputText
+                    v-if="userTypeChosen == true"
+                    v-model="form.c_password"
+                    class="m-2"
+                    type="password"
+                    placeholder="Confirm your password"
+                />
+                <Dropdown
+                    v-if="
+                        form.type == 'coach' ||
+                        (form.type == 'referee' && userTypeChosen == true)
+                    "
+                    v-model="form.user_id"
+                    :options="users"
+                    optionLabel="name"
+                    optionValue="id"
+                    inputClass="number"
+                    placeholder="Assign to organizator"
+                    class="m-3"
+                />
+                <Button
+                    v-if="userTypeChosen == true"
                     label="Register"
                     @click="register()"
                     class="p-button-rounded m-4"
@@ -56,19 +74,33 @@
     </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
+onMounted(() => {
+    getUsers();
+});
+const userTypeChosen = ref(false);
+const users = ref([]);
+const getUsers = async () => {
+    const response = await axios.get("/api/getUsers");
+    users.value = response.data;
+    console.log(users.value);
+};
 const router = useRouter();
-const types = ["admin", "coach", "referee"]; 
+const types = ["admin", "coach", "referee"];
 const form = reactive({
     name: "",
     type: "",
-    user_id:'',
+    user_id: "",
     email: "",
     password: "",
     c_password: "",
 });
+const select = () => {
+    userType.value = true;
+    console.log(form.type);
+};
 const errors = ref([]);
 const register = async () => {
     await axios

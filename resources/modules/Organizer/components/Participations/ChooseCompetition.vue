@@ -57,12 +57,6 @@
     </div>
 </template>
 <script setup>
-// import {
-//     getDisciplinesByUserId,
-//     competitions,
-//     competitors,
-//     getCompetitorsByUserId,
-// } from "../../consts/getOrDelete.js";
 import { useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
 const router = useRouter();

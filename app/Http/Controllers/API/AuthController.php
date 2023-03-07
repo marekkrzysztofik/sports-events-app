@@ -78,13 +78,12 @@ class AuthController extends Controller
     }
     public function coachLogin(Request $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $coach = Auth::user();
-            $success['token'] = $coach->createToken('MyApp')->plainTextToken;
-            $success['id'] = $coach->id;
-            $success['user_id'] = $coach->user_id;
-            $success['name'] = $coach->name;
-            $success['type'] = $coach->type;
+        if (Auth::guard('coach')->attempt($request->only('email', 'password'))) {
+            $user = Auth::guard('coach')->user();
+            $success['token'] = $user->createToken('MyApp')->plainTextToken;
+            $success['id'] = $user->id;
+            $success['name'] = $user->name;
+            $success['type'] = $user->type;
             $response = [
                 'success' => true,
                 'data' => $success,
