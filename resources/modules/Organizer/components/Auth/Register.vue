@@ -12,7 +12,7 @@
                     inputClass="string"
                     placeholder="Select type of account"
                     class="m-3"
-                />
+                /> 
                 <Button
                     v-if="userTypeChosen == false"
                     label="Select"
@@ -98,8 +98,7 @@ const form = reactive({
     c_password: "",
 });
 const select = () => {
-    userType.value = true;
-    console.log(form.type);
+    userTypeChosen.value = true;
 };
 const errors = ref([]);
 const register = async () => {

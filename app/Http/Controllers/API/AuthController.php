@@ -34,8 +34,7 @@ class AuthController extends Controller
             'password' => bcrypt($request->input('password')),
         ];
 
-        if ($request->has('user_id')) {
-
+        if ($request->filled('user_id')) {
             $coach = Coach::create($input);
             $success['token'] = $coach->createToken('MyApp')->plainTextToken;
             $success['name'] = $coach->name;
@@ -82,6 +81,7 @@ class AuthController extends Controller
             $user = Auth::guard('coach')->user();
             $success['token'] = $user->createToken('MyApp')->plainTextToken;
             $success['id'] = $user->id;
+            $success['user_id'] = $user->user_id;
             $success['name'] = $user->name;
             $success['type'] = $user->type;
             $response = [
