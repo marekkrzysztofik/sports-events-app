@@ -1,4 +1,4 @@
-import { user } from "../../modules/Organizer/composables/user.js"; 
+import { user } from "../../modules/Organizer/components/Auth/user.js"; 
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 export function useSaveDiscipline() {

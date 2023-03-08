@@ -60,7 +60,7 @@ import { useConfirm } from "primevue/useconfirm";
 import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
 import { useCompetitions } from "../../../../utils/composables/useCompetitions.js";
-import { user } from "/resources/modules/Organizer/composables/user.js";
+import { user } from "/resources/modules/Organizer/Auth/user.js";
 const { getCompetitionsByUserId , competitions } = useCompetitions();
 const router = useRouter();
 onMounted(async () => {

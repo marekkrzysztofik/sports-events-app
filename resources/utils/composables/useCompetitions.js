@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { user } from "../../modules/Organizer/composables/user.js";
+import { user } from "../../modules/Organizer/components/Auth/user.js";
 export function useCompetitions() {
     const competitions = ref([]);
     async function getCompetitionsByUserId() {

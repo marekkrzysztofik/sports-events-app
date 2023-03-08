@@ -27,7 +27,7 @@ import Textarea from "primevue/textarea";
 import Toolbar from "primevue/toolbar";
 import FileUpload from "primevue/fileupload";
 import ToastService from "primevue/toastservice";
-import Navbar from "./components/Navbar.vue";
+import Navbar from "../utils/components/Navbar.vue";
 import Toast from "primevue/toast";
 import ConfirmationService from "primevue/confirmationservice";
 import Dropdown from "primevue/dropdown";

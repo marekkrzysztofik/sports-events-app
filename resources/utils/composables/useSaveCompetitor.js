@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { user } from '../../modules/Organizer/composables/user.js'
+import { user } from '../../modules/Organizer/components/Auth/user.js'
 
 export function useSaveCompetitor() {
     const router = useRouter();
