@@ -9,7 +9,7 @@
             <div class="input-grid">
                 <div>
                     <Dropdown
-                        v-model="form.name"
+                        v-model="form.name" 
                         :options="sports"
                         inputClass="string"
                         placeholder="Select a sport"

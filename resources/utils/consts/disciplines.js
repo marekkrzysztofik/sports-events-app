@@ -22,7 +22,7 @@ export const disciplines1 = [
             { cname: "2000m" },
         ],
     },
-]; 
+];  
 export const ageCategories = [
     "10-11 years",
     "12-13 years",

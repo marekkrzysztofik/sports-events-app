@@ -43,7 +43,7 @@
                 class="p-button-rounded m-3"
             />
             <DataTable
-                v-if="ifSelected"
+                v-if="ifSelected && competitionOccupied == false"
                 :value="filteredCompetitors"
                 v-model:selection="selectedCompetitors"
                 selectionMode="multiple"
@@ -62,8 +62,11 @@
                 <Column field="sex" header="Sex"></Column>
             </DataTable>
         </div>
+        <h1 v-if="ifSelected && competitionOccupied == true">
+            This competition is occupied, choose another one.
+        </h1>
         <Button
-            v-if="ifSelected"
+            v-if="ifSelected && competitionOccupied == false"
             @click="save"
             label="Save"
             class="p-button-rounded m-3"
@@ -83,12 +86,14 @@ onMounted(async () => {
     getCompetitorsByUserId();
 });
 const ifSelected = ref(false);
+const competitionOccupied = ref(false);
 const selectedDiscipline = ref();
 const disciplineWithCompetitors = ref({});
 const filteredCompetitors = ref([]);
 const selectedCompetitors = ref();
 const backToDisciplines = () => {
     ifSelected.value = false;
+    competitionOccupied.value = false;
 };
 const showCompetitors = async () => {
     filteredCompetitors.value = [];
@@ -96,6 +101,13 @@ const showCompetitors = async () => {
         `/api/getDisciplinesWithSportsman/${selectedDiscipline.value.id}`
     );
     disciplineWithCompetitors.value = response.data;
+    if (
+        disciplineWithCompetitors.value.sportsman.length > 0 &&
+        disciplineWithCompetitors.value.participants <=
+            disciplineWithCompetitors.value.sportsman.length
+    ) {
+        competitionOccupied.value = true;
+    }
     const existingIDS = disciplineWithCompetitors.value.sportsman.map(
         (sportsman) => {
             return sportsman.id;
