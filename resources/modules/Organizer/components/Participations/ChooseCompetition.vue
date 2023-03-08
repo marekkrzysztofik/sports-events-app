@@ -43,7 +43,11 @@
                 class="p-button-rounded m-3"
             />
             <DataTable
-                v-if="ifSelected && competitionOccupied == false"
+                v-if="
+                    ifSelected &&
+                    competitionOccupied == false &&
+                    filteredCompetitors.length > 0
+                "
                 :value="filteredCompetitors"
                 v-model:selection="selectedCompetitors"
                 selectionMode="multiple"
@@ -65,8 +69,15 @@
         <h1 v-if="ifSelected && competitionOccupied == true">
             This competition is occupied, choose another one.
         </h1>
+        <h1 v-if="ifSelected && filteredCompetitors.length == 0">
+            There's no sportsman that matches this competition
+        </h1>
         <Button
-            v-if="ifSelected && competitionOccupied == false"
+            v-if="
+                ifSelected &&
+                competitionOccupied == false &&
+                filteredCompetitors.length > 0
+            "
             @click="save"
             label="Save"
             class="p-button-rounded m-3"
