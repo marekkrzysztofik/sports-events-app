@@ -56,7 +56,7 @@ const userType = ref("");
 const select = () => {
     userTypeChosen.value = true;
 };
-const types = ["admin", "coach", "referee"];
+const types = ["Admin", "Coach/Referee"];
 const router = useRouter();
 const loginForm = reactive({
     email: "",
@@ -64,13 +64,12 @@ const loginForm = reactive({
 });
 const errors = ref([]);
 const login = async () => {
-    if (userType.value == "admin") {
+    if (userType.value == "Admin") {
         await axios
             .post("/api/adminLogin", loginForm)
             .then((response) => {
                 if (response.data.success) {
                     localStorage.setItem("token", response.data.data.token);
-
                     user.value.id = response.data.data.id;
                     user.value.type = response.data.data.type;
                     router.push("/Admin/");
@@ -80,7 +79,7 @@ const login = async () => {
                 errors.value = e.response.data.message;
             });
     }
-    if (userType.value == "coach" || userType == "referee") {
+    if (userType.value == "Coach/Referee") {
         await axios
             .post("/api/coachLogin", loginForm)
             .then((response) => {
@@ -88,7 +87,6 @@ const login = async () => {
                     localStorage.setItem("token", response.data.data.token);
                     user.value.id = response.data.data.user_id;
                     user.value.type = response.data.data.type;
-                    console.log(user.value.id);
                     router.push("/Admin/");
                 }
             })

@@ -48,6 +48,7 @@ class AuthController extends Controller
         } else {
             $user = User::create($input);
             $success['token'] = $user->createToken('MyApp')->plainTextToken;
+            $success['id'] = $user->id;
             $success['name'] = $user->name;
             $success['type'] = $user->type;
             $response = [

@@ -22,9 +22,11 @@
 <script setup>
 import { onMounted } from "vue";
 import { useCompetitions } from "../../utils/composables/useCompetitions.js";
+import { user } from "/resources/modules/Organizer/composables/user.js";
 const { getCompetitionsByUserId, competitions } = useCompetitions();
 onMounted(async () => {
     getCompetitionsByUserId();
+    console.log(user.value)
 });
 </script>
  

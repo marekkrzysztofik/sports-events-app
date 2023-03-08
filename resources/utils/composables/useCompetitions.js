@@ -10,3 +10,4 @@ export function useCompetitions() {
     }
     return { getCompetitionsByUserId, competitions };
 }
+ 

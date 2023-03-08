@@ -12,7 +12,7 @@
                     inputClass="string"
                     placeholder="Select type of account"
                     class="m-3"
-                /> 
+                />
                 <Button
                     v-if="userTypeChosen == false"
                     label="Select"
@@ -49,7 +49,7 @@
                 />
                 <Dropdown
                     v-if="
-                        form.type == 'coach' ||
+                        (form.type == 'coach' && userTypeChosen == true) ||
                         (form.type == 'referee' && userTypeChosen == true)
                     "
                     v-model="form.user_id"
@@ -77,6 +77,7 @@
 import { ref, onMounted } from "vue";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
+import { user } from "/resources/modules/Organizer/composables/user.js";
 onMounted(() => {
     getUsers();
 });
@@ -107,7 +108,13 @@ const register = async () => {
         .then((response) => {
             if (response.data.success) {
                 localStorage.setItem("token", response.data.data.token);
-                router.push("/login");
+                if (form.type == "admin") {
+                    user.value.id = response.data.data.id;
+                } else {
+                    user.value.id = response.data.data.user_id;
+                }
+                user.value.type = response.data.data.type;
+                router.push("/admin");
             }
         })
         .catch((e) => {

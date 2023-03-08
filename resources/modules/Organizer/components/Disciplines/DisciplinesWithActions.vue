@@ -31,7 +31,7 @@
                             <i class="pi pi-ban"></i>
                         </button>
                         <button
-                            v-if="user.type == 'admin'"
+                            v-if="user.type == 'admin' || user.type == 'referee'"
                             @click="editCompetitors(event.data.id)"
                             class="btn-icon btn-icon-users"
                         >

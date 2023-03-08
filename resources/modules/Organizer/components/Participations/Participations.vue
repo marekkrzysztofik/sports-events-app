@@ -22,7 +22,7 @@
             <li class="m-3">Sex: {{ discipline.sex }}</li>
             <li class="m-3">
                 Participants:
-                {{ discipline.participants }} 
+                {{ discipline.participants }}
             </li>
             <li class="m-3">
                 Time Not Score:
@@ -49,7 +49,10 @@
             <Column field="surname" header="Surname"></Column>
             <Column field="age" header="Age"></Column>
             <Column field="sex" header="Sex"></Column>
-            <Column v-if="user.type == 'admin'" header="Edit/Delete">
+            <Column
+                v-if="user.type == 'admin' || user.type == 'referee'"
+                header="Edit/Delete"
+            >
                 <template #body="event1">
                     <button
                         @click="confirmDialog(event1.data.id)"
@@ -59,11 +62,19 @@
                     </button>
                 </template>
             </Column>
-            <Column v-if="discipline.timeNotScore == 0" field="score" header="Score" style="width: 2rem"
+            <Column
+                v-if="discipline.timeNotScore == 0"
+                field="score"
+                header="Score"
+                style="width: 2rem"
                 ><template #editor="{ data, field }">
                     <InputText v-model="data[field]" /> </template
             ></Column>
-            <Column v-if="discipline.timeNotScore == 1" field="time" header="Time" style="width: 2rem"
+            <Column
+                v-if="discipline.timeNotScore == 1"
+                field="time"
+                header="Time"
+                style="width: 2rem"
                 ><template #editor="{ data, field }">
                     <InputText v-model="data[field]" /> </template
             ></Column>
@@ -82,7 +93,9 @@
                 competitors.
             </template>
         </DataTable>
-        <Button @click="save" label="Save" class="p-button-rounded m-3" />
+        <div>
+            <Button @click="save" label="Save" class="p-button-rounded m-3" />
+        </div>
     </div>
 </template>
 <script setup>

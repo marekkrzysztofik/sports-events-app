@@ -3,6 +3,7 @@
     <div class="flex flex-column center">
         <h2>Sign competitor to competition</h2>
         <div
+            v-if="ifSelected == false"
             class="flex w-9 m-auto justify-content-around bg-dark-blue br-radius-15"
         >
             <div class="m-3">
@@ -14,7 +15,7 @@
                     responsiveLayout="scroll"
                     :scrollable="true"
                     scrollHeight="400px"
-                    class="pad-30-0" 
+                    class="pad-30-0"
                 >
                     <template #header>Competitions </template>
                     <Column field="id" header="ID"></Column>
@@ -29,12 +30,20 @@
             </div>
         </div>
         <Button
+            v-if="ifSelected == false"
             @click="showCompetitors"
             label="Show Competitors"
             class="p-button-rounded m-3"
         />
         <div class="m-3">
+            <Button
+                v-if="ifSelected"
+                @click="backToDisciplines"
+                label="Choose discipline"
+                class="p-button-rounded m-3"
+            />
             <DataTable
+                v-if="ifSelected"
                 :value="filteredCompetitors"
                 v-model:selection="selectedCompetitors"
                 selectionMode="multiple"
@@ -53,22 +62,36 @@
                 <Column field="sex" header="Sex"></Column>
             </DataTable>
         </div>
-        <Button @click="save" label="Save" class="p-button-rounded m-3" />
+        <Button
+            v-if="ifSelected"
+            @click="save"
+            label="Save"
+            class="p-button-rounded m-3"
+        />
     </div>
 </template>
 <script setup>
 import { useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
+import { useCompetitions } from "../../../../utils/composables/useCompetitions";
+import { useCompetitors } from "../../../../utils/composables/useCompetitors";
+const { getCompetitionsByUserId, competitions } = useCompetitions();
+const { getCompetitorsByUserId, competitors } = useCompetitors();
 const router = useRouter();
 onMounted(async () => {
-    getDisciplinesByUserId();
+    getCompetitionsByUserId();
     getCompetitorsByUserId();
 });
+const ifSelected = ref(false);
 const selectedDiscipline = ref();
 const disciplineWithCompetitors = ref({});
 const filteredCompetitors = ref([]);
 const selectedCompetitors = ref();
+const backToDisciplines = () => {
+    ifSelected.value = false;
+};
 const showCompetitors = async () => {
+    filteredCompetitors.value = [];
     const response = await axios.get(
         `/api/getDisciplinesWithSportsman/${selectedDiscipline.value.id}`
     );
@@ -90,6 +113,7 @@ const showCompetitors = async () => {
     filteredCompetitors.value = filteredCompetitors.value.filter(
         (competitor) => !existingIDS.includes(competitor.id)
     );
+    ifSelected.value = true;
 };
 const save = async () => {
     const competitorsWithDisciplineID = selectedCompetitors.value.map(
@@ -111,4 +135,3 @@ const save = async () => {
         });
 };
 </script>
- 
