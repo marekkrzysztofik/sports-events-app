@@ -40,7 +40,7 @@ import { useConfirm } from "primevue/useconfirm";
 import { useRouter } from "vue-router";
 import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
-import { user } from "/resources/modules/Organizer/Auth/user.js";
+import { user } from "/resources/modules/Organizer/components/Auth/user.js";
 import { useCompetitors } from "../../../../utils/composables/useCompetitors.js";
 const { getCompetitorsByUserId, competitors } = useCompetitors();
 const router = useRouter();

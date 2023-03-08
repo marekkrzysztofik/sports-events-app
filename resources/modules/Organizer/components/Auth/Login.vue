@@ -50,7 +50,7 @@
 import { ref } from "vue";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import { user } from "/resources/modules/Organizer/Auth/user.js";
+import { user } from "/resources/modules/Organizer/components/Auth/user.js";
 const userTypeChosen = ref(false);
 const userType = ref("");
 const select = () => {

@@ -71,7 +71,7 @@
 </template>
 <script setup>
 import { useRouter } from "vue-router";
-import { user } from "/resources/modules/Organizer/Auth/user.js";
+import { user } from "/resources/modules/Organizer/components/Auth/user.js";
 const router = useRouter();
 const logout = () => {
     localStorage.removeItem("token");
