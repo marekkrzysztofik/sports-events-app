@@ -29,7 +29,7 @@
             </Column>
             <template #footer>
                 In total there are
-                {{ competitors ? competitors.length : 0 }} competitors.
+                {{ count }} competitors.
             </template>
         </DataTable>
     </div>
@@ -42,7 +42,9 @@ import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
 import { user } from "/resources/modules/Organizer/components/Auth/user.js";
 import { useCompetitors } from "../../../../utils/composables/useCompetitors.js";
+import { useComputed } from '../../../../utils/composables/useComputed.js';
 const { getCompetitorsByUserId, competitors } = useCompetitors();
+const { count } = useComputed(competitors); 
 const router = useRouter();
 onMounted(async () => {
     getCompetitorsByUserId();

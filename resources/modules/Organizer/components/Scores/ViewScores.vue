@@ -3,7 +3,7 @@
     <div class="flex">
         <ul class="no-list-style flex">
             <li class="m-3">
-                <h1 class="m-0">{{ discipline.name }}</h1> 
+                <h1 class="m-0">{{ discipline.name }}</h1>
             </li>
             <li class="m-3">Style: {{ discipline.style }}</li>
             <li class="m-3">
@@ -62,11 +62,7 @@
             ></Column>
             <template #footer>
                 In total there are
-                {{
-                    participationsWithCompetitors
-                        ? participationsWithCompetitors.length
-                        : 0
-                }}
+                {{ count }}
                 competitors.
             </template>
         </DataTable>
@@ -74,10 +70,7 @@
 </template>
 <script setup>
 import { onMounted, ref } from "vue";
-onMounted(async () => {
-    getParticipationWithCompetitors(); 
-    getDiscipline();
-});
+import { useComputed } from "../../../../utils/composables/useComputed";
 const props = defineProps({
     id: {
         type: String,
@@ -91,6 +84,11 @@ const getParticipationWithCompetitors = async () => {
     );
     participationsWithCompetitors.value = response.data;
 };
+const { count } = useComputed(participationsWithCompetitors);
+onMounted(async () => {
+    getParticipationWithCompetitors();
+    getDiscipline();
+});
 const discipline = ref("");
 const getDiscipline = async () => {
     const response = await axios.get(`/api/getDisciplineById/${props.id}`);

@@ -14,19 +14,20 @@
             <Column field="participants" header="Participants"></Column>
             <template #footer>
                 In total there are
-                {{ competitions ? competitions.length : 0 }} competitions.
+                {{ count }} competitions.
             </template>
         </DataTable>
     </div>
-</template> 
+</template>
 <script setup>
 import { onMounted } from "vue";
 import { useCompetitions } from "../../utils/composables/useCompetitions.js";
 import { user } from "/resources/modules/Organizer/components/Auth/user.js";
+import { useComputed } from '../../utils/composables/useComputed';
 const { getCompetitionsByUserId, competitions } = useCompetitions();
+const { count } = useComputed(competitions); 
 onMounted(async () => {
     getCompetitionsByUserId();
-    console.log(user.value)
+    console.log(user.value);
 });
 </script>
- 

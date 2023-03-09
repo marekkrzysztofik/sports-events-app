@@ -85,11 +85,7 @@
             ></Column>
             <template #footer>
                 In total there are
-                {{
-                    participationsWithCompetitors
-                        ? participationsWithCompetitors.length
-                        : 0
-                }}
+                {{ count }}
                 competitors.
             </template>
         </DataTable>
@@ -105,11 +101,31 @@ import { useRouter } from "vue-router";
 import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
 import { user } from "../Auth/user.js";
+import { useComputed } from "../../../../utils/composables/useComputed";
+const router = useRouter();
+const props = defineProps({
+    id: {
+        type: String,
+        default: "",
+    },
+});
+const participationsWithCompetitors = ref([]);
+const getParticipationWithCompetitors = async () => {
+    const response = await axios.get(
+        `/api/participationJoinedWithCompetitors/${props.id}`
+    );
+    participationsWithCompetitors.value = response.data;
+};
+const { count } = useComputed(participationsWithCompetitors);
+const discipline = ref("");
+const getDiscipline = async () => {
+    const response = await axios.get(`/api/getDisciplineById/${props.id}`);
+    discipline.value = response.data;
+};
 onMounted(async () => {
     getParticipationWithCompetitors();
     getDiscipline();
 });
-
 const editingRows = ref([]);
 
 const onRowEditSave = (event) => {
@@ -134,29 +150,10 @@ const save = async () => {
             router.push("/admin");
         });
 };
-const router = useRouter();
-const props = defineProps({
-    id: {
-        type: String,
-        default: "",
-    },
-});
 const deleteParticipation = (id) => {
-    axios.delete(`/api/deleteParticipation/${id}`).then(() => { 
+    axios.delete(`/api/deleteParticipation/${id}`).then(() => {
         getParticipationWithCompetitors();
     });
-};
-const participationsWithCompetitors = ref([]);
-const getParticipationWithCompetitors = async () => {
-    const response = await axios.get(
-        `/api/participationJoinedWithCompetitors/${props.id}`
-    );
-    participationsWithCompetitors.value = response.data;
-};
-const discipline = ref("");
-const getDiscipline = async () => {
-    const response = await axios.get(`/api/getDisciplineById/${props.id}`);
-    discipline.value = response.data;
 };
 const toast = useToast();
 const confirm = useConfirm();

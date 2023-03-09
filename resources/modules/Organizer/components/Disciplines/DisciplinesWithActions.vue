@@ -48,7 +48,7 @@
             </Column>
             <template #footer>
                 In total there are
-                {{ competitions ? competitions.length : 0 }} competitions.
+                {{ count }} competitions.
             </template>
         </DataTable>
     </div>
@@ -60,8 +60,10 @@ import { useConfirm } from "primevue/useconfirm";
 import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
 import { useCompetitions } from "../../../../utils/composables/useCompetitions.js";
+import { useComputed } from '../../../../utils/composables/useComputed';
 import { user } from "/resources/modules/Organizer/components/Auth/user.js";
 const { getCompetitionsByUserId , competitions } = useCompetitions();
+const { count } = useComputed(competitions);
 const router = useRouter();
 onMounted(async () => {
     getCompetitionsByUserId();
