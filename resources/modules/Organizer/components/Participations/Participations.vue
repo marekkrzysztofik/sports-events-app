@@ -127,7 +127,6 @@ onMounted(async () => {
     getDiscipline();
 });
 const editingRows = ref([]);
-
 const onRowEditSave = (event) => {
     let { newData, index } = event;
     participationsWithCompetitors.value[index] = newData;

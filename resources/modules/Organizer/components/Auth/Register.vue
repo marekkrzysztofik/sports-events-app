@@ -86,7 +86,6 @@ const users = ref([]);
 const getUsers = async () => {
     const response = await axios.get("/api/getUsers");
     users.value = response.data;
-    console.log(users.value);
 };
 const router = useRouter();
 const types = ["Admin", "Coach", "Referee"];

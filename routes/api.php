@@ -15,7 +15,6 @@ Route::get('getUsers', [AuthController::class, 'getUsers']);
 Route::get('getCoaches', [AuthController::class, 'getCoaches']); 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('handleLogin', [AuthController::class, 'handleLogin']);
-Route::post('adminLogin', [AuthController::class, 'adminLogin']);
 
 Route::get('/getDisciplinesByUserId/{id}', [DisciplineController::class, 'getDisciplinesByUserId']);
 Route::get('/getDisciplineById/{id}', [DisciplineController::class, 'getDisciplineById']);
