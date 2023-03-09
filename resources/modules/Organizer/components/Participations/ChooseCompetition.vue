@@ -18,14 +18,12 @@
                     class="pad-30-0"
                 >
                     <template #header>Competitions </template>
-                    <Column field="id" header="ID"></Column>
-                    <Column field="name" header="Name"></Column>
-                    <Column field="style" header="Style"></Column>
-                    <Column field="competition" header="Competition"></Column>
-                    <Column field="minAge" header="MinAge"></Column>
-                    <Column field="maxAge" header="MaxAge"></Column>
-                    <Column field="startTime" header="Start Time"></Column>
-                    <Column field="sex" header="Sex"></Column>
+                    <Column
+                        v-for="column in disciplineColumns"
+                        :key="column.field"
+                        :field="column.field"
+                        :header="column.header"
+                    ></Column>
                 </DataTable>
             </div>
         </div>
@@ -59,11 +57,12 @@
                 class="pad-30-0 w-30rem"
             >
                 <template #header>Competitors </template>
-                <Column field="id" header="ID"></Column>
-                <Column field="name" header="Name"></Column>
-                <Column field="surname" header="Surname"></Column>
-                <Column field="age" header="Age"></Column>
-                <Column field="sex" header="Sex"></Column>
+                <Column
+                    v-for="column in competitorColumns"
+                    :key="column.field"
+                    :field="column.field"
+                    :header="column.header"
+                ></Column>
             </DataTable>
         </div>
         <h1 v-if="ifSelected && competitionOccupied == true">
@@ -89,6 +88,8 @@ import { useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
 import { useCompetitions } from "../../../../utils/composables/useCompetitions";
 import { useCompetitors } from "../../../../utils/composables/useCompetitors";
+import { disciplineColumns } from "../../../../utils/consts/disciplineColumns.js";
+import { competitorColumns } from "../../../../utils/consts/competitorColumns.js";
 const { getCompetitionsByUserId, competitions } = useCompetitions();
 const { getCompetitorsByUserId, competitors } = useCompetitors();
 const router = useRouter();

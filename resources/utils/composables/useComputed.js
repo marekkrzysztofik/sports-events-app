@@ -8,6 +8,6 @@ export function useComputed(data) {
         }
     });
     return {
-        count,
+        count
     };
 }

@@ -4,15 +4,12 @@
     <div class="w-11 flex justify-content-center m-3">
         <DataTable :value="competitions" responsiveLayout="scroll">
             <template #header>Competitions </template>
-            <Column field="id" header="ID"></Column>
-            <Column field="name" header="Name"></Column>
-            <Column field="style" header="Style"></Column>
-            <Column field="competition" header="Competition"></Column>
-            <Column field="minAge" header="MinAge"></Column>
-            <Column field="maxAge" header="MaxAge"></Column>
-            <Column field="startTime" header="Start Time"></Column>
-            <Column field="sex" header="Sex"></Column>
-            <Column field="participants" header="Participants"></Column>
+            <Column
+                v-for="column in disciplineColumns"
+                :key="column.field"
+                :field="column.field"
+                :header="column.header"
+            ></Column>
             <Column field="startTime" header="IconMenu">
                 <template #body="event">
                     <div class="actions-height assign-width">
@@ -31,7 +28,9 @@
                             <i class="pi pi-ban"></i>
                         </button>
                         <button
-                            v-if="user.type == 'Admin' || user.type == 'referee'"
+                            v-if="
+                                user.type == 'Admin' || user.type == 'referee'
+                            "
                             @click="editCompetitors(event.data.id)"
                             class="btn-icon btn-icon-users"
                         >
@@ -52,7 +51,7 @@
             </template>
         </DataTable>
     </div>
-</template> 
+</template>
 <script setup>
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
@@ -60,14 +59,15 @@ import { useConfirm } from "primevue/useconfirm";
 import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
 import { useCompetitions } from "../../../../utils/composables/useCompetitions.js";
-import { useComputed } from '../../../../utils/composables/useComputed';
+import { useComputed } from "../../../../utils/composables/useComputed";
 import { user } from "/resources/modules/Organizer/components/Auth/user.js";
-const { getCompetitionsByUserId , competitions } = useCompetitions();
+import { disciplineColumns } from "../../../../utils/consts/disciplineColumns.js";
+const { getCompetitionsByUserId, competitions } = useCompetitions();
 const { count } = useComputed(competitions);
 const router = useRouter();
 onMounted(async () => {
     getCompetitionsByUserId();
-}); 
+});
 const getDiscipline = (id) => {
     router.push(`/admin/edit-discipline/${id}`);
 };

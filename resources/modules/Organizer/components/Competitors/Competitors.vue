@@ -1,14 +1,15 @@
-<template> 
+<template>
     <Navbar></Navbar>
     <ConfirmDialog />
     <div class="w-10 flex m-auto justify-content-center">
         <DataTable :value="competitors" responsiveLayout="scroll">
             <template #header>Competitors </template>
-            <Column field="id" header="ID"></Column>
-            <Column field="name" header="Name"></Column>
-            <Column field="surname" header="Surname"></Column>
-            <Column field="age" header="Age"></Column>
-            <Column field="sex" header="Sex"></Column>
+            <Column
+                v-for="column in competitorColumns"
+                :key="column.field"
+                :field="column.field"
+                :header="column.header"
+            ></Column>
             <Column v-if="user.type == 'admin'" header="Edit/Delete">
                 <template #body="event1">
                     <div class="actions-height">
@@ -42,9 +43,10 @@ import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
 import { user } from "/resources/modules/Organizer/components/Auth/user.js";
 import { useCompetitors } from "../../../../utils/composables/useCompetitors.js";
-import { useComputed } from '../../../../utils/composables/useComputed.js';
+import { useComputed } from "../../../../utils/composables/useComputed.js";
+import { competitorColumns } from "../../../../utils/consts/competitorColumns.js";
 const { getCompetitorsByUserId, competitors } = useCompetitors();
-const { count } = useComputed(competitors); 
+const { count } = useComputed(competitors);
 const router = useRouter();
 onMounted(async () => {
     getCompetitorsByUserId();
