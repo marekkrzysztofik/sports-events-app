@@ -38,7 +38,7 @@ class AuthController extends Controller
             $coach = Coach::create($input);
             $success['token'] = $coach->createToken('MyApp')->plainTextToken;
             $success['name'] = $coach->name;
-            $success['user_id'] = $coach->user_id;
+            $success['id'] = $coach->user_id;
             $success['type'] = $coach->type;
             $response = [
                 'success' => true,
@@ -59,7 +59,14 @@ class AuthController extends Controller
         }
         return response()->json($response, 200);
     }
-
+    public function handleLogin(Request $request)
+    {
+        if ($request['type'] == 'Admin') {
+            return $this->adminLogin($request);
+        } else {
+            return $this->coachLogin($request);
+        }
+    }
     public function adminLogin(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
@@ -81,8 +88,7 @@ class AuthController extends Controller
         if (Auth::guard('coach')->attempt($request->only('email', 'password'))) {
             $user = Auth::guard('coach')->user();
             $success['token'] = $user->createToken('MyApp')->plainTextToken;
-            $success['id'] = $user->id;
-            $success['user_id'] = $user->user_id;
+            $success['id'] = $user->user_id;
             $success['name'] = $user->name;
             $success['type'] = $user->type;
             $response = [

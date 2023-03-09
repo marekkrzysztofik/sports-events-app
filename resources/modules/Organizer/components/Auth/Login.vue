@@ -6,7 +6,7 @@
             <h2>Log in</h2>
             <Dropdown
                 v-if="userTypeChosen == false"
-                v-model="userType"
+                v-model="loginForm.type"
                 :options="types"
                 inputClass="string"
                 placeholder="Select type of account"
@@ -52,7 +52,6 @@ import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import { user } from "/resources/modules/Organizer/components/Auth/user.js";
 const userTypeChosen = ref(false);
-const userType = ref("");
 const select = () => {
     userTypeChosen.value = true;
 };
@@ -61,12 +60,12 @@ const router = useRouter();
 const loginForm = reactive({
     email: "",
     password: "",
+    type: "",
 });
 const errors = ref([]);
 const login = async () => {
-    if (userType.value == "Admin") {
         await axios
-            .post("/api/adminLogin", loginForm)
+            .post("/api/handleLogin", loginForm)
             .then((response) => {
                 if (response.data.success) {
                     localStorage.setItem("token", response.data.data.token);
@@ -78,21 +77,5 @@ const login = async () => {
             .catch((e) => {
                 errors.value = e.response.data.message;
             });
-    }
-    if (userType.value == "Coach/Referee") {
-        await axios
-            .post("/api/coachLogin", loginForm)
-            .then((response) => {
-                if (response.data.success) {
-                    localStorage.setItem("token", response.data.data.token);
-                    user.value.id = response.data.data.user_id;
-                    user.value.type = response.data.data.type;
-                    router.push("/Admin/");
-                }
-            })
-            .catch((e) => {
-                errors.value = e.response.data.message;
-            });
-    }
 };
 </script>

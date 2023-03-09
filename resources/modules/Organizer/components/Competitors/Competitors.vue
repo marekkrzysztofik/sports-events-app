@@ -48,7 +48,7 @@ onMounted(async () => {
     getCompetitorsByUserId();
 });
 const deleteCompetitor = (sportsman) => {
-    axios.get(`/api/deleteSportsman/${sportsman}`).then(() => {
+    axios.delete(`/api/deleteSportsman/${sportsman}`).then(() => {
         getCompetitorsByUserId();
     });
 };

@@ -31,7 +31,7 @@
         </div>
         <Button
             v-if="ifSelected == false"
-            @click="showCompetitors"
+            @click="handleClick"
             label="Show Competitors"
             class="p-button-rounded m-3"
         />
@@ -106,12 +106,18 @@ const backToDisciplines = () => {
     ifSelected.value = false;
     competitionOccupied.value = false;
 };
-const showCompetitors = async () => {
-    filteredCompetitors.value = [];
+const handleClick = async () => {
+    await getDisciplineWithSportsman();
+    getMatchingCompetitors();
+};
+const getDisciplineWithSportsman = async () => {
     const response = await axios.get(
         `/api/getDisciplinesWithSportsman/${selectedDiscipline.value.id}`
     );
     disciplineWithCompetitors.value = response.data;
+};
+const getMatchingCompetitors = async () => {
+    filteredCompetitors.value = [];
     if (
         disciplineWithCompetitors.value.sportsman.length > 0 &&
         disciplineWithCompetitors.value.participants <=

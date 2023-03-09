@@ -50,7 +50,7 @@
             <Column field="age" header="Age"></Column>
             <Column field="sex" header="Sex"></Column>
             <Column
-                v-if="user.type == 'admin' || user.type == 'referee'"
+                v-if="user.type == 'Admin' || user.type == 'Referee'"
                 header="Edit/Delete"
             >
                 <template #body="event1">
@@ -142,7 +142,7 @@ const props = defineProps({
     },
 });
 const deleteParticipation = (id) => {
-    axios.get(`/api/deleteParticipation/${id}`).then(() => {
+    axios.delete(`/api/deleteParticipation/${id}`).then(() => { 
         getParticipationWithCompetitors();
     });
 };

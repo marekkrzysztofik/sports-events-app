@@ -33,22 +33,27 @@
                 </li>
                 <li class="m-3">
                     <router-link
-                        v-if="user.type == 'admin' || user.type == 'referee'"
+                        v-if="user.type == 'Admin' || user.type == 'Referee'"
                         to="/admin/competitors"
                         class="no-decoration"
                         ><Button label="Competitors"
                     /></router-link>
                 </li>
-                <li v-if="$route.name !== 'Home'" class="m-3">
+                <li
+                    v-if="
+                        $route.name == 'AdminHome'
+                    "
+                    class="m-3"
+                >
                     <Button @click="logout" label="Log Out" />
                 </li>
-                <li v-if="user.type == 'admin'" class="m-3">
+                <li v-if="user.type == 'Admin'" class="m-3">
                     <router-link to="/admin/create" class="no-decoration"
                         ><Button label="Create competition"
                     /></router-link>
                 </li>
                 <li
-                    v-if="user.type == 'admin' || user.type == 'coach'"
+                    v-if="user.type == 'Admin' || user.type == 'Coach'"
                     class="m-3"
                 >
                     <router-link
@@ -58,7 +63,7 @@
                     /></router-link>
                 </li>
                 <li
-                    v-if="user.type == 'coach' || user.type == 'admin'"
+                    v-if="user.type == 'Coach' || user.type == 'Admin'"
                     class="m-3"
                 >
                     <router-link to="/admin/choose" class="no-decoration"

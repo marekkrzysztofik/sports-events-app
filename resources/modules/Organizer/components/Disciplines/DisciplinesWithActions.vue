@@ -17,21 +17,21 @@
                 <template #body="event">
                     <div class="actions-height assign-width">
                         <button
-                            v-if="user.type == 'admin'"
+                            v-if="user.type == 'Admin'"
                             @click="getDiscipline(event.data.id)"
                             class="btn-icon btn-icon-success"
                         >
                             <i class="pi pi-pencil"></i>
                         </button>
                         <button
-                            v-if="user.type == 'admin'"
+                            v-if="user.type == 'Admin'"
                             @click="confirmDialog(event.data.id)"
                             class="btn-icon btn-icon-danger"
                         >
                             <i class="pi pi-ban"></i>
                         </button>
                         <button
-                            v-if="user.type == 'admin' || user.type == 'referee'"
+                            v-if="user.type == 'Admin' || user.type == 'referee'"
                             @click="editCompetitors(event.data.id)"
                             class="btn-icon btn-icon-users"
                         >
@@ -70,7 +70,7 @@ const getDiscipline = (id) => {
     router.push(`/admin/edit-discipline/${id}`);
 };
 const deleteCompetition = (id) => {
-    axios.get(`/api/deleteDiscipline/${id}`).then(() => {
+    axios.delete(`/api/deleteDiscipline/${id}`).then(() => {
         getCompetitionsByUserId();
     });
 };

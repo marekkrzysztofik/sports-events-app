@@ -49,8 +49,8 @@
                 />
                 <Dropdown
                     v-if="
-                        (form.type == 'coach' && userTypeChosen == true) ||
-                        (form.type == 'referee' && userTypeChosen == true)
+                        (form.type == 'Coach' && userTypeChosen == true) ||
+                        (form.type == 'Referee' && userTypeChosen == true)
                     "
                     v-model="form.user_id"
                     :options="users"
@@ -89,7 +89,7 @@ const getUsers = async () => {
     console.log(users.value);
 };
 const router = useRouter();
-const types = ["admin", "coach", "referee"];
+const types = ["Admin", "Coach", "Referee"];
 const form = reactive({
     name: "",
     type: "",
@@ -108,11 +108,7 @@ const register = async () => {
         .then((response) => {
             if (response.data.success) {
                 localStorage.setItem("token", response.data.data.token);
-                if (form.type == "admin") {
-                    user.value.id = response.data.data.id;
-                } else {
-                    user.value.id = response.data.data.user_id;
-                }
+                user.value.id = response.data.data.id;
                 user.value.type = response.data.data.type;
                 router.push("/admin");
             }

@@ -18,7 +18,7 @@
             </template>
         </DataTable>
     </div>
-</template>
+</template> 
 <script setup>
 import { onMounted } from "vue";
 import { useCompetitions } from "../../utils/composables/useCompetitions.js";
