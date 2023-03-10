@@ -6,6 +6,10 @@ body {
     background-color: #bbe1fa;
     font-family: "Kanit", sans-serif;
 }
+.error-msg {
+    color: red;
+    font-weight: 700;
+}
 .p-component {
     font-family: "Kanit", sans-serif !important;
 }

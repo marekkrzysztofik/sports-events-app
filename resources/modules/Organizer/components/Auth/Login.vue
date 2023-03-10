@@ -40,9 +40,11 @@
                 @click="login()"
                 class="p-button-rounded m-2"
             />
-            <p class="" v-for="error in errors" :key="error">
-                <span v-for="err in error" :key="err">{{ err }} </span>
-            </p>
+            <div class="flex">
+                <p class="error-msg m-4" v-if="error" :key="error">
+                    {{ error }}
+                </p>
+            </div>
         </div>
     </div>
 </template>
@@ -62,20 +64,21 @@ const loginForm = reactive({
     password: "",
     type: "",
 });
-const errors = ref([]);
+const error = ref();
 const login = async () => {
-        await axios
-            .post("/api/handleLogin", loginForm)
-            .then((response) => {
-                if (response.data.success) {
-                    localStorage.setItem("token", response.data.data.token);
-                    user.value.id = response.data.data.id;
-                    user.value.type = response.data.data.type;
-                    router.push("/Admin/");
-                }
-            })
-            .catch((e) => {
-                errors.value = e.response.data.message;
-            });
+    await axios
+        .post("/api/handleLogin", loginForm)
+        .then((response) => {
+            const loginResponse = response.data;
+            if (loginResponse.success) {
+                localStorage.setItem("token", loginResponse.data.token);
+                user.value.id = loginResponse.data.id;
+                user.value.type = loginResponse.data.type;
+                router.push("/Admin/");
+            }
+        })
+        .catch((e) => {
+            error.value = e.response.data.message;
+        });
 };
 </script>

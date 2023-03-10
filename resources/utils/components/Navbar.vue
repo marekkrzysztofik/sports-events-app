@@ -26,7 +26,7 @@
                         ><Button label="Home"
                     /></router-link>
                 </li>
-                <li class="m-3">
+                <li v-if="$route.name == 'AdminHome'" class="m-3">
                     <router-link to="/admin/disciplines" class="no-decoration"
                         ><Button label="Disciplines"
                     /></router-link>
@@ -39,12 +39,7 @@
                         ><Button label="Competitors"
                     /></router-link>
                 </li>
-                <li
-                    v-if="
-                        $route.name == 'AdminHome'
-                    "
-                    class="m-3"
-                >
+                <li v-if="$route.name == 'AdminHome'" class="m-3">
                     <Button @click="logout" label="Log Out" />
                 </li>
                 <li v-if="user.type == 'Admin'" class="m-3">

@@ -63,10 +63,10 @@
                 <Button
                     v-if="userTypeChosen == true"
                     label="Register"
-                    @click="register()"
+                    @click="handleRegister"
                     class="p-button-rounded m-4"
                 />
-                <p class="" v-for="error in errors" :key="error">
+                <p class="error-msg" v-for="error in errors" :key="error">
                     <span v-for="err in error" :key="err">{{ err }} </span>
                 </p>
             </div>
@@ -101,14 +101,25 @@ const select = () => {
     userTypeChosen.value = true;
 };
 const errors = ref([]);
+const handleRegister = () => {
+    if (
+        (!form.user_id && form.type == "Coach") ||
+        (!form.user_id && form.type == "Referee")
+    ) {
+        errors.value.push("Assignment to Organizer is required.");
+    } else {
+        register();
+    }
+};
 const register = async () => {
     await axios
         .post("/api/register", form)
         .then((response) => {
-            if (response.data.success) {
-                localStorage.setItem("token", response.data.data.token);
-                user.value.id = response.data.data.id;
-                user.value.type = response.data.data.type;
+            const registerResponse = response.data;
+            if (registerResponse.success) {
+                localStorage.setItem("token", registerResponse.data.token);
+                user.value.id = registerResponse.data.id;
+                user.value.type = registerResponse.data.type;
                 router.push("/admin");
             }
         })

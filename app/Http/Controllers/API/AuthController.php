@@ -82,6 +82,7 @@ class AuthController extends Controller
             ];
             return response()->json($response, 200);
         }
+        return response()->json(['success' => false, 'message' => 'Invalid email or password'], 401);
     }
     public function coachLogin(Request $request)
     {
@@ -98,6 +99,7 @@ class AuthController extends Controller
             ];
             return response()->json($response, 200);
         }
+        return response()->json(['success' => false, 'message' => 'Invalid email or password'], 401);
     }
     public function getUsers()
     {

@@ -8,6 +8,7 @@
                 :key="column.field"
                 :field="column.field"
                 :header="column.header"
+                sortable
             ></Column>
             <template #footer>
                 In total there are
