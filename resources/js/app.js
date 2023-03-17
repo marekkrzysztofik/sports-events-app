@@ -12,8 +12,9 @@ import Dialog from "primevue/dialog";
 import "primevue/resources/primevue.min.css";
 import "primeflex/primeflex.css";
 import "primevue/resources/themes/saga-blue/theme.css"; //theme
-import "primeicons/primeicons.css"; //icons
 
+import "primeicons/primeicons.css"; //icons
+import CascadeSelect from "primevue/cascadeselect";
 import InputText from "primevue/inputtext";
 import Checkbox from "primevue/checkbox";
 import Button from "primevue/button";
@@ -27,16 +28,20 @@ import Textarea from "primevue/textarea";
 import Toolbar from "primevue/toolbar";
 import FileUpload from "primevue/fileupload";
 import ToastService from "primevue/toastservice";
-import Navbar from "./components/Navbar.vue";
+import Navbar from "../utils/components/Navbar.vue";
 import Toast from "primevue/toast";
 import ConfirmationService from "primevue/confirmationservice";
-
+import Dropdown from "primevue/dropdown";
+import SplitButton from 'primevue/splitbutton';
 const app = createApp(App);
 
 app.use(router);
 app.use(PrimeVue);
 app.use(ToastService);
 app.use(ConfirmationService);
+app.component("SplitButton", SplitButton);
+app.component("CascadeSelect", CascadeSelect);
+app.component("Dropdown", Dropdown);
 app.component("Checkbox", Checkbox);
 app.component("Toast", Toast);
 app.component("FileUpload", FileUpload);

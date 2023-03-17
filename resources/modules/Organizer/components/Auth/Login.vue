@@ -4,30 +4,47 @@
         <div class="center">
             <h1>Log in to continue</h1>
             <h2>Log in</h2>
+            <Dropdown
+                v-if="userTypeChosen == false"
+                v-model="loginForm.type"
+                :options="types"
+                inputClass="string"
+                placeholder="Select type of account"
+                class="m-3"
+            />
+            <Button
+                v-if="userTypeChosen == false"
+                label="Select"
+                @click="select"
+                class="p-button-rounded m-4"
+            />
             <p>
                 <InputText
-                    class=""
+                    v-if="userTypeChosen == true"
                     type="text"
                     placeholder="Enter your email"
-                    v-model="form.email"
+                    v-model="loginForm.email"
                 />
             </p>
             <p>
                 <InputText
-                    class=""
+                    v-if="userTypeChosen == true"
                     type="password"
                     placeholder="Enter your password"
-                    v-model="form.password"
+                    v-model="loginForm.password"
                 />
             </p>
             <Button
+                v-if="userTypeChosen == true"
                 label="Login"
                 @click="login()"
                 class="p-button-rounded m-2"
             />
-            <p class="" v-for="error in errors" :key="error">
-                <span v-for="err in error" :key="err">{{ err }} </span>
-            </p>
+            <div class="flex">
+                <p class="error-msg m-4" v-if="error" :key="error">
+                    {{ error }}
+                </p>
+            </div>
         </div>
     </div>
 </template>
@@ -35,24 +52,33 @@
 import { ref } from "vue";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-
+import { user } from "/resources/modules/Organizer/components/Auth/user.js";
+const userTypeChosen = ref(false);
+const select = () => {
+    userTypeChosen.value = true;
+};
+const types = ["Admin", "Coach/Referee"];
 const router = useRouter();
-const form = reactive({
+const loginForm = reactive({
     email: "",
     password: "",
+    type: "",
 });
-const errors = ref([]);
+const error = ref();
 const login = async () => {
     await axios
-        .post("/api/login", form)
+        .post("/api/handleLogin", loginForm)
         .then((response) => {
-            if (response.data.success) {
-                localStorage.setItem("token", response.data.data.token);
+            const loginResponse = response.data;
+            if (loginResponse.success) {
+                localStorage.setItem("token", loginResponse.data.token);
+                user.value.id = loginResponse.data.id;
+                user.value.type = loginResponse.data.type;
                 router.push("/Admin/");
             }
         })
         .catch((e) => {
-            errors.value = e.response.data.message;
+            error.value = e.response.data.message;
         });
 };
 </script>

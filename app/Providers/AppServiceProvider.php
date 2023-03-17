@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
             return new DisciplineRepository();
         });
     }
-
+ 
     /**
      * Bootstrap any application services.
      *

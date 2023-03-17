@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'coach' => [
+            'driver' => 'session',
+            'provider' => 'coaches',
+        ],
     ],
 
     /*
@@ -65,7 +69,12 @@ return [
             'model' => App\Models\User::class,
         
         ],
-
+        'coaches' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Coach::class,
+        
+        ],
+        
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
