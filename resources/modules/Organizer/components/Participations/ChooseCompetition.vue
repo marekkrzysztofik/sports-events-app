@@ -1,70 +1,62 @@
 <template>
     <Navbar />
     <div class="flex flex-column center">
-        <h2>Sign competitor to competition</h2>
-        <div
+        <h2 class="m-0">Sign competitor to competition</h2>
+        <DataTable
             v-if="ifSelected == false"
-            class="flex w-9 m-auto justify-content-around bg-dark-blue br-radius-15"
+            :value="competitions"
+            v-model:selection="selectedDiscipline"
+            selectionMode="single"
+            dataKey="id"
+            responsiveLayout="scroll"
+            :scrollable="true"
+            scrollHeight="400px"
+            class="datatable w-max m-20-auto"
         >
-            <div class="m-3">
-                <DataTable
-                    :value="competitions"
-                    v-model:selection="selectedDiscipline"
-                    selectionMode="single"
-                    dataKey="id"
-                    responsiveLayout="scroll"
-                    :scrollable="true"
-                    scrollHeight="400px"
-                    class="pad-30-0"
-                >
-                    <template #header>Competitions </template>
-                    <Column
-                        v-for="column in disciplineColumns"
-                        :key="column.field"
-                        :field="column.field"
-                        :header="column.header"
-                    ></Column>
-                </DataTable>
-            </div>
-        </div>
+            <template #header>Competitions </template>
+            <Column
+                v-for="column in disciplineColumns"
+                :key="column.field"
+                :field="column.field"
+                :header="column.header"
+            ></Column>
+        </DataTable>
         <Button
             v-if="ifSelected == false"
             @click="handleClick"
             label="Show Competitors"
             class="p-button-rounded m-3"
         />
-        <div class="m-3">
-            <Button
-                v-if="ifSelected"
-                @click="backToDisciplines"
-                label="Choose discipline"
-                class="p-button-rounded m-3"
-            />
-            <DataTable
-                v-if="
-                    ifSelected &&
-                    competitionOccupied == false &&
-                    filteredCompetitors.length > 0
-                "
-                :value="filteredCompetitors"
-                v-model:selection="selectedCompetitors"
-                selectionMode="multiple"
-                dataKey="id"
-                :metaKeySelection="false"
-                responsiveLayout="scroll"
-                :scrollable="true"
-                scrollHeight="400px"
-                class="pad-30-0 w-30rem"
-            >
-                <template #header>Competitors </template>
-                <Column
-                    v-for="column in competitorColumns"
-                    :key="column.field"
-                    :field="column.field"
-                    :header="column.header"
-                ></Column>
-            </DataTable>
-        </div>
+        <Button
+            v-if="ifSelected"
+            @click="backToDisciplines"
+            label="Choose discipline"
+            class="p-button-rounded m-5"
+        />
+        <DataTable
+            v-if="
+                ifSelected &&
+                competitionOccupied == false &&
+                filteredCompetitors.length > 0
+            "
+            :value="filteredCompetitors"
+            v-model:selection="selectedCompetitors"
+            selectionMode="multiple"
+            dataKey="id"
+            :metaKeySelection="false"
+            responsiveLayout="scroll"
+            :scrollable="true"
+            scrollHeight="400px"
+            class="datatable w-30rem m-2"
+        >
+            <template #header>Competitors </template>
+            <Column
+                v-for="column in competitorColumns"
+                :key="column.field"
+                :field="column.field"
+                :header="column.header"
+            ></Column>
+        </DataTable>
         <h1 v-if="ifSelected && competitionOccupied == true">
             This competition is occupied, choose another one.
         </h1>

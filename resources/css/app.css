@@ -6,6 +6,10 @@ body {
     background-color: #bbe1fa;
     font-family: "Kanit", sans-serif;
 }
+.logo {
+    width: 100px;
+    height: 100px;
+}
 .error-msg {
     color: red;
     font-weight: 700;
@@ -14,10 +18,10 @@ body {
     font-family: "Kanit", sans-serif !important;
 }
 .bg-dark-blue {
-    background-color: #3c84ab;
+    background-color: #19A7CE;
 }
 .br-radius-15 {
-    border-radius: 15px;
+    border-radius: 15px !important;
 }
 .m-10-auto {
     margin: 10px auto;
@@ -38,7 +42,7 @@ body {
     padding: 30px 0;
 }
 .logo-name {
-    margin: 0;
+    margin: 0px;
     font-size: 55px;
     text-decoration: none;
     color: #000000;
@@ -87,3 +91,32 @@ body {
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
+.datatable {
+    font-size: 14px;
+    border: 0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.p-datatable .p-datatable-header {
+    background-color: #19A7CE !important;
+    color: #000000 !important;
+    font-weight: 400 !important;
+    font-size: 20px; 
+}
+.p-datatable .p-datatable-footer {
+    background-color: #19A7CE !important;
+    color: #000000 !important;
+    font-weight: 400 !important;
+}
+.p-button  {
+    background-color: #19A7CE !important;
+    color: #000000 !important;
+    border-radius: 15px !important;
+}
+.p-button:hover {
+    background-color: #2c53ff !important;
+}
+.save-btn {
+    background-color: black !important;
+    color: #e0e0e0 !important;
+} 

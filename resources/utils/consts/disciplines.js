@@ -1,20 +1,17 @@
 export const disciplines1 = [
     {
-        sports: ["swimming", "running"], 
-    },
-    {
         name: "Swimming",
         styles: [
-            { cname: "freestyle" },
-            { cname: "backstroke" },
-            { cname: "breaststroke" },
-            { cname: "butterfly" },
+            { cname: "Freestyle" },
+            { cname: "Backstroke" },
+            { cname: "Breaststroke" },
+            { cname: "Butterfly" },
         ],
         competitions: [{ cname: "50m" }, { cname: "100m" }, { cname: "200m" }],
     },
     {
         name: "Running",
-        styles: [{ cname: "track" }, { cname: "cross-country" }],
+        styles: [{ cname: "Track" }, { cname: "Cross-country" }],
         competitions: [
             { cname: "50m" },
             { cname: "400m" },
@@ -22,7 +19,7 @@ export const disciplines1 = [
             { cname: "2000m" },
         ],
     },
-];  
+];
 export const ageCategories = [
     "10-11 years",
     "12-13 years",
@@ -33,4 +30,4 @@ export const ageCategories = [
     "23-25 years",
 ];
 export const sex = ["M", "F"];
-export const sports = disciplines1[0].sports;
+export const sports = ["Swimming", "Running"];

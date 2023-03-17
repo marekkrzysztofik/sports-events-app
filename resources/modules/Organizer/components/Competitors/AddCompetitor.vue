@@ -33,13 +33,11 @@
                         class="m-3"
                     />
                 </div>
-                <p>
-                    <Button
-                        @click="saveCompetitor"
-                        label="Save"
-                        class="p-button-rounded m-3"
-                    />
-                </p>
+                <Button
+                    @click="saveCompetitor"
+                    label="Save"
+                    class="p-button-rounded m-3 save-btn w-9"
+                />
             </div>
         </div>
     </div>

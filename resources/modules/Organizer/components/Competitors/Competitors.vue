@@ -1,8 +1,7 @@
 <template>
     <Navbar></Navbar>
     <ConfirmDialog />
-    <div class="w-10 flex m-auto justify-content-center">
-        <DataTable :value="competitors" responsiveLayout="scroll">
+        <DataTable :value="competitors" responsiveLayout="scroll" class="datatable w-max m-20-auto">
             <template #header>Competitors </template>
             <Column
                 v-for="column in competitorColumns"
@@ -10,7 +9,7 @@
                 :field="column.field"
                 :header="column.header"
             ></Column>
-            <Column v-if="user.type == 'admin'" header="Edit/Delete">
+            <Column v-if="user.type == 'Admin'" header="Edit/Delete">
                 <template #body="event1">
                     <div class="actions-height">
                         <button
@@ -33,7 +32,7 @@
                 {{ count }} competitors.
             </template>
         </DataTable>
-    </div>
+    
 </template>
 <script setup>
 import { onMounted } from "vue";

@@ -1,21 +1,23 @@
 <template>
     <Navbar></Navbar>
-    <div class="w-11 flex justify-content-center m-3">
-        <DataTable :value="competitions" responsiveLayout="scroll">
-            <template #header>Competitions </template>
-            <Column
-                v-for="column in disciplineColumns"
-                :key="column.field"
-                :field="column.field"
-                :header="column.header"
-                sortable
-            ></Column>
-            <template #footer>
-                In total there are
-                {{ count }} competitions.
-            </template>
-        </DataTable>
-    </div>
+    <DataTable
+        :value="competitions"
+        responsiveLayout="scroll"
+        class="datatable w-max m-20-auto"
+    >
+        <template #header>Competitions </template>
+        <Column
+            v-for="column in disciplineColumns"
+            :key="column.field"
+            :field="column.field"
+            :header="column.header"
+            sortable
+        ></Column>
+        <template #footer>
+            In total there are
+            {{ count }} competitions.
+        </template>
+    </DataTable>
 </template>
 <script setup>
 import { onMounted } from "vue";

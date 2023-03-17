@@ -34,7 +34,7 @@
             </li>
         </ul>
     </div>
-    <div class="flex justify-content-center">
+    <div class="flex flex-column">
         <DataTable
             :value="participationsWithCompetitors"
             editMode="row"
@@ -42,6 +42,7 @@
             v-model:editingRows="editingRows"
             @row-edit-save="onRowEditSave"
             responsiveLayout="scroll"
+            class="datatable w-max m-20-auto"
         >
             <template #header>Competitors </template>
             <Column field="id" header="ParticipationID"></Column>
@@ -89,8 +90,8 @@
                 competitors.
             </template>
         </DataTable>
-        <div>
-            <Button @click="save" label="Save" class="p-button-rounded m-3" />
+        <div class="justify-content-center m-auto">
+            <Button @click="save" label="Save" class="p-button-rounded" />
         </div>
     </div>
 </template>

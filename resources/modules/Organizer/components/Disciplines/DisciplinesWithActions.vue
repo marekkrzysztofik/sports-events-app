@@ -1,8 +1,8 @@
 <template>
     <Navbar />
     <ConfirmDialog />
-    <div class="w-11 flex justify-content-center m-3">
-        <DataTable :value="competitions" responsiveLayout="scroll">
+   
+        <DataTable :value="competitions" responsiveLayout="scroll" class="datatable w-max m-20-auto">
             <template #header>Competitions </template>
             <Column
                 v-for="column in disciplineColumns"
@@ -50,7 +50,7 @@
                 {{ count }} competitions.
             </template>
         </DataTable>
-    </div>
+    
 </template>
 <script setup>
 import { onMounted } from "vue";
