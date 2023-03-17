@@ -86,7 +86,7 @@
             ></Column>
             <template #footer>
                 In total there are
-                {{ count }}
+                {{ count }} 
                 competitors.
             </template>
         </DataTable>

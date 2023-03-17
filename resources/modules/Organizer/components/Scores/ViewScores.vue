@@ -37,7 +37,7 @@
         <DataTable
             :value="participationsWithCompetitors"
             responsiveLayout="scroll"
-            class="m-3"
+            class="m-3 datatable"
             :sortField="'time'"
             :sortOrder="1"
         >

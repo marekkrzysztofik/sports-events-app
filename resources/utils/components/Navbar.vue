@@ -28,11 +28,6 @@
                         ><Button label="Register"
                     /></router-link>
                 </li>
-                <li v-if="user.type == 'Admin'" class="m-3">
-                    <router-link to="/admin/create" class="no-decoration"
-                        ><Button label="Create competition"
-                    /></router-link>
-                </li>
                 <li class="m-3">
                     <router-link
                         v-if="
@@ -43,7 +38,7 @@
                         "
                         to="/admin/competitors"
                         class="no-decoration"
-                        ><Button label="Competitors"
+                        ><Button label="Competitors" icon="pi pi-users"
                     /></router-link>
                 </li>
                 <li
@@ -55,8 +50,8 @@
                     "
                     class="m-3"
                 >
-                    <router-link to="/admin/disciplines" class="no-decoration"
-                        ><Button label="Competitions"
+                    <router-link to="/admin/disciplines" class="no-decoration" 
+                        ><Button label="Competitions" icon="pi pi-calendar-times"  
                     /></router-link>
                 </li>
                 <li
@@ -64,6 +59,11 @@
                     class="m-3"
                 >
                     <SplitButton label="Add" icon="pi pi-plus" :model="items" />
+                </li>
+                <li v-if="user.type == 'Admin'" class="m-3">
+                    <router-link to="/admin/create" class="no-decoration"
+                        ><Button label="Create competition" icon="pi pi-calendar-plus"
+                    /></router-link>
                 </li>
                 <li
                     v-if="
