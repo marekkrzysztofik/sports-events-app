@@ -9,7 +9,7 @@
                 :field="column.field"
                 :header="column.header"
             ></Column>
-            <Column v-if="user.type == 'Admin'" header="Edit/Delete">
+            <Column v-if="userInfo.type == 'Admin'" header="Edit/Delete">
                 <template #body="event1">
                     <div class="actions-height">
                         <button
@@ -33,17 +33,19 @@
             </template>
         </DataTable>
     
-</template>
+</template> 
 <script setup>
 import { onMounted } from "vue";
 import { useConfirm } from "primevue/useconfirm";
 import { useRouter } from "vue-router";
 import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
-import { user } from "/resources/modules/Organizer/components/Auth/user.js";
-import { useCompetitors } from "../../../../utils/composables/useCompetitors.js";
-import { useComputed } from "../../../../utils/composables/useComputed.js";
-import { competitorColumns } from "../../../../utils/consts/competitorColumns.js";
+import { useCompetitors } from "utils/composables/useCompetitors.js";
+import { useComputed } from "utils/composables/useComputed.js";
+import { competitorColumns } from "utils/consts/competitorColumns.js";
+import { useUserInfo } from "@/storage/Pinia/userInfo.js";
+
+const userInfo = useUserInfo()
 const { getCompetitorsByUserId, competitors } = useCompetitors();
 const { count } = useComputed(competitors);
 const router = useRouter();

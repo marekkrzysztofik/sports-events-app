@@ -21,12 +21,14 @@
 </template>
 <script setup>
 import { onMounted } from "vue";
-import { useCompetitions } from "../../utils/composables/useCompetitions.js";
-import { useComputed } from "../../utils/composables/useComputed";
-import { disciplineColumns } from "../../utils/consts/disciplineColumns.js";
+import { useCompetitions } from "utils/composables/useCompetitions.js";
+import { useComputed } from "utils/composables/useComputed";
+import { disciplineColumns } from "utils/consts/disciplineColumns.js";
+
 const { getCompetitionsByUserId, competitions } = useCompetitions();
 const { count } = useComputed(competitions);
 onMounted(async () => {
     getCompetitionsByUserId();
 });
 </script>
+ 
