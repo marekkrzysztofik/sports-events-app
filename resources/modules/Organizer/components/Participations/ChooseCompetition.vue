@@ -78,10 +78,10 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
-import { useCompetitions } from "../../../../utils/composables/useCompetitions";
-import { useCompetitors } from "../../../../utils/composables/useCompetitors";
-import { disciplineColumns } from "../../../../utils/consts/disciplineColumns.js";
-import { competitorColumns } from "../../../../utils/consts/competitorColumns.js";
+import { useCompetitions } from "utils/composables/useCompetitions";
+import { useCompetitors } from "utils/composables/useCompetitors";
+import { disciplineColumns } from "utils/consts/disciplineColumns.js";
+import { competitorColumns } from "utils/consts/competitorColumns.js";
 const { getCompetitionsByUserId, competitions } = useCompetitions();
 const { getCompetitorsByUserId, competitors } = useCompetitors();
 const router = useRouter();

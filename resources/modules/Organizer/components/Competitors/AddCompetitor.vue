@@ -39,12 +39,12 @@
                     class="p-button-rounded m-3 save-btn w-9"
                 />
             </div>
-        </div>
+        </div> 
     </div>
 </template>
 <script setup>
-import { useSaveCompetitor } from "../../../../utils/composables/useSaveCompetitor";
-import { sex } from "../../../../utils/consts/disciplines.js";
+import { useSaveCompetitor } from "utils/composables/useSaveCompetitor";
+import { sex } from "utils/consts/disciplines.js";
 const { compForm, saveCompetitor } = useSaveCompetitor();
 </script>
 <style scoped>

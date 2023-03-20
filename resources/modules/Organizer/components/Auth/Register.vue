@@ -77,10 +77,13 @@
 import { ref, onMounted } from "vue";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import { user } from "/resources/modules/Organizer/components/Auth/user.js";
+import { useUserInfo } from "@/storage/Pinia/userInfo.js";
+
 onMounted(() => {
     getUsers();
 });
+
+const userInfo = useUserInfo();
 const userTypeChosen = ref(false);
 const users = ref([]);
 const getUsers = async () => {
@@ -97,10 +100,11 @@ const form = reactive({
     password: "",
     c_password: "",
 });
+const errors = ref([]);
+
 const select = () => {
     userTypeChosen.value = true;
 };
-const errors = ref([]);
 const handleRegister = () => {
     if (
         (!form.user_id && form.type == "Coach") ||
@@ -118,8 +122,8 @@ const register = async () => {
             const registerResponse = response.data;
             if (registerResponse.success) {
                 localStorage.setItem("token", registerResponse.data.token);
-                user.value.id = registerResponse.data.id;
-                user.value.type = registerResponse.data.type;
+                userInfo.id = registerResponse.data.id;
+                userInfo.type = registerResponse.data.type;
                 router.push("/admin");
             }
         })

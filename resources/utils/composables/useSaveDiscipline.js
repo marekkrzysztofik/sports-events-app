@@ -1,7 +1,9 @@
-import { user } from "../../modules/Organizer/components/Auth/user.js"; 
 import { useRouter } from "vue-router";
 import { ref } from "vue";
+import { useUserInfo } from "@/storage/Pinia/userInfo.js";
+
 export function useSaveDiscipline() {
+    const userInfo = useUserInfo();
     const router = useRouter();
     const date = ref({
         day: "",
@@ -27,7 +29,7 @@ export function useSaveDiscipline() {
     async function saveCompetition() {
         form.value.minAge = ageGroup.value.substr(0, 2);
         form.value.maxAge = ageGroup.value.substr(3, 2);
-        form.value.user_id = user.value.id;
+        form.value.user_id = userInfo.id;
         form.value.startTime = date.value.day + " " + date.value.time;
         form.value.style = compStyle.value.style.cname;
         form.value.competition = compStyle.value.competition.cname;

@@ -51,8 +51,8 @@
 </template>
 <script setup>
 import { onMounted } from "vue";
-import { sex } from "../../../../utils/consts/disciplines.js";
-import { useSaveCompetitor } from "../../../../utils/composables/useSaveCompetitor";
+import { sex } from "utils/consts/disciplines.js";
+import { useSaveCompetitor } from "utils/composables/useSaveCompetitor";
 const { compForm, saveCompetitor } = useSaveCompetitor();
 onMounted(async () => {
     getSingleSportsman();

@@ -51,7 +51,7 @@
             <Column field="age" header="Age"></Column>
             <Column field="sex" header="Sex"></Column>
             <Column
-                v-if="user.type == 'Admin' || user.type == 'Referee'"
+                v-if="userInfo.type == 'Admin' || userInfo.type == 'Referee'"
                 header="Edit/Delete"
             >
                 <template #body="event1">
@@ -86,7 +86,7 @@
             ></Column>
             <template #footer>
                 In total there are
-                {{ count }} 
+                {{ count }}
                 competitors.
             </template>
         </DataTable>
@@ -101,9 +101,17 @@ import { useConfirm } from "primevue/useconfirm";
 import { useRouter } from "vue-router";
 import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
-import { user } from "../Auth/user.js";
-import { useComputed } from "../../../../utils/composables/useComputed";
+import { useComputed } from "utils/composables/useComputed";
+import { useUserInfo } from "@/storage/Pinia/userInfo.js";
+
+onMounted(async () => {
+    getParticipationWithCompetitors();
+    getDiscipline();
+});
+
+const userInfo = useUserInfo();
 const router = useRouter();
+const toast = useToast();
 const props = defineProps({
     id: {
         type: String,
@@ -123,11 +131,8 @@ const getDiscipline = async () => {
     const response = await axios.get(`/api/getDisciplineById/${props.id}`);
     discipline.value = response.data;
 };
-onMounted(async () => {
-    getParticipationWithCompetitors();
-    getDiscipline();
-});
 const editingRows = ref([]);
+
 const onRowEditSave = (event) => {
     let { newData, index } = event;
     participationsWithCompetitors.value[index] = newData;
@@ -155,7 +160,6 @@ const deleteParticipation = (id) => {
         getParticipationWithCompetitors();
     });
 };
-const toast = useToast();
 const confirm = useConfirm();
 const confirmDialog = (id) => {
     confirm.require({

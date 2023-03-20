@@ -121,8 +121,8 @@ import {
     sports,
     ageCategories,
     sex,
-} from "../../../../utils/consts/disciplines.js";
-import { useSaveDiscipline } from "../../../../utils/composables/useSaveDiscipline.js";
+} from "utils/consts/disciplines.js";
+import { useSaveDiscipline } from "utils/composables/useSaveDiscipline.js";
 const { date, compStyle, form, ageGroup, saveCompetition } =
     useSaveDiscipline();
 onMounted(async () => {

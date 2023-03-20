@@ -70,7 +70,7 @@
 </template>
 <script setup>
 import { onMounted, ref } from "vue";
-import { useComputed } from "../../../../utils/composables/useComputed";
+import { useComputed } from "utils/composables/useComputed";
 const props = defineProps({
     id: {
         type: String,

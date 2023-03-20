@@ -50,19 +50,23 @@
                     "
                     class="m-3"
                 >
-                    <router-link to="/admin/disciplines" class="no-decoration" 
-                        ><Button label="Competitions" icon="pi pi-calendar-times"  
+                    <router-link to="/admin/disciplines" class="no-decoration"
+                        ><Button
+                            label="Competitions"
+                            icon="pi pi-calendar-times"
                     /></router-link>
                 </li>
                 <li
-                    v-if="user.type == 'Coach' || user.type == 'Admin'"
+                    v-if="userInfo.type == 'Coach' || userInfo.type == 'Admin'"
                     class="m-3"
                 >
                     <SplitButton label="Add" icon="pi pi-plus" :model="items" />
                 </li>
-                <li v-if="user.type == 'Admin'" class="m-3">
+                <li v-if="userInfo.type == 'Admin'" class="m-3">
                     <router-link to="/admin/create" class="no-decoration"
-                        ><Button label="Create competition" icon="pi pi-calendar-plus"
+                        ><Button
+                            label="Create competition"
+                            icon="pi pi-calendar-plus"
                     /></router-link>
                 </li>
                 <li
@@ -85,13 +89,10 @@
 </template>
 <script setup>
 import { useRouter } from "vue-router";
-import { user } from "/resources/modules/Organizer/components/Auth/user.js";
+import { useUserInfo } from "@/storage/Pinia/userInfo.js";
+
+const userInfo = useUserInfo();
 const router = useRouter();
-const logout = () => {
-    localStorage.removeItem("token");
-    router.push("/");
-    location.reload();
-};
 const items = [
     {
         label: "New Sportsman",
@@ -108,5 +109,12 @@ const items = [
         },
     },
 ];
+
+const logout = () => {
+    localStorage.removeItem("token");
+    router.push("/");
+    userInfo.$reset();
+    location.reload();
+};
 </script>
 <style></style>
