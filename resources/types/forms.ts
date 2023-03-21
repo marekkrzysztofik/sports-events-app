@@ -3,6 +3,8 @@ export interface disciplineForm {
     user_id: number;
     minAge: string;
     maxAge: string;
+    style: string;
+    competitions: string;
     startTime: Date;
     sex: string;
     participants: number;
