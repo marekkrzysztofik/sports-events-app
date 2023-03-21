@@ -35,12 +35,6 @@ export function useSaveDiscipline() {
         await axios
             .post("/api/createOrUpdateDiscipline", { ...form.value })
             .then(() => {
-                Object.keys(form.value).forEach(
-                    (key) => (form.value[key] = "")
-                );
-                Object.keys(compStyle.value).forEach(
-                    (key) => (compStyle.value[key] = "")
-                );
                 router.push("/admin");
             });
     }
