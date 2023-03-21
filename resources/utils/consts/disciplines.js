@@ -1,6 +1,6 @@
-export const disciplines1 = [
+export const disciplines = [
     {
-        name: "Swimming",
+        name: "Swimming", 
         styles: [
             { cname: "Freestyle" },
             { cname: "Backstroke" },
