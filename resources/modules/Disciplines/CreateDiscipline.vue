@@ -111,7 +111,7 @@
         </div>
     </div>
 </template>
-<script setup>
+<script setup> 
 import {
     disciplines,
     sports,

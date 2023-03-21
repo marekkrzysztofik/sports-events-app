@@ -16,8 +16,7 @@ export function useSaveDiscipline() {
     const ageGroup = ref();
     const form = ref({
         name: "",
-        user_id: "",
-        category: "",
+        user_id: 0,
         minAge: "",
         maxAge: "",
         startTime: "",
