@@ -1,14 +1,15 @@
 <template>
-    <Navbar></Navbar>
-    <h1 class="center">Edit Competition</h1>
+    <Navbar></Navbar> 
+    <h1 class="center">Create Competition</h1>
     <div
         class="flex flex-column bg-dark-blue w-10 m-20-auto br-radius-15 pad-15"
     >
-        <div class="m-auto flex">
+        <h2 class="m-3">Add new competition</h2>
+        <div class="m-auto flex align-items-center">
             <div class="input-grid">
                 <div>
                     <Dropdown
-                        v-model="form.name"
+                        v-model="form.name" 
                         :options="sports"
                         inputClass="string"
                         placeholder="Select a sport"
@@ -25,7 +26,7 @@
                 <div>
                     <CascadeSelect
                         v-model="compStyle.style"
-                        :options="disciplines1"
+                        :options="disciplines"
                         optionLabel="cname"
                         optionGroupLabel="name"
                         :optionGroupChildren="['styles']"
@@ -44,7 +45,7 @@
                     </CascadeSelect>
                     <CascadeSelect
                         v-model="compStyle.competition"
-                        :options="disciplines1"
+                        :options="disciplines"
                         optionLabel="cname"
                         optionGroupLabel="name"
                         :optionGroupChildren="['competitions']"
@@ -63,12 +64,8 @@
                     </CascadeSelect>
                 </div>
                 <div>
-                    <p>
-                        <InputText v-model="date.day" type="date" />
-                    </p>
-                    <p>
-                        <InputText v-model="date.time" type="time" />
-                    </p>
+                    <InputText v-model="date.day" class="m-3" type="date" />
+                    <InputText v-model="date.time" class="m-3" type="time" />
                 </div>
                 <div>
                     <Dropdown
@@ -107,7 +104,7 @@
                     <Button
                         @click="saveCompetition"
                         label="Save"
-                        class="p-button-rounded"
+                        class="p-button-rounded save-btn w-9"
                     />
                 </div>
             </div>
@@ -115,9 +112,8 @@
     </div>
 </template>
 <script setup>
-import { onMounted } from "vue";
 import {
-    disciplines1,
+    disciplines,
     sports,
     ageCategories,
     sex,
@@ -125,17 +121,4 @@ import {
 import { useSaveDiscipline } from "utils/composables/useSaveDiscipline.js";
 const { date, compStyle, form, ageGroup, saveCompetition } =
     useSaveDiscipline();
-onMounted(async () => {
-    getSingleDiscipline();
-});
-const props = defineProps({
-    id: {
-        type: String,
-        default: "",
-    },
-});
-const getSingleDiscipline = async () => {
-    const response = await axios.get(`/api/getDisciplineById/${props.id}`);
-    form.value = response.data;
-};
 </script>

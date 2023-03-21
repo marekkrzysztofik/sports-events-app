@@ -41,7 +41,7 @@
             </div>
         </div> 
     </div>
-</template>
+</template> 
 <script setup>
 import { useSaveCompetitor } from "utils/composables/useSaveCompetitor";
 import { sex } from "utils/consts/disciplines.js";
