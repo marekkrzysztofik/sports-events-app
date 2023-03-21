@@ -1,13 +1,25 @@
-export interface disciplineForm {
+export interface DisciplineForm {
     name: string;
     user_id: number;
-    minAge: string;
-    maxAge: string;
+    minAge: number;
+    maxAge: number;
     style: string;
-    competitions: string;
-    startTime: Date;
+    competition: string;
+    startTime: string;
     sex: string;
     participants: number;
     timeNotScore: number;
     bigScoreWins: number;
+}
+export interface Date {
+    day: string;
+    time: string;
+}
+export interface CompStyle {
+    style: {
+        cname: string;
+    };
+    competition: {
+        cname: string;
+    };
 }

@@ -25,7 +25,7 @@
                 </div>
                 <div>
                     <CascadeSelect
-                        v-model="compStyle.style"
+                        v-model="compStyle.style.cname"
                         :options="disciplines"
                         optionLabel="cname"
                         optionGroupLabel="name"
@@ -44,7 +44,7 @@
                         </template>
                     </CascadeSelect>
                     <CascadeSelect
-                        v-model="compStyle.competition"
+                        v-model="compStyle.competition.cname"
                         :options="disciplines"
                         optionLabel="cname"
                         optionGroupLabel="name"
@@ -118,7 +118,7 @@ import {
     ageCategories,
     sex,
 } from "utils/consts/disciplines.js";
-import { useSaveDiscipline } from "utils/composables/useSaveDiscipline.js";
+import { useSaveDiscipline } from "utils/composables/useSaveDiscipline.ts";
 const { date, compStyle, form, ageGroup, saveCompetition } =
     useSaveDiscipline();
 </script>
