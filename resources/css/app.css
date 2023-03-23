@@ -94,6 +94,15 @@ body {
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
+.competition-grid {
+    margin: auto;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(5, 150px) 250px;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
 .datatable {
     font-size: 14px;
     border: 0;

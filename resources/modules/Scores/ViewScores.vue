@@ -1,70 +1,59 @@
 <template>
-    <div class="flex">
-        <ul class="no-list-style flex">
-            <li class="m-3">
-                <h1 class="m-0">{{ discipline.name }}</h1>
-            </li>
-            <li class="m-3">Style: {{ discipline.style }}</li>
-            <li class="m-3">
-                Competition:
-                {{ discipline.competition }}
-            </li>
-            <li class="m-3">
-                Age Group:
-                {{ discipline.ageGroup }}
-            </li>
-            <li class="m-3">
-                Start Time:
-                {{ discipline.startTime }}
-            </li>
-            <li class="m-3">Sex: {{ discipline.sex }}</li>
-            <li class="m-3">
-                Participants:
-                {{ discipline.participants }}
-            </li>
-            <li class="m-3">
-                Time Not Score:
-                {{ discipline.timeNotScore }}
-            </li>
-            <li class="m-3">
-                Big Score Wins:
-                {{ discipline.bigScoreWins }}
-            </li>
-        </ul>
-    </div>
-    <div class="flex justify-content-center">
-        <DataTable
-            :value="participationsWithCompetitors"
-            responsiveLayout="scroll"
-            class="m-3 datatable"
-            :sortField="'time'"
-            :sortOrder="1"
+    <div class="flex flex-column">
+        <div class="competition-grid">
+            <div>
+                <h2>{{ discipline.name }}</h2>
+            </div>
+            <div>
+                <h2>{{ discipline.style }}</h2>
+            </div>
+            <div>
+                <h2>{{ discipline.competition }}</h2>
+            </div>
+            <div class="w-max">
+                <h2>{{ discipline.startTime }}</h2>
+            </div>
+        </div>
+        <div
+            v-if="participationsWithCompetitors.length > 0"
+            class="flex justify-content-center"
         >
-            <template #header>Competitors </template>
-            <Column field="id" header="ParticipationID"></Column>
-            <Column field="sportsman_id" header="SportsmanID"></Column>
-            <Column field="name" header="Name"></Column>
-            <Column field="surname" header="Surname"></Column>
-            <Column field="age" header="Age"></Column>
-            <Column field="sex" header="Sex"></Column>
-            <Column
-                v-if="discipline.timeNotScore == 0"
-                field="score"
-                header="Score"
-                sortable
-            ></Column>
-            <Column
-                v-if="discipline.timeNotScore == 1"
-                field="time"
-                header="Time"
-                sortable
-            ></Column>
-            <template #footer>
-                In total there are
-                {{ count }}
-                competitors.
-            </template>
-        </DataTable>
+            <DataTable
+                :value="participationsWithCompetitors"
+                responsiveLayout="scroll"
+                class="m-3 datatable"
+                :sortField="'time'"
+                :sortOrder="1"
+            >
+                <template #header>Competitors </template>
+                <Column field="id" header="ParticipationID"></Column>
+                <Column field="sportsman_id" header="SportsmanID"></Column>
+                <Column field="name" header="Name"></Column>
+                <Column field="surname" header="Surname"></Column>
+                <Column field="age" header="Age"></Column>
+                <Column field="sex" header="Sex"></Column>
+                <Column
+                    v-if="discipline.timeNotScore == 0"
+                    field="score"
+                    header="Score"
+                    sortable
+                ></Column>
+                <Column
+                    v-if="discipline.timeNotScore == 1"
+                    field="time"
+                    header="Time"
+                    sortable
+                ></Column>
+                <template #footer>
+                    In total there are
+                    {{ count }}
+                    competitors.
+                </template>
+            </DataTable>
+        </div>
+        <div v-if="participationsWithCompetitors.length == 0" class="center">
+            <h1>No sportsman is assigned to this competition</h1>
+        </div>
     </div>
 </template>
 <script setup>
@@ -94,3 +83,4 @@ const getDiscipline = async () => {
     discipline.value = response.data;
 };
 </script>
+

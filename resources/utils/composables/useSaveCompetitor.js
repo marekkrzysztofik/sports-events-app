@@ -17,9 +17,6 @@ export function useSaveCompetitor() {
         await axios
             .post("/api/createOrUpdateSportsman", { ...compForm.value })
             .then(() => {
-                Object.keys(compForm.value).forEach(
-                    (key) => (compForm.value[key] = "")
-                );
                 router.push("/admin/competitors");
             });
     }
