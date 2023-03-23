@@ -83,4 +83,3 @@ const getDiscipline = async () => {
     discipline.value = response.data;
 };
 </script>
-

@@ -15,7 +15,10 @@
                 <h2>{{ discipline.startTime }}</h2>
             </div>
         </div>
-        <div class="flex flex-column">
+        <div
+            v-if="participationsWithCompetitors.length > 0"
+            class="flex flex-column"
+        >
             <DataTable
                 :value="participationsWithCompetitors"
                 editMode="row"
@@ -76,6 +79,9 @@
             <div class="justify-content-center m-auto">
                 <Button @click="save" label="Save" class="p-button-rounded" />
             </div>
+        </div>
+        <div v-if="participationsWithCompetitors.length == 0" class="center">
+            <h1>No sportsman is assigned to this competition</h1>
         </div>
     </div>
 </template>
@@ -171,4 +177,3 @@ const confirmDialog = (id) => {
     });
 };
 </script>
-
