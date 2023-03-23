@@ -2,6 +2,7 @@
 
 Sports Events App is a web application created with Vue 3 and Laravel 9. It allows you to manage sports events such as running and swimming competitions. Organizer can create events, competitors, sign sportsman to competitions and assign their scores. In addition it provides different types of users such as coach or referee so it could be used during real events.
 
+<img src="./images.logo.png">
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
