@@ -29,6 +29,9 @@ body {
 .m-20-auto {
     margin: 20px auto;
 }
+.m-20 {
+    margin: 20px 120px;
+}
 .pad-15 {
     padding: 15px;
 }

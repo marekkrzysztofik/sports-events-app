@@ -2,7 +2,9 @@
     <DataTable
         :value="competitions"
         responsiveLayout="scroll"
-        class="datatable w-max m-20-auto"
+        :scrollable="true"
+        scrollHeight="400px"
+        class="datatable m-20"
     >
         <template #header>Competitions </template>
         <Column
@@ -30,4 +32,3 @@ onMounted(async () => {
     getCompetitionsByUserId();
 });
 </script>
- 
