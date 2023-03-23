@@ -25,7 +25,7 @@
                 </div>
                 <div>
                     <CascadeSelect
-                        v-model="compStyle.style.cname"
+                        v-model="compStyle.style"
                         :options="disciplines"
                         optionLabel="cname"
                         optionGroupLabel="name"
@@ -44,7 +44,7 @@
                         </template>
                     </CascadeSelect>
                     <CascadeSelect
-                        v-model="compStyle.competition.cname"
+                        v-model="compStyle.competition"
                         :options="disciplines"
                         optionLabel="cname"
                         optionGroupLabel="name"

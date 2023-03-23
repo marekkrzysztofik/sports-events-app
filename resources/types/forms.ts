@@ -16,10 +16,6 @@ export interface Date {
     time: string;
 }
 export interface CompStyle {
-    style: {
-        cname: string;
-    };
-    competition: {
-        cname: string;
-    };
+    style: string;
+    competition: string;
 }

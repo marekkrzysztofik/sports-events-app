@@ -16,12 +16,8 @@ export function useSaveDiscipline() {
         time: "",
     });
     const compStyle = ref<CompStyle>({
-        style: {
-            cname: "",
-        },
-        competition: {
-            cname: "",
-        },
+        style: "",
+        competition: "",
     });
     const ageGroup = ref<string>();
     const form = ref<DisciplineForm>({
@@ -42,22 +38,16 @@ export function useSaveDiscipline() {
         form.value.maxAge = parseInt(ageGroup.value?.substr(3, 2) ?? "", 10);
         form.value.user_id = userInfo.id;
         form.value.startTime = `${date.value.day} ${date.value.time}`;
-        // form.value.style = compStyle.value.style.cname;
-        // form.value.competition = compStyle.value.competition.cname;
-        form.value.style = "siema";
-        form.value.competition = "siema";
-        await axios
-            .post("/api/createOrUpdateDiscipline", { ...form.value })
-            .then(() => {
-                // Object.keys(form.value).forEach(
-                //     (key) => form.value[key as keyof DisciplineForm] == ""
-                // );
-
-                // Object.keys(compStyle.value).forEach(
-                //     (key) => (compStyle.value[key as keyof CompStyle] == "")
-                // );
-                router.push("/admin");
-            });
+        form.value.style = compStyle.value.style.cname;
+        form.value.competition = compStyle.value.competition.cname;
+        console.log(form.value);
+        // form.value.style = "siema";
+        // form.value.competition = "siema";
+        // await axios
+        //     .post("/api/createOrUpdateDiscipline", { ...form.value })
+        //     .then(() => {
+        //         router.push("/admin");
+        //     });
     }
     return { date, compStyle, form, ageGroup, saveCompetition };
 }
