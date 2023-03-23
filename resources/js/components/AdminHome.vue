@@ -1,5 +1,4 @@
 <template>
-    <Navbar></Navbar>
     <DataTable
         :value="competitions"
         responsiveLayout="scroll"

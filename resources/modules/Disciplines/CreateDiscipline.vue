@@ -1,5 +1,4 @@
 <template>
-    <Navbar></Navbar> 
     <h1 class="center">Create Competition</h1>
     <div
         class="flex flex-column bg-dark-blue w-10 m-20-auto br-radius-15 pad-15"

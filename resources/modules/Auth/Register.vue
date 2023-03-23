@@ -1,6 +1,5 @@
 <template>
     <div class="container">
-        <Navbar></Navbar>
         <div class="center">
             <h1>Create your account</h1>
             <h2>Register</h2>

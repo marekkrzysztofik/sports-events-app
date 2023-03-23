@@ -1,7 +1,5 @@
 <template>
-    <Navbar />
     <ConfirmDialog />
-
     <DataTable
         :value="competitions"
         responsiveLayout="scroll"

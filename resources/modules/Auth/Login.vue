@@ -1,6 +1,5 @@
 <template>
     <div class="container">
-        <Navbar></Navbar>
         <div class="center">
             <h1>Log in to continue</h1>
             <h2>Log in</h2>

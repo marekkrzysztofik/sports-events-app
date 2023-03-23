@@ -1,5 +1,4 @@
 <template>
-    <Navbar></Navbar>
     <ConfirmDialog />
         <DataTable :value="competitors" responsiveLayout="scroll" class="datatable w-max m-20-auto">
             <template #header>Competitors </template>

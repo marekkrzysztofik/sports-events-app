@@ -1,5 +1,4 @@
 <template>
-    <Navbar></Navbar>
     <div class="flex">
         <ul class="no-list-style flex">
             <li class="m-3">

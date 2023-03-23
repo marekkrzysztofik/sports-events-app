@@ -1,5 +1,4 @@
 <template>
-    <Navbar />
     <div class="flex flex-column center">
         <h2 class="m-0">Sign competitor to competition</h2>
         <DataTable

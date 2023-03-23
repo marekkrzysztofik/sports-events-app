@@ -1,5 +1,4 @@
 <template>
-    <Navbar></Navbar>
     <ConfirmDialog />
     <div class="flex">
         <ul class="no-list-style flex">
