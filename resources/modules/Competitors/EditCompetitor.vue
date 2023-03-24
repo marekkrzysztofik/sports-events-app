@@ -52,15 +52,17 @@
 import { onMounted } from "vue";
 import { sex } from "utils/consts/disciplines.js";
 import { useSaveCompetitor } from "utils/composables/useSaveCompetitor";
-const { compForm, saveCompetitor } = useSaveCompetitor();
-onMounted(async () => {
-    getSingleSportsman();
-});
+
 const props = defineProps({
     id: {
         type: String,
         default: "",
     },
+});
+const { compForm, saveCompetitor } = useSaveCompetitor();
+
+onMounted(async () => {
+    getSingleSportsman();
 });
 const getSingleSportsman = async () => {
     const response = await axios.get(`/api/getSportsmanById/${props.id}`);

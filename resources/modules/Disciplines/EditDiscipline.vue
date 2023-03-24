@@ -122,16 +122,18 @@ import {
     sex,
 } from "utils/consts/disciplines.js";
 import { useSaveDiscipline } from "utils/composables/useSaveDiscipline.js";
-const { date, compStyle, form, ageGroup, saveCompetition } =
-    useSaveDiscipline();
-onMounted(async () => {
-    getSingleDiscipline();
-});
+
 const props = defineProps({
     id: {
         type: String,
         default: "",
     },
+});
+const { date, compStyle, form, ageGroup, saveCompetition } =
+    useSaveDiscipline();
+
+onMounted(async () => {
+    getSingleDiscipline();
 });
 const getSingleDiscipline = async () => {
     const response = await axios.get(`/api/getDisciplineById/${props.id}`);

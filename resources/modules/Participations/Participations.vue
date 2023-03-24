@@ -94,29 +94,29 @@ import ConfirmDialog from "primevue/confirmdialog";
 import { useComputed } from "utils/composables/useComputed";
 import { useUserInfo } from "@/storage/Pinia/userInfo.js";
 
-onMounted(async () => {
-    getParticipationWithCompetitors();
-    getDiscipline();
-});
-
-const userInfo = useUserInfo();
-const router = useRouter();
-const toast = useToast();
 const props = defineProps({
     id: {
         type: String,
         default: "",
     },
 });
+const userInfo = useUserInfo();
+const router = useRouter();
+const toast = useToast();
+const { count } = useComputed(participationsWithCompetitors);
+const discipline = ref("");
 const participationsWithCompetitors = ref([]);
+
+onMounted(async () => {
+    getParticipationWithCompetitors();
+    getDiscipline();
+});
 const getParticipationWithCompetitors = async () => {
     const response = await axios.get(
         `/api/participationJoinedWithCompetitors/${props.id}`
     );
     participationsWithCompetitors.value = response.data;
 };
-const { count } = useComputed(participationsWithCompetitors);
-const discipline = ref("");
 const getDiscipline = async () => {
     const response = await axios.get(`/api/getDisciplineById/${props.id}`);
     discipline.value = response.data;

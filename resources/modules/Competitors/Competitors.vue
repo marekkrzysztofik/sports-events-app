@@ -1,38 +1,41 @@
 <template>
     <ConfirmDialog />
-        <DataTable :value="competitors" responsiveLayout="scroll" class="datatable w-max m-20-auto">
-            <template #header>Competitors </template>
-            <Column
-                v-for="column in competitorColumns"
-                :key="column.field"
-                :field="column.field"
-                :header="column.header"
-            ></Column>
-            <Column v-if="userInfo.type == 'Admin'" header="Edit/Delete">
-                <template #body="event1">
-                    <div class="actions-height">
-                        <button
-                            @click="getCompetitor(event1.data.id)"
-                            class="btn-icon btn-icon-success"
-                        >
-                            <i class="pi pi-pencil"></i>
-                        </button>
-                        <button
-                            @click="confirmDialog(event1.data.id)"
-                            class="btn-icon btn-icon-danger"
-                        >
-                            <i class="pi pi-ban"></i>
-                        </button>
-                    </div>
-                </template>
-            </Column>
-            <template #footer>
-                In total there are
-                {{ count }} competitors.
+    <DataTable
+        :value="competitors"
+        responsiveLayout="scroll"
+        class="datatable w-max m-20-auto"
+    >
+        <template #header>Competitors </template>
+        <Column
+            v-for="column in competitorColumns"
+            :key="column.field"
+            :field="column.field"
+            :header="column.header"
+        ></Column>
+        <Column v-if="userInfo.type == 'Admin'" header="Edit/Delete">
+            <template #body="event1">
+                <div class="actions-height">
+                    <button
+                        @click="getCompetitor(event1.data.id)"
+                        class="btn-icon btn-icon-success"
+                    >
+                        <i class="pi pi-pencil"></i>
+                    </button>
+                    <button
+                        @click="confirmDialog(event1.data.id)"
+                        class="btn-icon btn-icon-danger"
+                    >
+                        <i class="pi pi-ban"></i>
+                    </button>
+                </div>
             </template>
-        </DataTable>
-    
-</template> 
+        </Column>
+        <template #footer>
+            In total there are
+            {{ count }} competitors.
+        </template>
+    </DataTable>
+</template>
 <script setup>
 import { onMounted } from "vue";
 import { useConfirm } from "primevue/useconfirm";
@@ -44,10 +47,13 @@ import { useComputed } from "utils/composables/useComputed.js";
 import { competitorColumns } from "utils/consts/competitorColumns.js";
 import { useUserInfo } from "@/storage/Pinia/userInfo.js";
 
-const userInfo = useUserInfo()
+const userInfo = useUserInfo();
 const { getCompetitorsByUserId, competitors } = useCompetitors();
 const { count } = useComputed(competitors);
 const router = useRouter();
+const toast = useToast();
+const confirm = useConfirm();
+
 onMounted(async () => {
     getCompetitorsByUserId();
 });
@@ -59,8 +65,6 @@ const deleteCompetitor = (sportsman) => {
 const getCompetitor = (id) => {
     router.push(`/admin/edit-competitor/${id}`);
 };
-const toast = useToast();
-const confirm = useConfirm();
 const confirmDialog = (id) => {
     confirm.require({
         message: "Do you want to delete this competitor?",

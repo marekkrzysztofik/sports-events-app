@@ -10,7 +10,7 @@
             responsiveLayout="scroll"
             :scrollable="true"
             scrollHeight="400px"
-            class="datatable w-max m-20-auto" 
+            class="datatable w-max m-20-auto"
         >
             <template #header>Competitions </template>
             <Column
@@ -81,19 +81,21 @@ import { useCompetitions } from "utils/composables/useCompetitions";
 import { useCompetitors } from "utils/composables/useCompetitors";
 import { disciplineColumns } from "utils/consts/disciplineColumns.js";
 import { competitorColumns } from "utils/consts/competitorColumns.js";
+
 const { getCompetitionsByUserId, competitions } = useCompetitions();
 const { getCompetitorsByUserId, competitors } = useCompetitors();
 const router = useRouter();
-onMounted(async () => {
-    getCompetitionsByUserId();
-    getCompetitorsByUserId();
-});
 const ifSelected = ref(false);
 const competitionOccupied = ref(false);
 const selectedDiscipline = ref();
 const disciplineWithCompetitors = ref({});
 const filteredCompetitors = ref([]);
 const selectedCompetitors = ref();
+
+onMounted(async () => {
+    getCompetitionsByUserId();
+    getCompetitorsByUserId();
+});
 const backToDisciplines = () => {
     ifSelected.value = false;
     competitionOccupied.value = false;

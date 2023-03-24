@@ -44,6 +44,7 @@
 <script setup>
 import { useSaveCompetitor } from "utils/composables/useSaveCompetitor";
 import { sex } from "utils/consts/disciplines.js";
+
 const { compForm, saveCompetitor } = useSaveCompetitor();
 </script>
 <style scoped>

@@ -59,25 +59,27 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { useComputed } from "utils/composables/useComputed";
+
 const props = defineProps({
     id: {
         type: String,
         default: "",
     },
 });
+const { count } = useComputed(participationsWithCompetitors);
 const participationsWithCompetitors = ref([]);
+const discipline = ref("");
+
+onMounted(async () => {
+    getParticipationWithCompetitors();
+    getDiscipline();
+});
 const getParticipationWithCompetitors = async () => {
     const response = await axios.get(
         `/api/participationJoinedWithCompetitors/${props.id}`
     );
     participationsWithCompetitors.value = response.data;
 };
-const { count } = useComputed(participationsWithCompetitors);
-onMounted(async () => {
-    getParticipationWithCompetitors();
-    getDiscipline();
-});
-const discipline = ref("");
 const getDiscipline = async () => {
     const response = await axios.get(`/api/getDisciplineById/${props.id}`);
     discipline.value = response.data;
