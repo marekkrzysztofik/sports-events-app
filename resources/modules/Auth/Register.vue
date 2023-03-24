@@ -78,17 +78,9 @@ import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useUserInfo } from "@/storage/Pinia/userInfo.js";
 
-onMounted(() => {
-    getUsers();
-});
-
 const userInfo = useUserInfo();
 const userTypeChosen = ref(false);
 const users = ref([]);
-const getUsers = async () => {
-    const response = await axios.get("/api/getUsers");
-    users.value = response.data;
-};
 const router = useRouter();
 const types = ["Admin", "Coach", "Referee"];
 const form = reactive({
@@ -101,6 +93,13 @@ const form = reactive({
 });
 const errors = ref([]);
 
+onMounted(() => {
+    getUsers();
+});
+const getUsers = async () => {
+    const response = await axios.get("/api/getUsers");
+    users.value = response.data;
+};
 const select = () => {
     userTypeChosen.value = true;
 };
