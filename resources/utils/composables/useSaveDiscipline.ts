@@ -1,15 +1,15 @@
 import { useRouter } from "vue-router";
 import { ref } from "vue";
-//import { useUserInfo } from "@/storage/Pinia/userInfo.js";
-import { DisciplineForm, Date, CompStyle } from "../../types/forms";
+import { useUserInfo } from "@/storage/Pinia/userInfo.js";
+import { DisciplineForm, Date, CompStyle } from "resources/types/disciplineForms.ts";
 import axios from "axios";
 
 export function useSaveDiscipline() {
-    //const userInfo = useUserInfo();
-    const userInfo = {
-        id: 18,
-        type: "Admin",
-    };
+    const userInfo = useUserInfo();
+    // const userInfo = {
+    //     id: 18,
+    //     type: "Admin",
+    // };
     const router = useRouter();
     const date = ref<Date>({
         day: "",
@@ -40,14 +40,11 @@ export function useSaveDiscipline() {
         form.value.startTime = `${date.value.day} ${date.value.time}`;
         form.value.style = compStyle.value.style.cname;
         form.value.competition = compStyle.value.competition.cname;
-        console.log(form.value);
-        // form.value.style = "siema";
-        // form.value.competition = "siema";
-        // await axios
-        //     .post("/api/createOrUpdateDiscipline", { ...form.value })
-        //     .then(() => {
-        //         router.push("/admin");
-        //     });
+        await axios
+            .post("/api/createOrUpdateDiscipline", { ...form.value })
+            .then(() => {
+                router.push("/admin");
+            });
     }
     return { date, compStyle, form, ageGroup, saveCompetition };
 }

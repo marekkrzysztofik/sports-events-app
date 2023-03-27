@@ -1,5 +1,6 @@
-import { computed } from "vue";
-export function useComputed(data) {
+import { Ref, computed } from "vue";
+
+export function useComputed(data: Ref<Array<any>>) {
     const count = computed(() => {
         if (data.value) {
             return data.value.length;
@@ -8,6 +9,6 @@ export function useComputed(data) {
         }
     });
     return {
-        count
+        count,
     };
 }

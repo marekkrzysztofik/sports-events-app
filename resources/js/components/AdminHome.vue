@@ -21,9 +21,9 @@
 </template>
 <script setup>
 import { onMounted } from "vue";
-import { useCompetitions } from "utils/composables/useCompetitions.js";
+import { useCompetitions } from "utils/composables/useCompetitions";
 import { useComputed } from "utils/composables/useComputed";
-import { disciplineColumns } from "utils/consts/disciplineColumns.js";
+import { disciplineColumns } from "utils/consts/disciplineColumns";
 
 const { getCompetitionsByUserId, competitions } = useCompetitions();
 const { count } = useComputed(competitions);

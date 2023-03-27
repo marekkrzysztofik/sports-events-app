@@ -102,7 +102,7 @@ import { useRouter } from "vue-router";
 import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
 import { useComputed } from "utils/composables/useComputed";
-import { useUserInfo } from "@/storage/Pinia/userInfo.js";
+import { useUserInfo } from "@/storage/Pinia/userInfo";
 
 onMounted(async () => {
     getParticipationWithCompetitors();

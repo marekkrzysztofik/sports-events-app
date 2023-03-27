@@ -19,3 +19,4 @@ export interface CompStyle {
     style: string;
     competition: string;
 }
+

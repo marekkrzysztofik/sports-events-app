@@ -6,13 +6,13 @@
             <div class="input-grid">
                 <div>
                     <InputText
-                        v-model="compForm.name"
+                        v-model="competitorForm.name"
                         type="text"
                         placeholder="Name of competitor"
                         class="m-3"
                     />
                     <InputText
-                        v-model="compForm.surname"
+                        v-model="competitorForm.surname"
                         type="text"
                         placeholder="Surname of competitor"
                         class="m-3"
@@ -20,14 +20,14 @@
                 </div>
                 <div>
                     <Dropdown
-                        v-model="compForm.sex"
+                        v-model="competitorForm.sex"
                         :options="sex"
                         inputClass="string"
                         placeholder="Select sex"
                         class="m-3"
                     />
                     <InputText
-                        v-model="compForm.age"
+                        v-model="competitorForm.age"
                         type="number"
                         placeholder="Age"
                         class="m-3"
@@ -45,7 +45,7 @@
 <script setup>
 import { useSaveCompetitor } from "utils/composables/useSaveCompetitor";
 import { sex } from "utils/consts/disciplines.js";
-const { compForm, saveCompetitor } = useSaveCompetitor();
+const { competitorForm, saveCompetitor } = useSaveCompetitor();
 </script>
 <style scoped>
 .input-grid {

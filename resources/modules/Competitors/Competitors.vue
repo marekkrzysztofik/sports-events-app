@@ -40,10 +40,10 @@ import { useConfirm } from "primevue/useconfirm";
 import { useRouter } from "vue-router";
 import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
-import { useCompetitors } from "utils/composables/useCompetitors.js";
-import { useComputed } from "utils/composables/useComputed.js";
-import { competitorColumns } from "utils/consts/competitorColumns.js";
-import { useUserInfo } from "@/storage/Pinia/userInfo.js";
+import { useCompetitors } from "utils/composables/useCompetitors";
+import { useComputed } from "utils/composables/useComputed";
+import { competitorColumns } from "utils/consts/competitorColumns";
+import { useUserInfo } from "@/storage/Pinia/userInfo";
 
 const userInfo = useUserInfo()
 const { getCompetitorsByUserId, competitors } = useCompetitors();

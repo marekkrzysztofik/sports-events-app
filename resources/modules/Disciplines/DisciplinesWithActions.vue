@@ -62,10 +62,10 @@ import { useRouter } from "vue-router";
 import { useConfirm } from "primevue/useconfirm";
 import { useToast } from "primevue/usetoast";
 import ConfirmDialog from "primevue/confirmdialog";
-import { useCompetitions } from "utils/composables/useCompetitions.js";
+import { useCompetitions } from "utils/composables/useCompetitions";
 import { useComputed } from "utils/composables/useComputed";
-import { disciplineColumns } from "utils/consts/disciplineColumns.js";
-import { useUserInfo } from "@/storage/Pinia/userInfo.js";
+import { disciplineColumns } from "utils/consts/disciplineColumns";
+import { useUserInfo } from "@/storage/Pinia/userInfo";
 
 const userInfo = useUserInfo();
 const { getCompetitionsByUserId, competitions } = useCompetitions();

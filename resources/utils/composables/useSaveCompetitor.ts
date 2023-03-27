@@ -1,11 +1,13 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUserInfo } from "@/storage/Pinia/userInfo.js";
+import { CompetitorForm } from "resources/types/forms.ts";
+import axios from "axios";
 
 export function useSaveCompetitor() {
     const userInfo = useUserInfo();
     const router = useRouter();
-    const compForm = ref({
+    const competitorForm = ref<CompetitorForm>({
         name: "",
         user_id: "",
         surname: "",
@@ -13,15 +15,12 @@ export function useSaveCompetitor() {
         sex: "",
     });
     async function saveCompetitor() {
-        compForm.value.user_id = userInfo.id;
+        competitorForm.value.user_id = userInfo.id;
         await axios
-            .post("/api/createOrUpdateSportsman", { ...compForm.value })
+            .post("/api/createOrUpdateSportsman", { ...competitorForm.value })
             .then(() => {
-                Object.keys(compForm.value).forEach(
-                    (key) => (compForm.value[key] = "")
-                );
                 router.push("/admin/competitors");
             });
     }
-    return { compForm, saveCompetitor };
+    return { competitorForm, saveCompetitor };
 }
