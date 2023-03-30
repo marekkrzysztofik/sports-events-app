@@ -7,3 +7,4 @@ export const competitorColumns: Column[] = [
     { field: "age", header: "Age" },
     { field: "sex", header: "Sex" },
 ];
+ 

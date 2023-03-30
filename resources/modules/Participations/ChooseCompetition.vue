@@ -80,7 +80,7 @@ import { useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
 import { useCompetitions } from "utils/composables/useCompetitions";
 import { useCompetitors } from "utils/composables/useCompetitors";
-import { disciplineColumns } from "utils/consts/disciplineColumns.js";
+import { disciplineColumns } from "utils/consts/disciplineColumns";
 import { competitorColumns } from "utils/consts/competitorColumns";
 const { getCompetitionsByUserId, competitions } = useCompetitions();
 const { getCompetitorsByUserId, competitors } = useCompetitors();

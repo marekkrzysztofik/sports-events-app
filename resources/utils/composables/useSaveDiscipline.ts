@@ -1,7 +1,7 @@
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 import { useUserInfo } from "@/storage/Pinia/userInfo.js";
-import { DisciplineForm, Date, CompStyle } from "resources/types/disciplineForms.ts";
+import { DisciplineForm, Date, CompStyle } from "../../types/disciplineForms";
 import axios from "axios";
 
 export function useSaveDiscipline() {

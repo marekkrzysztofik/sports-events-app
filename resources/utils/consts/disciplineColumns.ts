@@ -1,4 +1,6 @@
-export const disciplineColumns = [
+import { Column } from "resources/types/columns";
+
+export const disciplineColumns: Column[] = [
   { field: 'id', header: 'ID' },
   { field: 'name', header: 'Name' },
   { field: 'style', header: 'Style' },
@@ -8,4 +10,4 @@ export const disciplineColumns = [
   { field: 'startTime', header: 'Start Time' },
   { field: 'sex', header: 'Sex' },
   { field: 'participants', header: 'Participants' },
-];
+]; 
