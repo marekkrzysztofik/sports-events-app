@@ -7,7 +7,7 @@ use App\Models\Discipline;
 class DisciplineRepository
 {
     protected $discipline;
-    public function __construct()
+    public function __construct() 
     {
         $this->discipline = new Discipline();
     }

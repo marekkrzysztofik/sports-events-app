@@ -7,7 +7,7 @@ import router from "./router";
 import App from "./components/App.vue";
 
 import { createPinia } from 'pinia'
-import piniaPersist from 'pinia-plugin-persist'
+import piniaPersist from 'pinia-plugin-persist' 
 import PrimeVue from "primevue/config";
 
 import Dialog from "primevue/dialog";

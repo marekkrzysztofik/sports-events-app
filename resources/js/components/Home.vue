@@ -7,7 +7,7 @@
         </div>
         <form @submit.prevent="submit">
             <label>
-                Name:
+                Name: 
                 <input type="number" name="name" />
             </label>
             <Dropdown

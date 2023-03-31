@@ -15,7 +15,7 @@ import ViewScores from 'modules/Scores/ViewScores.vue'
 import DisciplinesWithActions from 'modules/Disciplines/DisciplinesWithActions.vue'
 const routes = [
     //admin
-    {
+    { 
         path: "/",
         component: Home,
         name: "Home",

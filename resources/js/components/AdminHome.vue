@@ -3,7 +3,7 @@
     <DataTable
         :value="competitions"
         responsiveLayout="scroll"
-        class="datatable w-max m-20-auto"
+        class="datatable w-max m-20-auto" 
     >
         <template #header>Competitions </template>
         <Column
