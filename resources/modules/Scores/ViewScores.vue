@@ -66,8 +66,8 @@ const props = defineProps({
         default: "",
     },
 });
-const { count } = useComputed(participationsWithCompetitors);
 const participationsWithCompetitors = ref([]);
+const { count } = useComputed(participationsWithCompetitors);
 const discipline = ref("");
 
 onMounted(async () => {

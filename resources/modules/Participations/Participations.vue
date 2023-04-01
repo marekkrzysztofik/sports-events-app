@@ -103,9 +103,9 @@ const props = defineProps({
 const userInfo = useUserInfo();
 const router = useRouter();
 const toast = useToast();
-const { count } = useComputed(participationsWithCompetitors);
 const discipline = ref("");
 const participationsWithCompetitors = ref([]);
+const { count } = useComputed(participationsWithCompetitors);
 
 onMounted(async () => {
     getParticipationWithCompetitors();
