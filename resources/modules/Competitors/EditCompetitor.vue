@@ -56,7 +56,7 @@ import { useSaveCompetitor } from "utils/composables/useSaveCompetitor";
 const props = defineProps({
     id: {
         type: String,
-        default: "",
+        default: "", 
     },
 });
 const { compForm, saveCompetitor } = useSaveCompetitor();

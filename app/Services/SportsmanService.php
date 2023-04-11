@@ -37,7 +37,7 @@ class SportsmanService
     $this->sportsmanRepository->delete($id);
   }
   public function updateSportsman(Request $request, $id)
-  {
+  { 
     $sportsman = $this->sportsmanRepository->getSportsmanById($id);
     $sportsman->name = $request['name'];
     $sportsman->surname = $request['surname'];

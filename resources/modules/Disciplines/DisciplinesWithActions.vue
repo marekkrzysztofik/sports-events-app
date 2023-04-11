@@ -1,4 +1,5 @@
 <template>
+    <Toast/>
     <ConfirmDialog />
     <DataTable
         :value="competitions"

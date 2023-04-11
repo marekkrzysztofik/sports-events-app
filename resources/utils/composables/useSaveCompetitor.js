@@ -9,7 +9,7 @@ export function useSaveCompetitor() {
         name: "",
         user_id: "",
         surname: "",
-        age: "",
+        age: "", 
         sex: "",
     });
     async function saveCompetitor() {

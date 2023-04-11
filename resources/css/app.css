@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
 
 body {
-    background-color: #bbe1fa;
+    background-color: #F9F5EB;
     font-family: "Kanit", sans-serif;
 }
 .logo {
@@ -18,7 +18,7 @@ body {
     font-family: "Kanit", sans-serif !important;
 }
 .bg-dark-blue {
-    background-color: #19A7CE;
+    background-color: #607EAA;
 }
 .br-radius-15 {
     border-radius: 15px !important;
@@ -110,23 +110,24 @@ body {
     overflow: hidden;
 }
 .p-datatable .p-datatable-header {
-    background-color: #19A7CE !important;
+    background-color: #607EAA !important;
     color: #000000 !important;
     font-weight: 400 !important;
     font-size: 20px; 
 }
 .p-datatable .p-datatable-footer {
-    background-color: #19A7CE !important;
+    background-color: #607EAA !important;
     color: #000000 !important;
     font-weight: 400 !important;
 }
 .p-button  {
-    background-color: #19A7CE !important;
+    background-color: #607EAA !important;
     color: #000000 !important;
     border-radius: 15px !important;
 }
 .p-button:hover {
-    background-color: #2c53ff !important;
+    background-color: #1C3879 !important;
+    color: white !important;
 }
 .save-btn {
     background-color: black !important;

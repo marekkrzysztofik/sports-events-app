@@ -15,7 +15,7 @@ class SportsmanController extends Controller
     }
     public function getSportsmenByUserId($id)
     {
-        return $this->sportsmanService->getSportsmenByUserId($id);
+        return $this->sportsmanService->getSportsmenByUserId($id); 
     }
     
     public function deleteSportsman($id)

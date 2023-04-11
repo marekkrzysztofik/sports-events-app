@@ -2,11 +2,8 @@
     <div class="justify-content-center flex align-items-center">
         <div class="flex align-items-center">
             <div>
-                <img src="@/images/logo.png" alt="logo" class="logo" />
-            </div>
-            <div>
                 <router-link to="/" class="no-decoration">
-                    <h1 class="logo-name m-4">SportsEvents</h1></router-link
+                    <h1 class="logo-name m-4">SportsEvents</h1></router-link 
                 >
             </div>
         </div>
