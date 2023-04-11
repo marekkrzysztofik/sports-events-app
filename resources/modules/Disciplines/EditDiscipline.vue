@@ -91,7 +91,7 @@
                         :trueValue="1"
                         :falseValue="0"
                     />
-                    <p>Check for time, leave for score</p>
+                    <p class="bright-txt">Check for time, leave for score</p>
                 </div>
                 <div class="m-3">
                     <Checkbox
@@ -100,13 +100,13 @@
                         :trueValue="1"
                         :falseValue="0"
                     />
-                    <p>Check if the biggest score wins</p>
+                    <p class="bright-txt">Check if the biggest score wins</p>
                 </div>
                 <div class="save-button m-3">
                     <Button
                         @click="saveCompetition"
                         label="Save"
-                        class="p-button-rounded"
+                        class="save-btn"
                     />
                 </div>
             </div>
@@ -140,3 +140,8 @@ const getSingleDiscipline = async () => {
     form.value = response.data;
 };
 </script>
+<style scoped>
+.save-button {
+    grid-area: 2/4/2/4;
+}
+</style>

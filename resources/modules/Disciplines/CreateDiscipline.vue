@@ -3,7 +3,7 @@
     <div
         class="flex flex-column bg-dark-blue w-10 m-20-auto br-radius-15 pad-15"
     >
-        <h2 class="m-3">Add new competition</h2>
+        <h2 class="m-3 bright-txt">Add new competition</h2>
         <div class="m-auto flex align-items-center">
             <div class="input-grid">
                 <div>
@@ -88,7 +88,7 @@
                         :trueValue="1"
                         :falseValue="0"
                     />
-                    <p>Check for time, leave for score</p>
+                    <p class="bright-txt">Check for time, leave for score</p>
                 </div>
                 <div class="m-3">
                     <Checkbox
@@ -97,7 +97,7 @@
                         :trueValue="1"
                         :falseValue="0"
                     />
-                    <p>Check if the biggest score wins</p>
+                    <p class="bright-txt">Check if the biggest score wins</p>
                 </div>
                 <div class="save-button m-3">
                     <Button

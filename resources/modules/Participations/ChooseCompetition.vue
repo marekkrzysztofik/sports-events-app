@@ -1,6 +1,5 @@
 <template>
     <div class="flex flex-column center">
-        <h2 class="m-0">Sign competitor to competition</h2>
         <DataTable
             v-if="ifSelected == false"
             :value="competitions"
@@ -8,9 +7,9 @@
             selectionMode="single"
             dataKey="id"
             responsiveLayout="scroll"
-            :scrollable="true"
+            scrollable
             scrollHeight="400px"
-            class="datatable w-max m-20-auto"
+            class="datatable m-20-auto"
         >
             <template #header>Competitions </template>
             <Column
@@ -23,7 +22,7 @@
         <Button
             v-if="ifSelected == false"
             @click="handleClick"
-            label="Show Competitors"
+            label="Add Competitors"
             class="p-button-rounded m-3"
         />
         <Button

@@ -6,6 +6,9 @@ body {
     background-color: #F9F5EB;
     font-family: "Kanit", sans-serif;
 }
+.bright-txt {
+color: #F9F5EB;
+}
 .logo {
     width: 100px;
     height: 100px;
@@ -18,7 +21,7 @@ body {
     font-family: "Kanit", sans-serif !important;
 }
 .bg-dark-blue {
-    background-color: #607EAA;
+    background-color: #1C3879;
 }
 .br-radius-15 {
     border-radius: 15px !important;
@@ -82,9 +85,6 @@ body {
     flex-direction: column;
     align-items: center;
 }
-.save-button {
-    grid-area: 2/4/2/4;
-}
 .input-grid {
     margin: auto;
     display: grid;
@@ -106,30 +106,34 @@ body {
 .datatable {
     font-size: 14px;
     border: 0;
-    border-radius: 20px;
+    border-radius: 15px;
     overflow: hidden;
 }
 .p-datatable .p-datatable-header {
-    background-color: #607EAA !important;
-    color: #000000 !important;
+    background-color: #1C3879 !important;
+    color: #F9F5EB !important;
     font-weight: 400 !important;
     font-size: 20px; 
 }
 .p-datatable .p-datatable-footer {
-    background-color: #607EAA !important;
-    color: #000000 !important;
+    background-color: #1C3879 !important;
+    color: #F9F5EB !important;
     font-weight: 400 !important;
 }
 .p-button  {
-    background-color: #607EAA !important;
-    color: #000000 !important;
-    border-radius: 15px !important;
+    background-color: #1C3879 !important;
+    color: #F9F5EB !important;
+    border-radius: 10px !important;
 }
 .p-button:hover {
-    background-color: #1C3879 !important;
-    color: white !important;
+    background-color: #F9F5EB !important;
+    color: #1C3879 !important;
 }
 .save-btn {
-    background-color: black !important;
-    color: #e0e0e0 !important;
+    background-color: #F9F5EB !important;
+    color: black !important;
+} 
+.save-btn:hover {
+    background-color: #1C3879 !important;
+    color: #F9F5EB !important;
 } 

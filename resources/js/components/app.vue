@@ -1,19 +1,12 @@
 <template>
     <div class="justify-content-center flex align-items-center">
-        <div class="flex align-items-center">
-            <div>
-                <router-link to="/" class="no-decoration">
-                    <h1 class="logo-name m-4">SportsEvents</h1></router-link 
-                >
-            </div>
-        </div>
+        <router-link to="/" class="no-decoration">
+            <h1 class="logo-name m-4">SportsEvents</h1></router-link
+        >
         <div class="flex">
             <ul class="no-list-style flex pad-0">
-                <li class="m-3">
-                    <router-link
-                        v-if="$route.name === 'Home'"
-                        to="/login"
-                        class="no-decoration"
+                <li v-if="$route.name === 'Home'" class="m-3">
+                    <router-link to="/login" class="no-decoration"
                         ><Button class="my-button" label="Login"
                     /></router-link>
                 </li>
@@ -25,16 +18,16 @@
                         ><Button label="Register"
                     /></router-link>
                 </li>
-                <li class="m-3">
-                    <router-link
-                        v-if="
-                            $route.name != 'Home' &&
-                            $route.name != 'Login' &&
-                            $route.name != 'Register' &&
-                            $route.name != 'Competitors'
-                        "
-                        to="/admin/competitors"
-                        class="no-decoration"
+                <li
+                    v-if="
+                        $route.name != 'Home' &&
+                        $route.name != 'Login' &&
+                        $route.name != 'Register' &&
+                        $route.name != 'Competitors'
+                    "
+                    class="m-3"
+                >
+                    <router-link to="/admin/competitors" class="no-decoration"
                         ><Button label="Competitors" icon="pi pi-users"
                     /></router-link>
                 </li>
